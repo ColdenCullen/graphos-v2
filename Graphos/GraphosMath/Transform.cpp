@@ -9,10 +9,16 @@ Transform::Transform( void )
 
 void Transform::Rotate( const float x, const float y, const float z, const float angle )
 {
+	Vector3 oldCoord = position;
+
+	Translate( -oldCoord.x, -oldCoord.y, -oldCoord.z );
+
 	//TODO: Make better
-	RotateX( x );
-	RotateY( y );
-	RotateZ( z );
+	RotateX( x * M_PI / 180 );
+	RotateY( y * M_PI / 180 );
+	RotateZ( z * M_PI / 180 );
+
+	Translate( oldCoord.x, oldCoord.y, oldCoord.z );
 }
 
 void Transform::Translate( const float x, const float y, const float z )

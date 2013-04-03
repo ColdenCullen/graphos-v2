@@ -12,6 +12,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Resources", "Resources", "{31919205-7D63-4EC7-9E35-C1D44D3C2001}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Assets", "Assets", "{D6CE1092-AB11-4A2B-9FB6-A9564FB2540B}"
+	ProjectSection(SolutionItems) = preProject
+		Resources\Assets\Cube.obj = Resources\Assets\Cube.obj
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shaders", "Shaders", "{DD7EB8EC-7C48-4C23-8E49-F58EBB543DCA}"
 	ProjectSection(SolutionItems) = preProject
@@ -21,6 +24,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shaders", "Shaders", "{DD7E
 		Resources\Shaders\light.vs.sl = Resources\Shaders\light.vs.sl
 		Resources\Shaders\texture.fs.sl = Resources\Shaders\texture.fs.sl
 		Resources\Shaders\texture.vs.sl = Resources\Shaders\texture.vs.sl
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Config", "Config", "{10BA1DB2-7366-4B9C-8E60-DC3607F25E97}"
+	ProjectSection(SolutionItems) = preProject
+		Resources\Config\Config.json = Resources\Config\Config.json
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Global Headers", "Global Headers", "{EC22F2CB-CFAB-4606-97AC-091DB911534D}"
+	ProjectSection(SolutionItems) = preProject
+		GL\x86\include\GL\GLIncludes.h = GL\x86\include\GL\GLIncludes.h
+		GL\x86\include\Helpers.h = GL\x86\include\Helpers.h
 	EndProjectSection
 EndProject
 Global
@@ -52,5 +66,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{D6CE1092-AB11-4A2B-9FB6-A9564FB2540B} = {31919205-7D63-4EC7-9E35-C1D44D3C2001}
 		{DD7EB8EC-7C48-4C23-8E49-F58EBB543DCA} = {31919205-7D63-4EC7-9E35-C1D44D3C2001}
+		{10BA1DB2-7366-4B9C-8E60-DC3607F25E97} = {31919205-7D63-4EC7-9E35-C1D44D3C2001}
 	EndGlobalSection
 EndGlobal

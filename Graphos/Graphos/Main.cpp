@@ -1,5 +1,5 @@
 #include "GraphosGame.h"
-#include "SettingsController.hpp"
+#include "ConfigController.hpp"
 #include "DrawableGameObject.h"
 #include "Input.h"
 
@@ -39,18 +39,28 @@ private:
 			0.5f,-0.5f, 1.0f, 0.0f, 0.0f, 1.0f
 		};
 
-		test.BufferData( vertexData );
+		//test.BufferData( vertexData );
 
-		//test.transform.Scale( 0.5f, 0.5f, 0.0f );
+		test.LoadObjectFile( "Resources/Assets/Cube.obj" );
+
+		test.transform.Translate( 0.0f, 0.0f, 3.0f );
 
 		return true;
 	}
 
 	bool Update( void )
 	{
+		// Quit condition
 		if( Input::Get().IsKeyDown( VK_ESCAPE, true ) )
 			return false;
 
+		if( Input::Get().IsKeyDown( VK_SPACE, true ) )
+		{
+			ConfigController::Get().LoadSettings();
+			GraphicsController::Get().Resize();
+		}
+
+		// Move object
 		if( Input::Get().IsKeyDown( VK_LEFT, false ) )
 		{
 			test.transform.Translate( -0.01f, 0.0f, 0.0f );
@@ -68,13 +78,31 @@ private:
 			test.transform.Translate( 0.0f, -0.01f, 0.0f );
 		}
 
+		// Rotate
+		if( Input::Get().IsKeyDown( VK_A, true ) )
+		{
+			//test.transform.Translate( -0.01f, 0.0f, 0.0f );
+			test.transform.Rotate( 0.0f, 0.0f, 90.0f, 0.0f );
+		}
+		if( Input::Get().IsKeyDown( VK_D, false ) )
+		{
+			//test.transform.Translate( 0.01f, 0.0f, 0.0f );
+		}
+		if( Input::Get().IsKeyDown( VK_W, false ) )
+		{
+			//test.transform.Translate( 0.0f, 0.01f, 0.0f );
+		}
+		if( Input::Get().IsKeyDown( VK_S, false ) )
+		{
+			//test.transform.Translate( 0.0f, -0.01f, 0.0f );
+		}
+
 		return true;
 	}
 
 	void Draw( void )
 	{
-		ShaderController::Get().GetShader( "color" ).Use();
-		ShaderController::Get().GetShader( "color" ).SetUniform( "cameraMatrix", cam.transform.getMatrix() );
+		ShaderController::Get().GetShader( "color" ).SetUniform( "cameraMatrix", cam.transform.Matrix() );
 		ShaderController::Get().GetShader( "color" ).SetUniform( "projectionMatrix", WindowController::Get().GetPerspectiveMatrix() );
 
 		test.Draw();

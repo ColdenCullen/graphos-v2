@@ -4,10 +4,14 @@ using namespace Graphos;
 
 void GraphosGame::Run( void )
 {
-	SettingsController::Get().LoadSettings();
-	GraphicsController::Get().Initialize();
+	if( !ConfigController::Get().LoadSettings() )
+		return;
 
-	Initialize();
+	if( !GraphicsController::Get().Initialize() )
+		return;
+	
+	if( !Initialize() )
+		return;
 
 	bool done = false;
 

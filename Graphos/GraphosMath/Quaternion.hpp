@@ -15,7 +15,7 @@ namespace Graphos
 			Quaternion( const Vector3& axis, const float w ) : axis( axis ), w( w ) { }
 			Quaternion( const float x, const float y, const float z, const float w ) : axis( x, y, z ), w( w ) { }
 
-			Quaternion operator*( Quaternion& other )
+			Quaternion operator*( Quaternion& other ) const
 			{
 				return Quaternion(
 					axis.x * other.w + axis.y * other.axis.z - axis.z * other.axis.y + w * other.axis.x,

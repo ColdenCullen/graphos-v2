@@ -78,8 +78,8 @@ namespace Graphos
 			Point				GetMousePos( Transform& camera, float zPlane ) const;
 
 		private:
-			Input( void );
-			Input( Input& other );
+								Input( void );
+								Input( Input& other );
 			void				operator=( Input& other );
 
 			bool				keys[ 256 ];

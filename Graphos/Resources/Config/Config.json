@@ -1,0 +1,10 @@
+{
+	"display": {
+		"fullscreen": false,
+		"width": 1280,
+		"height": 720
+	},
+    "graphics": {
+        "backfaceculling": true
+    }
+}

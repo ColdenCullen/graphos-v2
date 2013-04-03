@@ -2,10 +2,13 @@
 #define _DRAWABLEGAMEOBJECT_H_
 
 #include <string>
-#include <GL/glincludes.h>
+#include <GL/GLIncludes.h>
 #include "GameObject.h"
 #include "GraphosMath.h"
 #include "ShaderController.h"
+
+#define _USE_READ_FILE
+#include <Helpers.h>
 
 namespace Graphos
 {
@@ -29,4 +32,4 @@ namespace Graphos
 	};
 }
 
-#endif //_DRAWABLEGAMEOBJECT_H_
+#endif//_DRAWABLEGAMEOBJECT_H_

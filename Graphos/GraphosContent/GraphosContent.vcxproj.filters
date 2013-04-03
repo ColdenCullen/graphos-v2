@@ -24,7 +24,7 @@
     <ClInclude Include="Model.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SettingsController.hpp">
+    <ClInclude Include="ConfigController.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -38,7 +38,7 @@
     <ClCompile Include="Model.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SettingsController.cpp">
+    <ClCompile Include="ConfigController.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

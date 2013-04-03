@@ -8,11 +8,9 @@
  #include "stdafx.h"
 #endif
 
-#include "SettingsController.hpp"
+#include "ConfigController.hpp"
 #include "Input.h"
 #include "../GraphosMath/GraphosMath.h"
-
-#define BACKFACE_CULLING true
 
 using namespace Graphos::Math;
 
@@ -36,8 +34,8 @@ namespace Graphos
 			Matrix4&			GetPerspectiveMatrix( void ) { return perspectiveMatrix; }
 
 		protected:
-			unsigned int		width;
-			unsigned int		height;
+			unsigned int		width, screenWidth;
+			unsigned int		height, screenHeight;
 			bool				fullScreen;
 
 			Matrix4				perspectiveMatrix;

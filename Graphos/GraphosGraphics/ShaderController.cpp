@@ -1,6 +1,9 @@
 #include "StdAfx.h"
 #include "ShaderController.h"
 
+#define _USE_READ_FILE
+#include <Helpers.h>
+
 using namespace std;
 using namespace Graphos::Graphics;
 
@@ -55,19 +58,6 @@ void OutputShaderErrorMessage( HWND hwnd, unsigned int shaderId, const char* sha
 
 	return;
 }
-
-string ReadFile( string fileName )
-{
-	ifstream shaderFile( fileName.c_str() );
-	if( !shaderFile )
-		return NULL;
-
-	stringstream shaderData;
-	shaderData << shaderFile.rdbuf();
-	shaderFile.close();
-
-	return shaderData.str();
-}
 #pragma endregion
 
 bool ShaderController::Initialize( void )
@@ -116,8 +106,8 @@ bool ShaderController::AddShader( string path, string name )
 {
 	int nameLength = path.length() + name.length() + 6;
 	// Load shader text
-	string vertexShaderBuffer = ReadFile( path + name + ".vs.sl" );
-	string fragmentShaderBuffer = ReadFile( path + name + ".fs.sl" );
+	string vertexShaderBuffer = Helpers::ReadFile( path + name + ".vs.sl" );
+	string fragmentShaderBuffer = Helpers::ReadFile( path + name + ".fs.sl" );
 	int vertexShaderLength = vertexShaderBuffer.size();
 	int fragmentShaderLength = fragmentShaderBuffer.size();
 

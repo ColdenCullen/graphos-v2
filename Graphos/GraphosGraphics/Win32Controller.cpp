@@ -5,17 +5,29 @@ using namespace Graphos::Math;
 using namespace Graphos::Content;
 using namespace Graphos::Graphics;
 
+// Window styles
+#define GWS_FULLSCREEN ( WS_POPUP | WS_SYSMENU )
+#define GWS_WINDOWED ( WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU )
+
 bool Win32Controller::Initialize( void )
 {
-	fullScreen	= SettingsController::Get().GetData<bool>( "display/fullscreen" );
-	width		= SettingsController::Get().GetData<unsigned int>( "display/width" );
-	height		= SettingsController::Get().GetData<unsigned int>( "display/height" );
+	screenWidth = GetSystemMetrics( SM_CXSCREEN );
+	screenHeight = GetSystemMetrics( SM_CYSCREEN );
+
+	fullScreen = ConfigController::Get().GetData<bool>( "display/fullscreen" );
+	if( fullScreen )
+	{
+		width	= screenWidth;
+		height	= screenHeight;
+	}
+	else
+	{
+		width	= ConfigController::Get().GetData<unsigned int>( "display/width" );
+		height	= ConfigController::Get().GetData<unsigned int>( "display/height" );
+	}
 
 	if( !fullScreen && ( width <= 0 || height <= 0 ) )
 		return false;
-
-	unsigned int screenWidth = GetSystemMetrics( SM_CXSCREEN );
-	unsigned int screenHeight = GetSystemMetrics( SM_CYSCREEN );
 
 	unsigned int formatCount;
 	int pixelFormat[1];
@@ -41,21 +53,8 @@ bool Win32Controller::Initialize( void )
 
 	RegisterClassEx( &wcex );
 
-	// Adjust for full screen
-	this->fullScreen = fullScreen;
-	if( fullScreen )
-	{
-		this->width = screenWidth;
-		this->height = screenHeight;
-	}
-	else
-	{
-		this->width = width;
-		this->height = height;
-	}
-
 	// Perform application initialization:
-	hWnd = CreateWindow( L"Graphos", L"Graphos", fullScreen ? WS_POPUP : WS_OVERLAPPED | WS_SYSMENU,
+	hWnd = CreateWindow( L"Graphos", L"Graphos", fullScreen ? GWS_FULLSCREEN : GWS_WINDOWED,
 		( screenWidth - this->width ) / 2, ( screenHeight - this->height ) / 2, this->width, this->height,
 		NULL, NULL, hInstance, NULL );
 	if( !hWnd )
@@ -86,7 +85,7 @@ bool Win32Controller::Initialize( void )
 	Shutdown();
 
 	// Create new permanent window
-	hWnd = CreateWindow( L"Graphos", L"Graphos", fullScreen ? WS_POPUP : WS_OVERLAPPED | WS_SYSMENU,
+	hWnd = CreateWindow( L"Graphos", L"Graphos", fullScreen ? GWS_FULLSCREEN : GWS_WINDOWED,
 		( screenWidth - this->width ) / 2, ( screenHeight - this->height ) / 2, this->width, this->height,
 		NULL, NULL, hInstance, NULL );
 	if( !hWnd )
@@ -145,15 +144,13 @@ bool Win32Controller::Initialize( void )
 	glFrontFace( GL_CCW );
 
 	// Enable back face culling
-	if( BACKFACE_CULLING )
+	if( ConfigController::Get().GetData<bool>( "graphics/backfaceculling" ) )
 	{
 		glEnable( GL_CULL_FACE );
 		glCullFace( GL_BACK );
 	}
 
 	Resize( fullScreen, width, height );
-
-	ShowWindow( hWnd, SW_NORMAL );
 
 	glClearColor( 0.0f, 0.0f, 0.0f, 0.0f );
 
@@ -182,20 +179,29 @@ void Win32Controller::Resize( bool fullScreen, unsigned int newWidth, unsigned i
 		return;
 	
 	this->fullScreen = fullScreen;
+
+	LONG style = GetWindowLong( hWnd, GWL_STYLE ) & ~( GWS_FULLSCREEN | GWS_WINDOWED );
+
 	if( fullScreen )
 	{
-		width = GetSystemMetrics( SM_CXSCREEN );
-		height = GetSystemMetrics( SM_CYSCREEN );
+		width  = screenWidth;
+		height = screenHeight;
+		style |= GWS_FULLSCREEN;
 	}
 	else
 	{
-		width = newWidth;
+		width  = newWidth;
 		height = newHeight;
+		style |= GWS_WINDOWED;
 	}
 
-	SetWindowPos( hWnd, NULL, 0, 0, newWidth, newHeight, SWP_NOMOVE | SWP_NOZORDER | SWP_NOACTIVATE );
+	SetWindowLong( hWnd, GWL_STYLE, style );
+	SetWindowPos( hWnd, NULL, ( screenWidth - width ) / 2, ( screenHeight - height ) / 2, width, height, SWP_NOZORDER | SWP_NOACTIVATE | SWP_FRAMECHANGED );
+	ShowWindow( hWnd, SW_NORMAL );
 
-	perspectiveMatrix = Matrix4::BuildPerspective( (float)M_PI / 4.0f, (float)newWidth / (float)newHeight, 0.001f, 1000.0f );
+	glViewport( 0, 0, width, height );
+
+	perspectiveMatrix = Matrix4::BuildPerspective( (float)M_PI / 4.0f, (float)width / (float)height, 0.001f, 1000.0f );
 }
 
 void Win32Controller::MessageLoop( void )

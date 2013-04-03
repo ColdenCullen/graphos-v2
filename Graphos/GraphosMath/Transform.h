@@ -15,15 +15,15 @@ namespace Graphos
 		public:
 			Transform( void );
 
-			Vector3					position;
-			Vector3					rotation;
-			Vector3					scale;
-
-			Matrix4&				getMatrix() { return matrix; }
+			const Matrix4&			Matrix()			const { return matrix; }
 
 			void					Rotate( const float x, const float y, const float z, const float angle );
 			void					Translate( const float x, const float y, const float z );
 			void					Scale( const float x, const float y, const float z );
+
+			const Vector3&			Position( void )	const { return position; }
+			const Vector3&			Rotation( void )	const { return rotation; }
+			const Vector3&			Scale( void )		const { return scale; }
 
 		private:
 			void					RotateX( const float angle );
@@ -31,6 +31,10 @@ namespace Graphos
 			void					RotateZ( const float angle );
 
 			Matrix4					matrix;
+
+			Vector3					position;
+			Vector3					rotation;
+			Vector3					scale;
 		};
 	}
 }

@@ -99,8 +99,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <PostBuildEvent>
-      <Command>xcopy "$(SolutionDir)GL\x86\bin" "$(SolutionDir)$(Configuration)" /e /y /i /r
-xcopy "$(SolutionDir)Resources" "$(SolutionDir)$(Configuration)\Resources" /e /y /i /r</Command>
+      <Command>xcopy "$(SolutionDir)GL\x86\bin" "$(SolutionDir)$(Configuration)" /e /y /i /r</Command>
     </PostBuildEvent>
     <Link />
     <Link>
@@ -113,6 +112,9 @@ xcopy "$(SolutionDir)Resources" "$(SolutionDir)$(Configuration)\Resources" /e /y
     <Bscmake>
       <PreserveSbr>true</PreserveSbr>
     </Bscmake>
+    <PreBuildEvent>
+      <Command>xcopy "$(SolutionDir)Resources" "$(SolutionDir)$(Configuration)\Resources" /e /y /i /r</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <PostBuildEvent>

@@ -15,7 +15,7 @@ namespace Graphos
 			Vector2( float x = 0.0f, float y = 0.0f ) : x( x ), y( y ) { }
 			Vector2( const Vector2& other ) : x( other.x ), y( other.y ) { }
 
-			float operator[]( const int index )
+			float operator[]( const int index ) const
 			{
 				return *( &x + index );
 			}
@@ -31,37 +31,37 @@ namespace Graphos
 				return *this;
 			}
 
-			Vector2 operator+( const Vector2& other )
+			Vector2 operator+( const Vector2& other ) const
 			{
 				return Vector2( x + other.x, y + other.y );
 			}
 
-			Vector2 operator-( const Vector2& other )
+			Vector2 operator-( const Vector2& other ) const
 			{
 				return Vector2( x - other.x, y - other.y );
 			}
 
-			float operator%( const Vector2& other )
+			float operator%( const Vector2& other ) const
 			{
 				return ( x * other.y ) - ( y * other.x );
 			}
 
-			float operator*( const Vector2& other )
+			float operator*( const Vector2& other ) const
 			{
 				return ( x * other.x ) + ( y * other.y );
 			}
 
-			Vector2 operator*( const float other )
+			Vector2 operator*( const float other ) const
 			{
 				return Vector2( x * other, y * other );
 			}
 
-			float Magnitude( void )
+			float Magnitude( void ) const
 			{
 				return sqrt( ( x * x ) + ( y * y ) );
 			}
 
-			Vector2 Normalize( void )
+			Vector2 Normalize( void ) const
 			{
 				float mag = sqrt( ( x * x ) + ( y * y ) );
 

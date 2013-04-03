@@ -62,13 +62,13 @@
   <ItemGroup>
     <ClInclude Include="MaterialController.h" />
     <ClInclude Include="Model.h" />
-    <ClInclude Include="SettingsController.hpp" />
+    <ClInclude Include="ConfigController.hpp" />
     <ClInclude Include="Texture.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MaterialController.cpp" />
     <ClCompile Include="Model.cpp" />
-    <ClCompile Include="SettingsController.cpp" />
+    <ClCompile Include="ConfigController.cpp" />
     <ClCompile Include="Texture.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
