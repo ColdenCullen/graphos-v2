@@ -17,3 +17,10 @@
 
 # Compiled Executable
 *.exe
+
+# Folders
+Graphos/Debug/
+Graphos/*/Debug/
+Graphos/Release/
+Graphos/*/Release/
+Graphos/ipch/
