@@ -18,6 +18,9 @@
 # Compiled Executable
 *.exe
 
+# Visual Studio Stuff
+*.sdf
+
 # Folders
 Graphos/Debug/
 Graphos/*/Debug/
