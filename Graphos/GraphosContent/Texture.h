@@ -18,7 +18,7 @@ namespace Graphos
 		public:
 			bool LoadFromFile( const char* filePath );
 
-		private:
+		//private:
 			unsigned int textureID;
 			int width, height;
 		};

@@ -29,20 +29,13 @@ private:
 
 	bool Initialize( void )
 	{
-		test.SetShaderName( "color" );
+		test.SetShaderName( "texture" );
 
-		// Put the three triangle vertices into the VBO
-		GLfloat vertexData[] = {
-			//  X     Y     Z	  R	    G     B
-			0.0f, 0.5f, 1.0f, 1.0f, 0.0f, 0.0f,
-			-0.5f,-0.5f, 1.0f, 0.0f, 1.0f, 0.0f,
-			0.5f,-0.5f, 1.0f, 0.0f, 0.0f, 1.0f
-		};
-
-		//test.BufferData( vertexData );
+		//test.BufferData( nullptr );
 
 		test.LoadObjectFile( "Resources/Assets/Cube.obj" );
-
+		test.InitMaterial( "Resources/Assets/CubeMaterial.jpg" );
+		test.transform.Scale( 0.5f, 0.5f, 0.5f );
 		test.transform.Translate( 0.0f, 0.0f, 3.0f );
 
 		return true;
@@ -81,20 +74,19 @@ private:
 		// Rotate
 		if( Input::Get().IsKeyDown( VK_A, true ) )
 		{
-			//test.transform.Translate( -0.01f, 0.0f, 0.0f );
-			test.transform.Rotate( 0.0f, 0.0f, 90.0f, 0.0f );
+			test.transform.Rotate( 0.0f, 15.0f, 0.0f, 0.0f );
 		}
-		if( Input::Get().IsKeyDown( VK_D, false ) )
+		if( Input::Get().IsKeyDown( VK_D, true ) )
 		{
-			//test.transform.Translate( 0.01f, 0.0f, 0.0f );
+			test.transform.Rotate( 0.0f, -15.0f, .0f, 0.0f );
 		}
-		if( Input::Get().IsKeyDown( VK_W, false ) )
+		if( Input::Get().IsKeyDown( VK_W, true ) )
 		{
-			//test.transform.Translate( 0.0f, 0.01f, 0.0f );
+			test.transform.Rotate( -15.0f, 0.0f, 0.0f, 0.0f );
 		}
-		if( Input::Get().IsKeyDown( VK_S, false ) )
+		if( Input::Get().IsKeyDown( VK_S, true ) )
 		{
-			//test.transform.Translate( 0.0f, -0.01f, 0.0f );
+			test.transform.Rotate( 15.0f, 0.0f, 0.0f, 0.0f );
 		}
 
 		return true;
@@ -102,8 +94,8 @@ private:
 
 	void Draw( void )
 	{
-		ShaderController::Get().GetShader( "color" ).SetUniform( "cameraMatrix", cam.transform.Matrix() );
-		ShaderController::Get().GetShader( "color" ).SetUniform( "projectionMatrix", WindowController::Get().GetPerspectiveMatrix() );
+		ShaderController::Get().GetShader( "texture" ).SetUniform( "cameraMatrix", cam.transform.Matrix() );
+		ShaderController::Get().GetShader( "texture" ).SetUniform( "projectionMatrix", WindowController::Get().GetPerspectiveMatrix() );
 
 		test.Draw();
 	}

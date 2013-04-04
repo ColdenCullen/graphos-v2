@@ -18,6 +18,6 @@ out vec4 outputColor;
 ////////////////////////////////////////////////////////////////////////////////
 void main(void)
 {
-	//outputColor = vec4(color, 1.0f);
-	outputColor = vec4( 1.0f, 1.0f, 1.0f, 1.0f );
+	outputColor = vec4(color, 1.0f);
+	//outputColor = vec4( 1.0f, 1.0f, 1.0f, 1.0f );
 }

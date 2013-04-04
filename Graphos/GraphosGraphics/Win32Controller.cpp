@@ -152,7 +152,7 @@ bool Win32Controller::Initialize( void )
 
 	Resize( fullScreen, width, height );
 
-	glClearColor( 0.0f, 0.0f, 0.0f, 0.0f );
+	glClearColor( 0.5f, 0.5f, 0.5f, 1.0f );
 
 	return true;
 }

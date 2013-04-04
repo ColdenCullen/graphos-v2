@@ -13,7 +13,7 @@ void DrawableGameObject::LoadObjectFile( string filePath )
 	vector<Vector2> uvs;
 	vector<Vector3> normals;
 
-	vector<unsigned int> indices;
+	vector<GLfloat>	outputData;
 	unsigned int	dataPointer = 0;
 
 	istringstream file( Helpers::ReadFile( filePath ) );
@@ -48,15 +48,33 @@ void DrawableGameObject::LoadObjectFile( string filePath )
 		else if( line.substr( 0, 2 ) == "f " )
 		{
 			unsigned int vertexIndex[ 3 ];
+			unsigned int uvIndex[ 3 ];
+			unsigned int normalIndex[ 3 ];
 
-			/* f %d/%d/%d %d/%d/%d %d/%d/%d\n */
-
-			sscanf( line.c_str(), "f %d/%d/%d", &vertexIndex[ 0 ], /*&uvIndex[0], &normalIndex[0],*/ &vertexIndex[ 1 ], /*&uvIndex[1], &normalIndex[1],*/ &vertexIndex[ 2 ]/*, &uvIndex[2], &normalIndex[2]*/ );
+			sscanf( line.c_str(), "f %d/%d/%d %d/%d/%d %d/%d/%d\n", &vertexIndex[ 0 ], &uvIndex[0], &normalIndex[0], &vertexIndex[ 1 ], &uvIndex[1], &normalIndex[1], &vertexIndex[ 2 ], &uvIndex[2], &normalIndex[2] );
 
 			for( int ii = 0; ii < 3; ++ii )
-				indices.push_back( vertexIndex[ ii ] );
+			{
+				outputData.push_back( vertices[ vertexIndex[ ii ] - 1 ].x );
+				outputData.push_back( vertices[ vertexIndex[ ii ] - 1 ].y );
+				outputData.push_back( vertices[ vertexIndex[ ii ] - 1 ].z );
+
+				outputData.push_back( uvs[ uvIndex[ ii ] - 1 ].x );
+				outputData.push_back( uvs[ uvIndex[ ii ] - 1 ].y );
+
+				outputData.push_back( normals[ normalIndex[ ii ] - 1 ].x );
+				outputData.push_back( normals[ normalIndex[ ii ] - 1 ].y );
+				outputData.push_back( normals[ normalIndex[ ii ] - 1 ].z );
+			}
 		}
 	}
+
+	numElements = outputData.size() / 8;
+
+	unsigned int* indices = new unsigned int[ numElements ];
+
+	for( int ii = 0; ii < numElements; ++ii )
+		indices[ ii ] = ii;
 
 	// make and bind the VAO
 	glGenVertexArrays( 1, &vertexArrayObject );
@@ -67,25 +85,30 @@ void DrawableGameObject::LoadObjectFile( string filePath )
 	glBindBuffer( GL_ARRAY_BUFFER, vertexBufferObject );
 
 	// Buffer the data
-	glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof( float ), &vertices[ 0 ], GL_STATIC_DRAW);
+	glBufferData( GL_ARRAY_BUFFER, outputData.size() * sizeof(GLfloat), &outputData[ 0 ], GL_STATIC_DRAW );
 
 	// Connect the position to the inputPosition attribute of the vertex shader
 	glEnableVertexAttribArray( 0 );
-	glVertexAttribPointer( 0, 3, GL_FLOAT, GL_FALSE, sizeof( float ) * indices.size(), NULL);
-	// Connect color to the inputColor attribute of the vertex shader
-	//glEnableVertexAttribArray( 1 );
-	//glVertexAttribPointer( 1, 3, GL_FLOAT, GL_FALSE, sizeof( float ) * indices.size(), (unsigned char*)( sizeof( float ) * 3 ) );
+	glVertexAttribPointer( 0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), NULL );
+	// Connect color to the textureCoordinate attribute of the vertex shader
+	glEnableVertexAttribArray( 1 );
+	glVertexAttribPointer( 1, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (unsigned char*)NULL + ( sizeof(GLfloat) * 3 ) );
+	// Connect color to the shaderPosition attribute of the vertex shader
+	glEnableVertexAttribArray( 2 );
+	glVertexAttribPointer( 2, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (unsigned char*)NULL + ( sizeof(GLfloat) * 5 ) );
 
 	// Generate index buffer
 	glGenBuffers( 1, &indexBuffer );
 	glBindBuffer( GL_ELEMENT_ARRAY_BUFFER, indexBuffer );
 
 	// Buffer index data
-	glBufferData( GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof( unsigned int ), &indices[ 0 ], GL_STATIC_DRAW );
+	glBufferData( GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned int) * numElements, &indices[ 0 ], GL_STATIC_DRAW );
 
 	// unbind the VBO and VAO
 	glBindBuffer( GL_ARRAY_BUFFER, NULL );
 	glBindVertexArray( NULL );
+
+	delete[] indices;
 }
 
 void DrawableGameObject::BufferData( GLfloat vertexData[] )
@@ -100,6 +123,8 @@ void DrawableGameObject::BufferData( GLfloat vertexData[] )
 
 	GLuint indices[] = { 0, 1, 2, 0, 2, 3 };
 
+	numElements = 6;
+
 	// make and bind the VAO
 	glGenVertexArrays( 1, &vertexArrayObject );
 	glBindVertexArray( vertexArrayObject );
@@ -113,17 +138,17 @@ void DrawableGameObject::BufferData( GLfloat vertexData[] )
 
 	// Connect the position to the inputPosition attribute of the vertex shader
 	glEnableVertexAttribArray( 0 );
-	glVertexAttribPointer( 0, 3, GL_FLOAT, GL_FALSE, sizeof( float ) * 6, NULL);
+	glVertexAttribPointer( 0, 3, GL_FLOAT, GL_FALSE, sizeof(float) * numElements, NULL);
 	// Connect color to the inputColor attribute of the vertex shader
 	glEnableVertexAttribArray( 1 );
-	glVertexAttribPointer( 1, 3, GL_FLOAT, GL_FALSE, sizeof( float ) * 6, (unsigned char*)( sizeof( float ) * 3 ) );
+	glVertexAttribPointer( 1, 3, GL_FLOAT, GL_FALSE, sizeof(float) * numElements, (unsigned char*)( sizeof(float) * 3 ) );
 
 	// Generate index buffer
 	glGenBuffers( 1, &indexBuffer );
 	glBindBuffer( GL_ELEMENT_ARRAY_BUFFER, indexBuffer );
 
 	// Buffer index data
-	glBufferData( GL_ELEMENT_ARRAY_BUFFER, 6 * sizeof( unsigned int ), indices, GL_STATIC_DRAW );
+	glBufferData( GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned int) * numElements, indices, GL_STATIC_DRAW );
 
 	// unbind the VBO and VAO
 	glBindBuffer( GL_ARRAY_BUFFER, NULL );
@@ -135,10 +160,17 @@ void Graphos::DrawableGameObject::Draw( void )
 	// Setup shader
 	ShaderController::Get().GetShader( shaderName ).Use();
 	ShaderController::Get().GetShader( shaderName ).SetUniform( "modelMatrix", transform.Matrix() );
+	ShaderController::Get().GetShader( shaderName ).SetUniform( "shaderTexture", 0 );
 	
 	// Bind all of the buffers
+	glBindTexture( GL_TEXTURE_2D, material.textureID );
 	glBindBuffer( GL_ELEMENT_ARRAY_BUFFER, indexBuffer );
 	glBindVertexArray( vertexArrayObject );
 
-	glDrawElements( GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0 );
+	glDrawElements( GL_TRIANGLES, numElements, GL_UNSIGNED_INT, 0 );
+}
+
+void Graphos::DrawableGameObject::InitMaterial( string filePath )
+{
+	material.LoadFromFile( filePath.c_str() );
 }

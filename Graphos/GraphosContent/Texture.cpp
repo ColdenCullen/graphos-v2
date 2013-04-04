@@ -5,8 +5,7 @@ using namespace Graphos::Content;
 bool Texture::LoadFromFile( const char* filePath )
 {
 	// Load image
-	FREE_IMAGE_FORMAT textureFormat = FreeImage_GetFileType( filePath, 0 );
-	FIBITMAP* imageData = FreeImage_Load( textureFormat, filePath );
+	FIBITMAP* imageData = FreeImage_Load( FreeImage_GetFileType( filePath, 0 ), filePath );
 
 	// Convert to 32 bits
 	FIBITMAP* temp = imageData;
@@ -24,9 +23,9 @@ bool Texture::LoadFromFile( const char* filePath )
 	glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST );
 
 	if( glGetError() )
-	{
 		return false;
-	}
+
+	FreeImage_Unload( imageData );
 
 	return true;
 }
