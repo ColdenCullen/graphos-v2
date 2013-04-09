@@ -21,12 +21,9 @@ void GraphicsController::Resize( bool fullScreen, unsigned int newWidth, unsigne
 	//OpenGLController::Get().Resize( newWidth, newHeight );
 }
 
-void GraphicsController::Resize( void )
+void GraphicsController::Reload( void )
 {
-	WindowController::Get().Resize(
-		ConfigController::Get().GetData<bool>( "display/fullscreen" ),
-		ConfigController::Get().GetData<unsigned int>( "display/width" ),
-		ConfigController::Get().GetData<unsigned int>( "display/height" ) );
+	WindowController::Get().Reload();
 }
 
 void GraphicsController::CallGLFunction( GLFunctions function )
@@ -37,7 +34,9 @@ void GraphicsController::CallGLFunction( GLFunctions function )
 		glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 		break;
 	case END:
+#ifdef _WIN32
 		SwapBuffers( WindowController::Get().GetDeviceContext() );
+#endif
 		break;
 	}
 }

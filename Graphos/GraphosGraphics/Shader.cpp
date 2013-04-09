@@ -1,12 +1,13 @@
 #include "stdafx.h"
-#include "ShaderController.h"
+#include "Shader.h"
 
 #define MIN(x,y) (x < y ? x : y)
 
 using namespace std;
+using namespace Graphos::Math;
 using namespace Graphos::Graphics;
 
-void ShaderController::Shader::Initialize( string text )
+void Graphos::Graphics::Shader::Initialize( string text )
 {
 	// Init uniform values
 	int currentLocation = text.find( "uniform " );
@@ -39,12 +40,12 @@ void ShaderController::Shader::Initialize( string text )
 }
 
 
-void ShaderController::Shader::Use( void ) const
+void Graphos::Graphics::Shader::Use( void ) const
 {
 	glUseProgram( programID );
 }
 
-bool ShaderController::Shader::SetUniform( string name, int value ) const
+bool Graphos::Graphics::Shader::SetUniform( string name, int value ) const
 {
 	if( uniforms.find( name ) != uniforms.end() && uniforms.at( name ) != -1 )
 		glUniform1i( uniforms.at( name ), value );
@@ -54,7 +55,7 @@ bool ShaderController::Shader::SetUniform( string name, int value ) const
 	return true;
 }
 
-bool ShaderController::Shader::SetUniform( string name, float value ) const
+bool Graphos::Graphics::Shader::SetUniform( string name, float value ) const
 {
 	if( uniforms.find( name ) != uniforms.end() && uniforms.at( name ) != -1 )
 		glUniform1f( uniforms.at( name ), value );
@@ -64,7 +65,7 @@ bool ShaderController::Shader::SetUniform( string name, float value ) const
 	return true;
 }
 
-bool ShaderController::Shader::SetUniform( string name, Matrix4 value ) const
+bool Graphos::Graphics::Shader::SetUniform( string name, Matrix4 value ) const
 {
 	if( uniforms.find( name ) != uniforms.end() && uniforms.at( name ) != -1 )
 		glUniformMatrix4fv( uniforms.at( name ), 1, false, value.matrix );

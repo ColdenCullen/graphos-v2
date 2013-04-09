@@ -18,8 +18,8 @@ namespace Graphos
 			bool				Initialize( void );
 			// Resizes display with given values
 			void				Resize( bool fullScreen, unsigned int newWidth = 0, unsigned int newHeight = 0 );
-			// Resizes display based on config settings
-			void				Resize( void );
+			// Reloads display based on config settings
+			void				Reload( void );
 			void				CallGLFunction( GLFunctions function );
 
 			void				MessageLoop( void ) { WindowController::Get().MessageLoop(); }

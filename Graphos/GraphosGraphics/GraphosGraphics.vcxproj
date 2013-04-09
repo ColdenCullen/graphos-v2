@@ -77,6 +77,7 @@
   <ItemGroup>
     <ClInclude Include="GraphicsController.h" />
     <ClInclude Include="Input.h" />
+    <ClInclude Include="Shader.h" />
     <ClInclude Include="ShaderController.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="stdafx.h" />
@@ -86,6 +87,7 @@
   <ItemGroup>
     <ClCompile Include="GraphicsController.cpp" />
     <ClCompile Include="Input.cpp" />
+    <ClCompile Include="OSXController.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="ShaderController.cpp" />
     <ClCompile Include="Win32Controller.cpp" />

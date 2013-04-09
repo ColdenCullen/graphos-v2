@@ -15,12 +15,11 @@ namespace Graphos
 		public:
 			Transform( void );
 
-			const Matrix4&			Matrix()			const { return matrix; }
-
 			void					Rotate( const float x, const float y, const float z, const float angle );
 			void					Translate( const float x, const float y, const float z );
 			void					Scale( const float x, const float y, const float z );
 
+			const Matrix4&			Matrix()			const { return matrix; }
 			const Vector3&			Position( void )	const { return position; }
 			const Vector3&			Rotation( void )	const { return rotation; }
 			const Vector3&			Scale( void )		const { return scale; }

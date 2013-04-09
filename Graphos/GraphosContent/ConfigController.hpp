@@ -2,7 +2,7 @@
 #define _CONFIGCONTROLLER_H_
 
 #include <string>
-#include <json\json.h>
+#include <json/json.h>
 
 using namespace std;
 
@@ -20,6 +20,7 @@ namespace Graphos
 			// Get value from settings
 			template<typename T>
 			T					GetData( string path ) { }
+#if defined( _WIN32 )
 			template<>
 			int					GetData<int>( string path );
 			template<>
@@ -30,6 +31,7 @@ namespace Graphos
 			bool				GetData<bool>( string path );
 			template<>
 			string				GetData<string>( string path );
+#endif
 			#pragma endregion
 
 			static

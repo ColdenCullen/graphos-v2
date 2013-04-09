@@ -6,7 +6,9 @@
 #include "GameObject.h"
 #include "GraphosMath.h"
 #include "ShaderController.h"
+#include "Shader.h"
 #include "Texture.h"
+#include "Model.h"
 
 #define _USE_READ_FILE
 #include <Helpers.h>
@@ -15,25 +17,26 @@ namespace Graphos
 {
 	using namespace Math;
 	using namespace Content;
+	using namespace Graphics;
 
 	class DrawableGameObject : public GameObject
 	{
 	public:
+							DrawableGameObject( Shader& shader ) : shader( shader ) { }
+
 		void				LoadObjectFile( string filePath );
-		void				BufferData( GLfloat vertexData[] );
-		void				Draw( void );
 		void				InitMaterial( string filePath );
 
-		string				GetShaderName( void ) const { return shaderName; }
-		void				SetShaderName( string newName ) { shaderName = newName; }
+		void				Draw( void );
+
+		Shader&				GetShader( void ) const { return shader; }
+		void				SetShader( string newName ) { shader = ShaderController::Get().GetShader( newName ); }
 
 	private:
 		Texture				material;
-		unsigned int		vertexBufferObject;
-		unsigned int		vertexArrayObject;
-		unsigned int		indexBuffer;
-		unsigned int		numElements;
-		string				shaderName;
+		Model				model;
+
+		Shader&				shader;
 	};
 }
 

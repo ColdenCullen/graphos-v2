@@ -29,3 +29,8 @@ bool Texture::LoadFromFile( const char* filePath )
 
 	return true;
 }
+
+void Texture::Bind( void )
+{
+	//glBindTexture( GL_TEXTURE_2D, textureID );
+}

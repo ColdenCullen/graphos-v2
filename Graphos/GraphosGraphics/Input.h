@@ -46,7 +46,8 @@
  #pragma endregion
 #endif
 
-#include "Transform.h"
+//#include "Transform.h"
+#include "../GraphosMath/Transform.h"
 
 namespace Graphos
 {

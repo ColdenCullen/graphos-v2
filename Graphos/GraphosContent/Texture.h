@@ -2,7 +2,7 @@
 #define _TEXTURE_H_
 
 #include <GL/glincludes.h>
-#ifdef _WIN32
+#ifdef WIN32
  #include <Windows.h>
 #endif
 #include <FreeImage.h>
@@ -16,11 +16,12 @@ namespace Graphos
 		class Texture
 		{
 		public:
-			bool LoadFromFile( const char* filePath );
+			bool				LoadFromFile( const char* filePath );
+			void				Bind( void );
 
-		//private:
-			unsigned int textureID;
-			int width, height;
+		private:
+			unsigned int		textureID;
+			int					width, height;
 		};
 	}
 }

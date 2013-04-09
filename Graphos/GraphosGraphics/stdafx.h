@@ -3,6 +3,7 @@
 // are changed infrequently
 //
 
+#ifdef _WIN31
 #pragma once
 
 #include "targetver.h"
@@ -19,3 +20,4 @@
 
 
 // TODO: reference additional headers your program requires here
+#endif//_WIN32

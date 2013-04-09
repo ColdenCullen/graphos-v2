@@ -19,6 +19,12 @@
     <Filter Include="Source Files\GameObjects">
       <UniqueIdentifier>{6ccc3807-70e5-4587-b773-367139d2ce2b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Ingredient">
+      <UniqueIdentifier>{3fd7884b-186d-40f6-84a3-fbde3afa65c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Ingredient">
+      <UniqueIdentifier>{e62026c5-1955-428f-84ad-81ade2529588}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameObject.h">
@@ -32,6 +38,12 @@
     </ClInclude>
     <ClInclude Include="Camera.h">
       <Filter>Header Files\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Ingredient.h">
+      <Filter>Header Files\Ingredient</Filter>
+    </ClInclude>
+    <ClInclude Include="AwesomiumView.h">
+      <Filter>Header Files\Ingredient</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -49,6 +61,12 @@
     </ClCompile>
     <ClCompile Include="Camera.cpp">
       <Filter>Source Files\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Ingredient.cpp">
+      <Filter>Source Files\Ingredient</Filter>
+    </ClCompile>
+    <ClCompile Include="AwesomiumView.cpp">
+      <Filter>Source Files\Ingredient</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -8,6 +8,7 @@ using namespace std;
 using namespace Graphos::Graphics;
 
 #pragma region Helper Methods
+#ifdef _WIN32
 void OutputShaderErrorMessage( HWND hwnd, unsigned int shaderId, const char* shaderFilename )
 {
 	int logSize, i;
@@ -58,17 +59,19 @@ void OutputShaderErrorMessage( HWND hwnd, unsigned int shaderId, const char* sha
 
 	return;
 }
+#endif
 #pragma endregion
 
 bool ShaderController::Initialize( void )
 {
-	char abspath[ MAX_PATH ];
+	char abspath[ 256 ];
 #ifdef WIN32
 	_fullpath( abspath, "Resources\\Shaders\\", MAX_PATH );
 #else
 	realpath( "Resources\\Shaders\\", abspath );
 #endif
 
+#ifdef _WIN32
 	DIR* dir;
 	struct dirent* ent;
 	// Open directory
@@ -95,16 +98,18 @@ bool ShaderController::Initialize( void )
 	{
 		return false;
 	}
+#else
+	return false;
+#endif
 }
 
-ShaderController::Shader& ShaderController::GetShader( string shaderName )
+Graphos::Graphics::Shader& ShaderController::GetShader( string shaderName )
 {
 	return shaders.at( shaderName );
 }
 
 bool ShaderController::AddShader( string path, string name )	
 {
-	int nameLength = path.length() + name.length() + 6;
 	// Load shader text
 	string vertexShaderBuffer = Helpers::ReadFile( path + name + ".vs.sl" );
 	string fragmentShaderBuffer = Helpers::ReadFile( path + name + ".fs.sl" );
@@ -135,8 +140,10 @@ bool ShaderController::AddShader( string path, string name )
 		glGetShaderiv( newShader.vertexShaderID, GL_COMPILE_STATUS, &compileStatus );
 		if( compileStatus != GL_TRUE )
 		{
+#ifdef _WIN32
 			// Output error
 			OutputShaderErrorMessage( WindowController::Get().GetHWnd(), newShader.vertexShaderID, name.c_str() );
+#endif
 
 			return false;
 		}
@@ -145,9 +152,11 @@ bool ShaderController::AddShader( string path, string name )
 		glGetShaderiv( newShader.fragmentShaderID, GL_COMPILE_STATUS, &compileStatus );
 		if( compileStatus != GL_TRUE )
 		{
+#ifdef _WIN32
 			// Output error
 			OutputShaderErrorMessage( WindowController::Get().GetHWnd(), newShader.fragmentShaderID, name.c_str() );
-
+#endif
+			
 			return false;
 		}
 

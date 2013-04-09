@@ -27,7 +27,7 @@ Json::Value ConfigController::GetValueAtPath( string path )
 
 	do
 	{
-		currentIndex = right.find( '/' );
+		currentIndex = right.find( '.' );
 
 		if( currentIndex != string::npos )
 		{
@@ -39,7 +39,7 @@ Json::Value ConfigController::GetValueAtPath( string path )
 			left = right;
 		}
 
-		currentValue = currentValue.get( left, NULL );
+		currentValue = currentValue.get( left, currentValue );
 	} while( currentIndex != string::npos );
 
 	return currentValue;

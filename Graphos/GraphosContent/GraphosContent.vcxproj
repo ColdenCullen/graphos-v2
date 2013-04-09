@@ -71,6 +71,11 @@
     <ClCompile Include="ConfigController.cpp" />
     <ClCompile Include="Texture.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GraphosMath\GraphosMath.vcxproj">
+      <Project>{beacf9e7-dd71-4f5c-905a-36fcf4759399}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
@@ -88,6 +93,7 @@
     <PostBuildEvent />
     <ClCompile>
       <BrowseInformation>true</BrowseInformation>
+      <AdditionalIncludeDirectories>$(SolutionDir)GraphosMath</AdditionalIncludeDirectories>
     </ClCompile>
     <Bscmake>
       <PreserveSbr>true</PreserveSbr>

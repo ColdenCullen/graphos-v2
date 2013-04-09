@@ -1,4 +1,8 @@
 #include "stdafx.h"
+
+// Windows ONLY
+#ifdef _WIN32
+
 #include "WindowController.hpp"
 
 using namespace Graphos::Math;
@@ -14,7 +18,7 @@ bool Win32Controller::Initialize( void )
 	screenWidth = GetSystemMetrics( SM_CXSCREEN );
 	screenHeight = GetSystemMetrics( SM_CYSCREEN );
 
-	fullScreen = ConfigController::Get().GetData<bool>( "display/fullscreen" );
+	fullScreen = ConfigController::Get().GetData<bool>( "display.fullscreen" );
 	if( fullScreen )
 	{
 		width	= screenWidth;
@@ -22,8 +26,8 @@ bool Win32Controller::Initialize( void )
 	}
 	else
 	{
-		width	= ConfigController::Get().GetData<unsigned int>( "display/width" );
-		height	= ConfigController::Get().GetData<unsigned int>( "display/height" );
+		width	= ConfigController::Get().GetData<unsigned int>( "display.width" );
+		height	= ConfigController::Get().GetData<unsigned int>( "display.height" );
 	}
 
 	if( !fullScreen && ( width <= 0 || height <= 0 ) )
@@ -141,16 +145,9 @@ bool Win32Controller::Initialize( void )
 	glEnable( GL_DEPTH_TEST );
 
 	// Set front face
-	glFrontFace( GL_CCW );
+	glFrontFace( GL_CW );
 
-	// Enable back face culling
-	if( ConfigController::Get().GetData<bool>( "graphics/backfaceculling" ) )
-	{
-		glEnable( GL_CULL_FACE );
-		glCullFace( GL_BACK );
-	}
-
-	Resize( fullScreen, width, height );
+	Reload();
 
 	glClearColor( 0.5f, 0.5f, 0.5f, 1.0f );
 
@@ -202,6 +199,27 @@ void Win32Controller::Resize( bool fullScreen, unsigned int newWidth, unsigned i
 	glViewport( 0, 0, width, height );
 
 	perspectiveMatrix = Matrix4::BuildPerspective( (float)M_PI / 4.0f, (float)width / (float)height, 0.001f, 1000.0f );
+}
+
+void Win32Controller::Reload( void )
+{
+	Resize(
+		ConfigController::Get().GetData<bool>( "display.fullscreen" ),
+		ConfigController::Get().GetData<unsigned int>( "display.width" ),
+		ConfigController::Get().GetData<unsigned int>( "display.height" ) );
+
+	// Enable back face culling
+	if( ConfigController::Get().GetData<bool>( "graphics.backfaceculling" ) )
+	{
+		glEnable( GL_CULL_FACE );
+		glCullFace( GL_BACK );
+	}
+
+	// Turn on of off the vsync
+	if( ConfigController::Get().GetData<bool>( "graphics.vsync" ) )
+		wglSwapIntervalEXT( 1 );
+	else
+		wglSwapIntervalEXT( 0 );
 }
 
 void Win32Controller::MessageLoop( void )
@@ -265,3 +283,5 @@ LRESULT CALLBACK Win32Controller::WndProc( HWND hWnd, UINT message, WPARAM wPara
 	}
 	return 0;
 }
+
+#endif//_WIN32

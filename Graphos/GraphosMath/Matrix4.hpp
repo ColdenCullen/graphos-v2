@@ -60,8 +60,6 @@ namespace Graphos
 
 			static const Matrix4 Identity;
 
-			friend class Shader;
-
 			union
 			{
 				float matrix[ 16 ];

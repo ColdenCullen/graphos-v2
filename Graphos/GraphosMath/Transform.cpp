@@ -5,6 +5,7 @@ using namespace Graphos::Math;
 Transform::Transform( void )
 {
 	matrix = Matrix4::Identity;
+	scale = Vector3( 1.0f, 1.0f, 1.0f );
 }
 
 void Transform::Rotate( const float x, const float y, const float z, const float angle )

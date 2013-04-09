@@ -15,6 +15,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Assets", "Assets", "{D6CE10
 	ProjectSection(SolutionItems) = preProject
 		Resources\Assets\Cube.obj = Resources\Assets\Cube.obj
 		Resources\Assets\CubeMaterial.jpg = Resources\Assets\CubeMaterial.jpg
+		Resources\Assets\Sphere.obj = Resources\Assets\Sphere.obj
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shaders", "Shaders", "{DD7EB8EC-7C48-4C23-8E49-F58EBB543DCA}"

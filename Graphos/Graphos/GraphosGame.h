@@ -1,6 +1,8 @@
 #ifndef _GRAPHOSGAME_H_
 #define _GRAPHOSGAME_H_
 
+#include <ctime>
+
 #include "GraphicsController.h"
 #include "Camera.h"
 
@@ -18,6 +20,8 @@ namespace Graphos
 		virtual bool			Initialize( void ) = 0;
 		virtual bool			Update( void ) = 0;
 		virtual void			Draw( void ) = 0;
+
+		float					deltaTime;
 	};
 }
 

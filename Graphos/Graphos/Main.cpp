@@ -3,21 +3,29 @@
 #include "DrawableGameObject.h"
 #include "Input.h"
 
-#pragma region Leak Detection
-#define _CRTDBG_MAP_ALLOC
-#include <stdlib.h>
-#include <crtdbg.h>
-#ifdef DEBUG
- #ifndef DBG_NEW
-  #define DBG_NEW new ( _NORMAL_BLOCK , __FILE__ , __LINE__ )
-  #define new DBG_NEW
- #endif
-#endif// _DEBUG
-#pragma endregion
+#include "AwesomiumView.h"
 
-#ifdef DEBUG
- #pragma  comment( linker, "/subsystem:\"windows\" /entry:\"mainCRTStartup\"" )
-#endif
+#pragma region Suplimental Stuff
+#if defined( _WIN32 )
+ // Turn off console
+ #ifndef DEBUG
+  #pragma comment( linker, "/subsystem:\"windows\" /entry:\"mainCRTStartup\"" )
+ #endif//DEBUG
+
+ // Display memory leaks
+ #define _CRTDBG_MAP_ALLOC
+ #include <stdlib.h>
+ #include <crtdbg.h>
+ #ifdef DEBUG
+  #ifndef DBG_NEW
+   #define DBG_NEW new ( _NORMAL_BLOCK , __FILE__ , __LINE__ )
+   #define new DBG_NEW
+  #endif//DBG_NEW
+ #endif//_DEBUG
+#elif defined( __APPLE__ )
+ 
+#endif//_WIN32/__APPLE__
+#pragma endregion
 
 using namespace Graphos;
 
@@ -25,69 +33,95 @@ class TestGame : public GraphosGame
 {
 private:
 	Camera cam;
-	DrawableGameObject test;
+	DrawableGameObject* cube;
+	DrawableGameObject* sphere;
+	AwesomiumView av;
 
 	bool Initialize( void )
 	{
-		test.SetShaderName( "texture" );
+		cube = new DrawableGameObject( ShaderController::Get().GetShader( "texture" ) );
 
-		//test.BufferData( nullptr );
+		cube->LoadObjectFile( "Resources/Assets/cube.obj" );
+		cube->InitMaterial( "Resources/Assets/Poop.png" );
+		cube->transform.Scale( 0.5f, 0.5f, 0.5f );
+		cube->transform.Translate( 1.0f, 0.0f, 3.0f );
 
-		test.LoadObjectFile( "Resources/Assets/Cube.obj" );
-		test.InitMaterial( "Resources/Assets/CubeMaterial.jpg" );
-		test.transform.Scale( 0.5f, 0.5f, 0.5f );
-		test.transform.Translate( 0.0f, 0.0f, 3.0f );
+		sphere = new DrawableGameObject( ShaderController::Get().GetShader( "texture" ) );
+
+		sphere->LoadObjectFile( "Resources/Assets/sphere.obj" );
+		sphere->InitMaterial( "Resources/Assets/Poop.png" );
+		sphere->transform.Scale( 0.5f, 0.5f, 0.5f );
+		sphere->transform.Translate( -1.0f, 0.0f, 3.0f );
 
 		return true;
 	}
 
 	bool Update( void )
 	{
+#ifdef _WIN32
 		// Quit condition
 		if( Input::Get().IsKeyDown( VK_ESCAPE, true ) )
+		{
+			//delete cube;
+			//delete sphere;
+
 			return false;
+		}
 
 		if( Input::Get().IsKeyDown( VK_SPACE, true ) )
 		{
 			ConfigController::Get().LoadSettings();
-			GraphicsController::Get().Resize();
+			GraphicsController::Get().Reload();
 		}
 
 		// Move object
 		if( Input::Get().IsKeyDown( VK_LEFT, false ) )
 		{
-			test.transform.Translate( -0.01f, 0.0f, 0.0f );
+			cube->transform.Translate( -0.01f, 0.0f, 0.0f );
+			sphere->transform.Translate( -0.01f, 0.0f, 0.0f );
 		}
 		if( Input::Get().IsKeyDown( VK_RIGHT, false ) )
 		{
-			test.transform.Translate( 0.01f, 0.0f, 0.0f );
+			cube->transform.Translate( 0.01f, 0.0f, 0.0f );
+			sphere->transform.Translate( 0.01f, 0.0f, 0.0f );
 		}
 		if( Input::Get().IsKeyDown( VK_UP, false ) )
 		{
-			test.transform.Translate( 0.0f, 0.01f, 0.0f );
+			cube->transform.Translate( 0.0f, 0.01f, 0.0f );
+			sphere->transform.Translate( 0.0f, 0.01f, 0.0f );
 		}
 		if( Input::Get().IsKeyDown( VK_DOWN, false ) )
 		{
-			test.transform.Translate( 0.0f, -0.01f, 0.0f );
+			cube->transform.Translate( 0.0f, -0.01f, 0.0f );
+			sphere->transform.Translate( 0.0f, -0.01f, 0.0f );
 		}
 
 		// Rotate
-		if( Input::Get().IsKeyDown( VK_A, true ) )
+		if( Input::Get().IsKeyDown( VK_A, false ) )
 		{
-			test.transform.Rotate( 0.0f, 15.0f, 0.0f, 0.0f );
+			cube->transform.Rotate( 0.0f, 15.0f, 0.0f, 0.0f );
+			sphere->transform.Rotate( 0.0f, 15.0f, 0.0f, 0.0f );
 		}
-		if( Input::Get().IsKeyDown( VK_D, true ) )
+		if( Input::Get().IsKeyDown( VK_D, false ) )
 		{
-			test.transform.Rotate( 0.0f, -15.0f, .0f, 0.0f );
+			cube->transform.Rotate( 0.0f, -15.0f, .0f, 0.0f );
+			sphere->transform.Rotate( 0.0f, -15.0f, .0f, 0.0f );
 		}
-		if( Input::Get().IsKeyDown( VK_W, true ) )
+		if( Input::Get().IsKeyDown( VK_W, false ) )
 		{
-			test.transform.Rotate( -15.0f, 0.0f, 0.0f, 0.0f );
+			cube->transform.Rotate( -15.0f, 0.0f, 0.0f, 0.0f );
+			sphere->transform.Rotate( -15.0f, 0.0f, 0.0f, 0.0f );
 		}
-		if( Input::Get().IsKeyDown( VK_S, true ) )
+		if( Input::Get().IsKeyDown( VK_S, false ) )
 		{
-			test.transform.Rotate( 15.0f, 0.0f, 0.0f, 0.0f );
+			cube->transform.Rotate( 15.0f, 0.0f, 0.0f, 0.0f );
+			sphere->transform.Rotate( 15.0f, 0.0f, 0.0f, 0.0f );
 		}
+#endif
+
+		av.Update();
+
+		//cout << deltaTime << endl;
 
 		return true;
 	}
@@ -97,7 +131,12 @@ private:
 		ShaderController::Get().GetShader( "texture" ).SetUniform( "cameraMatrix", cam.transform.Matrix() );
 		ShaderController::Get().GetShader( "texture" ).SetUniform( "projectionMatrix", WindowController::Get().GetPerspectiveMatrix() );
 
-		test.Draw();
+		av.Draw();
+
+		glBindTexture( GL_TEXTURE_2D, av.textureThing );
+
+		cube->Draw();
+		sphere->Draw();
 	}
 };
 
@@ -106,7 +145,9 @@ int main()
 	TestGame test;
 	test.Run();
 
-	//_CrtDumpMemoryLeaks();
+#ifdef _WIN32
+	_CrtDumpMemoryLeaks();
+#endif
 
 	return 0;
 }
