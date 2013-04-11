@@ -199,6 +199,9 @@ void Win32Controller::Resize( bool fullScreen, unsigned int newWidth, unsigned i
 	glViewport( 0, 0, width, height );
 
 	perspectiveMatrix = Matrix4::BuildPerspective( (float)M_PI / 4.0f, (float)width / (float)height, 0.001f, 1000.0f );
+	orthogonalMatrix  = Matrix4::BuildOrthogonal( (float)width, (float)height, 0.01f, 100.0f );
+	//orthogonalMatrix  = Matrix4::BuildOrthogonal( 2.0f, 2.0f, 0.01f, 100.0f );
+
 }
 
 void Win32Controller::Reload( void )

@@ -1,27 +1,36 @@
 #ifndef _TEXTURE_H_
 #define _TEXTURE_H_
 
+#include <string>
 #include <GL/glincludes.h>
 #ifdef WIN32
- #include <Windows.h>
+ //#include <Windows.h>
 #endif
 #include <FreeImage.h>
 //#include "OpenGLController.h"
 //#include "WindowController.hpp"
 
+#include "Ingredient.h"
+
 namespace Graphos
 {
 	namespace Content
 	{
-		class Texture
+		class Texture : public Ingredient
 		{
 		public:
-			bool				LoadFromFile( const char* filePath );
-			void				Bind( void );
+								Texture( void ) { }
+								Texture( std::string filePath ) { LoadFromFile( filePath ); }
+			
+			bool				LoadFromFile( std::string filePath );
+
+			bool				Update( void ) { return true; }
+			void				Draw( void );
 
 		private:
 			unsigned int		textureID;
-			int					width, height;
+			unsigned int		width;
+			unsigned int		height;
 		};
 	}
 }

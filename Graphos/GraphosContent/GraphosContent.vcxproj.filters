@@ -13,33 +13,51 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\Ingredients">
+      <UniqueIdentifier>{df9a2a86-6d0b-4a0a-b22f-5b5958be476f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Ingredients">
+      <UniqueIdentifier>{34667482-9c3d-484e-9adf-0680977a584a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="MaterialController.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Model.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ConfigController.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="AwesomiumView.h">
+      <Filter>Header Files\Ingredients</Filter>
+    </ClInclude>
+    <ClInclude Include="Ingredient.h">
+      <Filter>Header Files\Ingredients</Filter>
+    </ClInclude>
     <ClInclude Include="Texture.h">
+      <Filter>Header Files\Ingredients</Filter>
+    </ClInclude>
+    <ClInclude Include="ContentController.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh.h">
+      <Filter>Header Files\Ingredients</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="MaterialController.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Texture.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Model.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ConfigController.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AwesomiumView.cpp">
+      <Filter>Source Files\Ingredients</Filter>
+    </ClCompile>
+    <ClCompile Include="Ingredient.cpp">
+      <Filter>Source Files\Ingredients</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>Source Files\Ingredients</Filter>
+    </ClCompile>
+    <ClCompile Include="ContentController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh.cpp">
+      <Filter>Source Files\Ingredients</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

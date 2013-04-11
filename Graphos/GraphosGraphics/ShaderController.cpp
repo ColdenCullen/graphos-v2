@@ -73,7 +73,7 @@ bool ShaderController::Initialize( void )
 
 #ifdef _WIN32
 	DIR* dir;
-	struct dirent* ent;
+	dirent* ent;
 	// Open directory
 	if( ( dir = opendir( abspath ) ) != NULL )
 	{

@@ -1,5 +1,5 @@
 #include "DrawableGameObject.h"
-
+/*
 using namespace std;
 using namespace Graphos;
 using namespace Graphos::Graphics;
@@ -9,14 +9,14 @@ void DrawableGameObject::LoadObjectFile( string filePath )
 	model.LoadFromObjFile( filePath );
 }
 
-void Graphos::DrawableGameObject::Draw( void )
+void DrawableGameObject::Draw( void )
 {
 	// Setup shader
 	shader.Use();
 	shader.SetUniform( "modelMatrix", transform.Matrix() );
 	shader.SetUniform( "shaderTexture", 0 );
 	
-	material.Bind();
+	material.Draw();
 	model.Draw();
 
 	//glBindTexture( GL_TEXTURE_2D, NULL );
@@ -24,7 +24,8 @@ void Graphos::DrawableGameObject::Draw( void )
 	//glBindVertexArray( NULL );
 }
 
-void Graphos::DrawableGameObject::InitMaterial( string filePath )
+void DrawableGameObject::InitMaterial( string filePath )
 {
 	material.LoadFromFile( filePath.c_str() );
 }
+*/

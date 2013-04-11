@@ -15,6 +15,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Assets", "Assets", "{D6CE10
 	ProjectSection(SolutionItems) = preProject
 		Resources\Assets\Cube.obj = Resources\Assets\Cube.obj
 		Resources\Assets\CubeMaterial.jpg = Resources\Assets\CubeMaterial.jpg
+		Resources\Assets\Poop.png = Resources\Assets\Poop.png
 		Resources\Assets\Sphere.obj = Resources\Assets\Sphere.obj
 	EndProjectSection
 EndProject
@@ -37,6 +38,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Global Headers", "Global He
 	ProjectSection(SolutionItems) = preProject
 		GL\x86\include\GL\GLIncludes.h = GL\x86\include\GL\GLIncludes.h
 		GL\x86\include\Helpers.h = GL\x86\include\Helpers.h
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Objects", "Objects", "{7C99F1A0-F834-492A-BC00-7D5F23E98DA8}"
+	ProjectSection(SolutionItems) = preProject
+		Resources\Objects\Cube.json = Resources\Objects\Cube.json
 	EndProjectSection
 EndProject
 Global
@@ -69,5 +75,6 @@ Global
 		{D6CE1092-AB11-4A2B-9FB6-A9564FB2540B} = {31919205-7D63-4EC7-9E35-C1D44D3C2001}
 		{DD7EB8EC-7C48-4C23-8E49-F58EBB543DCA} = {31919205-7D63-4EC7-9E35-C1D44D3C2001}
 		{10BA1DB2-7366-4B9C-8E60-DC3607F25E97} = {31919205-7D63-4EC7-9E35-C1D44D3C2001}
+		{7C99F1A0-F834-492A-BC00-7D5F23E98DA8} = {31919205-7D63-4EC7-9E35-C1D44D3C2001}
 	EndGlobalSection
 EndGlobal

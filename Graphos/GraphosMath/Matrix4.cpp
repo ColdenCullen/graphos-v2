@@ -65,7 +65,7 @@ bool Matrix4::operator==( const Matrix4& other ) const
 	return true;
 }
 
-Matrix4 Matrix4::BuildPerspective( float fov, float screenAspect, float near, float depth )
+Matrix4 Matrix4::BuildPerspective( const float fov, const float screenAspect, const float near, const float depth )
 {
 	Matrix4 toReturn = Matrix4::Identity;
 
@@ -75,6 +75,18 @@ Matrix4 Matrix4::BuildPerspective( float fov, float screenAspect, float near, fl
 	toReturn.data[ 2 ][ 3 ] = 1.0f;
 	toReturn.data[ 3 ][ 2 ] = ( -near * depth ) / ( depth - near );
 	toReturn.data[ 3 ][ 3 ] = 0.0f;
+
+	return toReturn;
+}
+
+Graphos::Math::Matrix4 Graphos::Math::Matrix4::BuildOrthogonal( const float width, const float height, const float near, const float far )
+{
+	Matrix4 toReturn = Matrix4::Identity;
+
+	toReturn.data[ 0 ][ 0 ] = 2.0 / width;
+	toReturn.data[ 1 ][ 1 ] = 2.0 / height;
+	toReturn.data[ 2 ][ 2 ] = -2.0 / ( far - near );
+	toReturn.data[ 2 ][ 3 ] = -( ( far + near ) / ( far - near ) );
 
 	return toReturn;
 }

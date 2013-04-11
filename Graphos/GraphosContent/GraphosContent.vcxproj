@@ -60,14 +60,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="MaterialController.h" />
-    <ClInclude Include="Model.h" />
+    <ClInclude Include="AwesomiumView.h" />
+    <ClInclude Include="Ingredient.h" />
+    <ClInclude Include="ContentController.h" />
+    <ClInclude Include="Mesh.h" />
     <ClInclude Include="ConfigController.hpp" />
     <ClInclude Include="Texture.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="MaterialController.cpp" />
-    <ClCompile Include="Model.cpp" />
+    <ClCompile Include="AwesomiumView.cpp" />
+    <ClCompile Include="Ingredient.cpp" />
+    <ClCompile Include="ContentController.cpp" />
+    <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="ConfigController.cpp" />
     <ClCompile Include="Texture.cpp" />
   </ItemGroup>
@@ -94,6 +98,7 @@
     <ClCompile>
       <BrowseInformation>true</BrowseInformation>
       <AdditionalIncludeDirectories>$(SolutionDir)GraphosMath</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS;</PreprocessorDefinitions>
     </ClCompile>
     <Bscmake>
       <PreserveSbr>true</PreserveSbr>

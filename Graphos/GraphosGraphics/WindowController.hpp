@@ -14,8 +14,8 @@
 
 // Platform specific typedefs
 #if defined( _WIN32 )
- typedef HDC DeviceContext;
- typedef HGLRC RenderContext;
+ typedef HDC GLDeviceContext;
+ typedef HGLRC GLRenderContext;
 #elif defined ( __APPLE__ )
  typedef AGLContext RenderContext;
 #endif
@@ -39,9 +39,10 @@ namespace Graphos
 			// Getters
 			unsigned int		GetWidth( void )	{ return width; }
 			unsigned int		GetHeight( void )	{ return height; }
-			//DeviceContext&		GetDeviceContext( void ) { return deviceContext; }
-			RenderContext&		GetRenderContext( void ) { return renderContext; }
-			Matrix4&			GetPerspectiveMatrix( void ) { return perspectiveMatrix; }
+			//GLDeviceContext&		GetDeviceContext( void ) { return deviceContext; }
+			GLRenderContext&	RenderContext( void ) { return renderContext; }
+			Matrix4&			PerspectiveMatrix( void ) { return perspectiveMatrix; }
+			Matrix4&			OrthogonalMatrix( void ) { return orthogonalMatrix; }
 
 		protected:
 			unsigned int		width, screenWidth;
@@ -49,8 +50,9 @@ namespace Graphos
 			bool				fullScreen;
 
 			Matrix4				perspectiveMatrix;
-			//DeviceContext		deviceContext;
-			RenderContext		renderContext;
+			Matrix4				orthogonalMatrix;
+			//GLDeviceContext	deviceContext;
+			GLRenderContext		renderContext;
 		};
 #pragma endregion
 
@@ -70,7 +72,7 @@ namespace Graphos
 
 			friend class		WindowController;
 
-			DeviceContext&		GetDeviceContext( void ) { return deviceContext; }
+			GLDeviceContext&	GetDeviceContext( void ) { return deviceContext; }
 
 		private:
 								Win32Controller( void ) { }
@@ -80,7 +82,7 @@ namespace Graphos
 			HINSTANCE			hInstance;						// Current Windows application instance
 			HWND				hWnd;							// Current Windows window
 
-			DeviceContext		deviceContext;
+			GLDeviceContext		deviceContext;
 
 			static
 			LRESULT CALLBACK	WndProc( HWND, UINT, WPARAM, LPARAM );

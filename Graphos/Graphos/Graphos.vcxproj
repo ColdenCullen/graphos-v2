@@ -61,20 +61,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="AwesomiumView.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="DrawableGameObject.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GraphosGame.h" />
-    <ClInclude Include="Ingredient.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="AwesomiumView.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="DrawableGameObject.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GraphosGame.cpp" />
-    <ClCompile Include="Ingredient.cpp" />
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>

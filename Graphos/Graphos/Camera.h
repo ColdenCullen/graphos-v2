@@ -7,12 +7,12 @@ namespace Graphos
 {
 	using namespace Math;
 
-	namespace Graphics
+	namespace Content
 	{
 		class Camera : public GameObject
 		{
 		public:
-
+			
 		private:
 			
 		};

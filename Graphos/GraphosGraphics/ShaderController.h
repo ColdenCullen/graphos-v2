@@ -3,6 +3,7 @@
 
 // Includes
 #include <unordered_map>
+#include <algorithm>
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -27,6 +28,19 @@ namespace Graphos
 			bool				Initialize();
 			Shader&				GetShader( string shaderName );
 
+			template<typename T>
+			void				SetAllShadersUniform( string uniformName, T value )
+			{
+				for_each(
+					begin( shaders ),
+					end( shaders ),
+					[&]( pair<string, Shader> shader )
+					{
+						shader.second.SetUniform( uniformName, value );
+					}
+				);
+			}
+
 			static
 			ShaderController&	Get( void )
 			{
@@ -41,7 +55,6 @@ namespace Graphos
 
 			bool				AddShader( string path, string name );
 
-		public:
 			unordered_map<string, Shader>
 								shaders;
 		};

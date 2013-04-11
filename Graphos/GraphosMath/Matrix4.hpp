@@ -20,10 +20,10 @@ namespace Graphos
 				matrix[ 12 ] = val30; matrix[ 13 ] = val31; matrix[ 14 ] = val32; matrix[ 15 ] = val33;
 			}
 
-			float Get( int indexX, int indexY ) const { return matrix[ indexY * 4 + indexX ]; }
-			void Set( int indexX, int indexY, float val ) { matrix[ indexY * 4 + indexX ] = val; }
+			float				Get( int indexX, int indexY ) const { return matrix[ indexY * 4 + indexX ]; }
+			void				Set( int indexX, int indexY, float val ) { matrix[ indexY * 4 + indexX ] = val; }
 
-			inline Matrix4 operator*( const Matrix4& other ) const
+			inline Matrix4		operator*( const Matrix4& other ) const
 			{
 				return Matrix4(
 					( data[ 0 ][ 0 ] * other.data[ 0 ][ 0 ] ) + ( data[ 0 ][ 1 ] * other.data[ 1 ][ 0 ] ) + ( data[ 0 ][ 2 ] * other.data[ 2 ][ 0 ] ) + ( data[ 0 ][ 3 ] * other.data[ 3 ][ 0 ] ),
@@ -48,15 +48,16 @@ namespace Graphos
 					);
 			}
 
-			Matrix4 operator+( const Matrix4& other ) const;
+			Matrix4				operator+( const Matrix4& other ) const;
 
-			void operator*=( const Matrix4& other );
+			void				operator*=( const Matrix4& other );
 
-			void operator+=( const Matrix4& other );
+			void				operator+=( const Matrix4& other );
 
-			bool operator==( const Matrix4& other ) const;
+			bool				operator==( const Matrix4& other ) const;
 
-			static Matrix4 BuildPerspective( float fov, float screenAspect, float near, float depth );
+			static Matrix4		BuildPerspective( const float fov, const float screenAspect, const float near, const float depth );
+			static Matrix4		BuildOrthogonal( const float width, const float height, const float near, const float far );
 
 			static const Matrix4 Identity;
 

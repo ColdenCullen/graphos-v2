@@ -1,6 +1,7 @@
 #ifndef _DRAWABLEGAMEOBJECT_H_
 #define _DRAWABLEGAMEOBJECT_H_
 
+/*
 #include <string>
 #include <GL/GLIncludes.h>
 #include "GameObject.h"
@@ -39,5 +40,5 @@ namespace Graphos
 		Shader&				shader;
 	};
 }
-
+*/
 #endif//_DRAWABLEGAMEOBJECT_H_

@@ -5,7 +5,7 @@
 		"height": 720
 	},
     "graphics": {
-        "backfaceculling": true,
+        "backfaceculling": false,
 		"vsync": true
     }
 }

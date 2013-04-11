@@ -2,6 +2,9 @@
 #include "ConfigController.hpp"
 #include "DrawableGameObject.h"
 #include "Input.h"
+#include "Texture.h"
+#include "Mesh.h"
+#include "Camera.h"
 
 #include "AwesomiumView.h"
 
@@ -31,27 +34,37 @@ using namespace Graphos;
 
 class TestGame : public GraphosGame
 {
+public:
+	//TestGame( void ) : cube( nullptr ), sphere( nullptr ), av( nullptr ) { }
+
 private:
-	Camera cam;
-	DrawableGameObject* cube;
-	DrawableGameObject* sphere;
-	AwesomiumView av;
+	Camera* cam;
+	GameObject* cube;
+	GameObject* sphere;
+	AwesomiumView* av;
 
 	bool Initialize( void )
 	{
-		cube = new DrawableGameObject( ShaderController::Get().GetShader( "texture" ) );
+		av = new AwesomiumView();
+		cam = new Camera();
 
-		cube->LoadObjectFile( "Resources/Assets/cube.obj" );
-		cube->InitMaterial( "Resources/Assets/Poop.png" );
+		cube = new GameObject( ShaderController::Get().GetShader( "texture" ) );
+		sphere = new GameObject( ShaderController::Get().GetShader( "texture" ) );
+
+		cube->AddIngredient( ContentController::Get().GetContent<Texture>( "Poop" ) );
+		sphere->AddIngredient( av );
+		
+		cube->AddIngredient( ContentController::Get().GetContent<Mesh>( "Cube" ) );
+		sphere->AddIngredient( ContentController::Get().GetContent<Mesh>( "Sphere" ) );
+
 		cube->transform.Scale( 0.5f, 0.5f, 0.5f );
 		cube->transform.Translate( 1.0f, 0.0f, 3.0f );
 
-		sphere = new DrawableGameObject( ShaderController::Get().GetShader( "texture" ) );
-
-		sphere->LoadObjectFile( "Resources/Assets/sphere.obj" );
-		sphere->InitMaterial( "Resources/Assets/Poop.png" );
 		sphere->transform.Scale( 0.5f, 0.5f, 0.5f );
 		sphere->transform.Translate( -1.0f, 0.0f, 3.0f );
+
+		objects.push_back( cube );
+		objects.push_back( sphere );
 
 		return true;
 	}
@@ -119,24 +132,28 @@ private:
 		}
 #endif
 
-		av.Update();
+		//av.Update();
 
 		//cout << deltaTime << endl;
+
+		//cube->Update();
+		//sphere->Update();
 
 		return true;
 	}
 
 	void Draw( void )
 	{
-		ShaderController::Get().GetShader( "texture" ).SetUniform( "cameraMatrix", cam.transform.Matrix() );
-		ShaderController::Get().GetShader( "texture" ).SetUniform( "projectionMatrix", WindowController::Get().GetPerspectiveMatrix() );
+		ShaderController::Get().SetAllShadersUniform( "cameraMatrix", cam->transform.Matrix() );
+		ShaderController::Get().SetAllShadersUniform( "projectionMatrix", WindowController::Get().PerspectiveMatrix() );
+		//ShaderController::Get().GetShader( "texture" ).SetUniform( "projectionMatrix", WindowController::Get().OrthogonalMatrix() );
 
-		av.Draw();
+		//av->Draw();
 
-		glBindTexture( GL_TEXTURE_2D, av.textureThing );
+		//glBindTexture( GL_TEXTURE_2D, av.textureThing );
 
-		cube->Draw();
-		sphere->Draw();
+		//cube->Draw();
+		//sphere->Draw();
 	}
 };
 
