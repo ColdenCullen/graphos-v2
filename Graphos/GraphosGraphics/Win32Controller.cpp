@@ -3,7 +3,7 @@
 // Windows ONLY
 #ifdef _WIN32
 
-#include "WindowController.hpp"
+#include "WindowController.h"
 
 using namespace Graphos::Math;
 using namespace Graphos::Content;

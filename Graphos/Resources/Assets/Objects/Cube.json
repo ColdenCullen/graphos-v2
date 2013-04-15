@@ -1,0 +1,33 @@
+{
+	"Name": "Cube",
+	
+	"Texture": {
+		"Name": "Poop"
+	},
+	
+	"Mesh": {
+		"Name": "Cube"
+	},
+
+	"Script": {
+		"class": "Cube"
+	},
+
+	"Transform": {
+		"Position": {
+			"x": 1.0,
+			"y": 0,
+			"z": 3.0
+		},
+		"Rotation": {
+			"x": 0,
+			"y": 0,
+			"z": 0
+		},
+		"Scale": {
+			"x": 0.5,
+			"y": 0.5,
+			"z": 0.5
+		}
+	}
+}

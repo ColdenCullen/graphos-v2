@@ -10,43 +10,44 @@
 #include "Ingredient.h"
 #include "Transform.h"
 #include "Shader.h"
+#include "Script.h"
+#include "AwesomiumView.h"
 
 using namespace std;
+using namespace Graphos::Content;
+using namespace Graphos::Graphics;
 
 namespace Graphos
 {
-	using namespace Graphics;
-
-	namespace Content
+	const class GameObject
 	{
-		const class GameObject
-		{
-		public:
-								GameObject( void ) : shader( Shader() ) { }
-								GameObject( Shader& shader ) : shader( shader ) { }
-	
-			bool				Update( void );
-			void				Draw( void );
-	
-			template<class T>
-			typename enable_if<is_base_of<Ingredient, T>::value, void>::type
-								AddIngredient( T* newIngredient )
-			{
-				recipe[ typeid(T).hash_code() ] = newIngredient;
-			}
+	public:
+		GameObject( void ) : shader( nullptr ) { }
+		GameObject( Shader* shader ) : shader( shader ) { }
 
-			Shader&				GetShader( void ) const { return shader; }
-			void				SetShader( string newName ) { shader = ShaderController::Get().GetShader( newName ); }
-	
-			Transform			transform;
-			GameObject*			parent;
-	
-		private:
-			unordered_map<size_t, Ingredient*>
-								recipe;
-			Shader&				shader;
-		};
-	}
+		void				Shutdown( void );
+
+		bool				Update( float deltaTime );
+		void				Draw( void );
+
+		template<class T>
+		typename enable_if<is_base_of<Ingredient, T>::value, void>::type
+			AddIngredient( T* newIngredient )
+		{
+			recipe[ typeid(T).hash_code() ] = newIngredient;
+		}
+
+		Shader&				GetShader( void ) const { return *shader; }
+		void				SetShader( string newName ) { shader = &( ShaderController::Get().GetShader( newName ) ); }
+
+		Transform			transform;
+
+	private:
+		unordered_map<size_t, Ingredient*>
+							recipe;
+
+		Shader*				shader;
+	};
 }
 
-#endif //_GAMEOBJECT_H_
+#endif//_GAMEOBJECT_H_

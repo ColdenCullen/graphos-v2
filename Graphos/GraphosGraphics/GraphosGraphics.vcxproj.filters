@@ -48,13 +48,13 @@
     <ClInclude Include="ShaderController.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="WindowController.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Input.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Shader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="WindowController.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

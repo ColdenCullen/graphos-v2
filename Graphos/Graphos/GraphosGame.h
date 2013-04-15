@@ -10,15 +10,14 @@
 #include "GraphicsController.h"
 #include "ContentController.h"
 #include "ShaderController.h"
+#include "AwesomiumView.h"
 #include "GameObject.h"
+#include "ScriptController.h"
 
 using namespace std;
 
 namespace Graphos
 {
-	using namespace Content;
-	using namespace Graphics;
-
 	class GraphosGame
 	{
 	public:
@@ -30,6 +29,7 @@ namespace Graphos
 		virtual bool		Initialize( void ) = 0;
 		virtual bool		Update( void ) = 0;
 		virtual void		Draw( void ) = 0;
+		virtual void		Shutdown( void ) = 0;
 
 		unordered_map<string, GameObject*>
 							objects;
@@ -38,6 +38,7 @@ namespace Graphos
 
 	private:
 		void				LoadObjects( void );
+		void				DeleteObjects( void );
 	};
 }
 

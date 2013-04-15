@@ -3,6 +3,7 @@
 
 // Includes
 #include "GraphosMath.h"
+#include "Quaternion.h"
 
 using namespace Graphos::Math;
 
@@ -15,14 +16,22 @@ namespace Graphos
 		public:
 			Transform( void );
 
+			void					Rotate( Quaternion rotation );
 			void					Rotate( const float x, const float y, const float z, const float angle );
+			void					Rotate( const float x, const float y, const float z );
 			void					Translate( const float x, const float y, const float z );
 			void					Scale( const float x, const float y, const float z );
 
-			const Matrix4&			Matrix()			const { return matrix; }
 			const Vector3&			Position( void )	const { return position; }
 			const Vector3&			Rotation( void )	const { return rotation; }
 			const Vector3&			Scale( void )		const { return scale; }
+			const Matrix4			WorldMatrix()		const
+			{
+				if( parent != nullptr ) return parent->WorldMatrix() * matrix;
+				else					return matrix;
+			}
+
+			Transform*				parent;
 
 		private:
 			void					RotateX( const float angle );

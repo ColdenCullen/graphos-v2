@@ -64,29 +64,25 @@
     <ClInclude Include="Ingredient.h" />
     <ClInclude Include="ContentController.h" />
     <ClInclude Include="Mesh.h" />
-    <ClInclude Include="ConfigController.hpp" />
+    <ClInclude Include="ConfigController.h" />
+    <ClInclude Include="Script.h" />
+    <ClInclude Include="ScriptController.h" />
     <ClInclude Include="Texture.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AwesomiumView.cpp" />
-    <ClCompile Include="Ingredient.cpp" />
     <ClCompile Include="ContentController.cpp" />
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="ConfigController.cpp" />
+    <ClCompile Include="Script.cpp" />
+    <ClCompile Include="ScriptController.cpp" />
     <ClCompile Include="Texture.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\GraphosMath\GraphosMath.vcxproj">
-      <Project>{beacf9e7-dd71-4f5c-905a-36fcf4759399}</Project>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <ExecutablePath>$(SolutionDir)GL\x86\bin;$(ExecutablePath)</ExecutablePath>
-    <LibraryPath>$(SolutionDir)GL\x86\lib;$(LibraryPath)</LibraryPath>
-    <IncludePath>$(SolutionDir)GL\x86\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)External Dependancies\x86\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ExecutablePath>$(SolutionDir)GL\x86\bin;$(ExecutablePath)</ExecutablePath>
@@ -97,7 +93,7 @@
     <PostBuildEvent />
     <ClCompile>
       <BrowseInformation>true</BrowseInformation>
-      <AdditionalIncludeDirectories>$(SolutionDir)GraphosMath</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)GraphosMath;$(SolutionDir)GraphosGraphics;$(SolutionDir)Graphos</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS;</PreprocessorDefinitions>
     </ClCompile>
     <Bscmake>

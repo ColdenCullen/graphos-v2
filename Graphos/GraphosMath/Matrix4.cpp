@@ -1,4 +1,4 @@
-#include "Matrix4.hpp"
+#include "Matrix4.h"
 #include <math.h>
 
 using namespace Graphos::Math;

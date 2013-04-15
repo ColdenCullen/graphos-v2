@@ -5,18 +5,13 @@
 
 namespace Graphos
 {
-	using namespace Math;
-
-	namespace Content
+	class Camera : public GameObject
 	{
-		class Camera : public GameObject
-		{
-		public:
-			
-		private:
-			
-		};
-	}
+	public:
+
+	private:
+
+	};
 }
 
 #endif//_CAMERA_H_

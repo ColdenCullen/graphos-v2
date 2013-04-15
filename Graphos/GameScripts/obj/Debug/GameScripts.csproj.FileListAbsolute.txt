@@ -1,0 +1,4 @@
+F:\Documents\RIT\20123\DSA1\Project\Graphos\GameScripts\bin\GameScripts.dll
+F:\Documents\RIT\20123\DSA1\Project\Graphos\GameScripts\bin\GameScripts.pdb
+F:\Documents\RIT\20123\DSA1\Project\Graphos\GameScripts\obj\Debug\GameScripts.dll
+F:\Documents\RIT\20123\DSA1\Project\Graphos\GameScripts\obj\Debug\GameScripts.pdb

@@ -4,8 +4,13 @@
 		"width": 1280,
 		"height": 720
 	},
+
     "graphics": {
         "backfaceculling": false,
-		"vsync": true
-    }
+		"vsync": false
+    },
+
+	"scripts": {
+		"indexPath": "Resources/Scripts/scripts.html"
+	}
 }

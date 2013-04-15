@@ -70,11 +70,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GraphosMath.h" />
-    <ClInclude Include="Matrix4.hpp" />
-    <ClInclude Include="Quaternion.hpp" />
+    <ClInclude Include="Matrix4.h" />
+    <ClInclude Include="Quaternion.h" />
     <ClInclude Include="Transform.h" />
-    <ClInclude Include="Vector2.hpp" />
-    <ClInclude Include="Vector3.hpp" />
+    <ClInclude Include="Vector2.h" />
+    <ClInclude Include="Vector3.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,4 +1,4 @@
-#include "ConfigController.hpp"
+#include "ConfigController.h"
 
 #define _USE_READ_FILE
 #include <Helpers.h>

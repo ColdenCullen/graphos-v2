@@ -3,13 +3,21 @@
 
 namespace Graphos
 {
+	class GameObject;
+
 	namespace Content
 	{
 		class Ingredient
 		{
 		public:
-			virtual bool		Update( void ) = 0;
+								Ingredient( GameObject* owner = nullptr ) : owner( owner ) { }
+
+			virtual bool		Update( float deltaTime ) = 0;
 			virtual void		Draw( void ) = 0;
+			virtual void		Shutdown( void ) = 0;
+
+		protected:
+			GameObject* owner;
 		};
 	}
 }

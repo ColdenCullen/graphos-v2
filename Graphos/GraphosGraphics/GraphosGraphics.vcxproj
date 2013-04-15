@@ -82,7 +82,7 @@
     <ClInclude Include="Resource.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
-    <ClInclude Include="WindowController.hpp" />
+    <ClInclude Include="WindowController.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GraphicsController.cpp" />
@@ -99,21 +99,11 @@
   <ItemGroup>
     <ResourceCompile Include="GraphosGraphics.rc" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\GraphosContent\GraphosContent.vcxproj">
-      <Project>{1ee828cc-4e0c-47aa-b551-d8e70fab6bac}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\GraphosMath\GraphosMath.vcxproj">
-      <Project>{beacf9e7-dd71-4f5c-905a-36fcf4759399}</Project>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <ExecutablePath>$(SolutionDir)GL\x86\bin;$(ExecutablePath)</ExecutablePath>
-    <LibraryPath>$(SolutionDir)GL\x86\lib;$(LibraryPath)</LibraryPath>
-    <IncludePath>$(SolutionDir)GL\x86\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)External Dependancies\x86\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ExecutablePath>$(SolutionDir)GL\x86\bin;$(ExecutablePath)</ExecutablePath>

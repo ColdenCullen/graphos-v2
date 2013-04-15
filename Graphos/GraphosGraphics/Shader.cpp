@@ -7,7 +7,7 @@ using namespace std;
 using namespace Graphos::Math;
 using namespace Graphos::Graphics;
 
-void Graphos::Graphics::Shader::Initialize( string text )
+void Shader::Initialize( string text )
 {
 	// Init uniform values
 	int currentLocation = text.find( "uniform " );
@@ -40,35 +40,41 @@ void Graphos::Graphics::Shader::Initialize( string text )
 }
 
 
-void Graphos::Graphics::Shader::Use( void ) const
+void Shader::Use( void ) const
 {
 	glUseProgram( programID );
 }
 
-bool Graphos::Graphics::Shader::SetUniform( string name, int value ) const
+bool Shader::SetUniform( string name, int value ) const
 {
-	if( uniforms.find( name ) != uniforms.end() && uniforms.at( name ) != -1 )
-		glUniform1i( uniforms.at( name ), value );
+	auto currentUniform = uniforms.find( name );
+
+	if( currentUniform != end( uniforms ) && currentUniform->second != -1 )
+		glUniform1i( currentUniform->second, value );
 	else
 		return false;
 
 	return true;
 }
 
-bool Graphos::Graphics::Shader::SetUniform( string name, float value ) const
+bool Shader::SetUniform( string name, float value ) const
 {
-	if( uniforms.find( name ) != uniforms.end() && uniforms.at( name ) != -1 )
-		glUniform1f( uniforms.at( name ), value );
+	auto currentUniform = uniforms.find( name );
+
+	if( currentUniform != end( uniforms ) && currentUniform->second != -1 )
+		glUniform1f( currentUniform->second, value );
 	else
 		return false;
 
 	return true;
 }
 
-bool Graphos::Graphics::Shader::SetUniform( string name, Matrix4 value ) const
+bool Shader::SetUniform( string name, Matrix4 value ) const
 {
-	if( uniforms.find( name ) != uniforms.end() && uniforms.at( name ) != -1 )
-		glUniformMatrix4fv( uniforms.at( name ), 1, false, value.matrix );
+	auto currentUniform = uniforms.find( name );
+
+	if( currentUniform != end( uniforms ) && currentUniform->second != -1 )
+		glUniformMatrix4fv( currentUniform->second, 1, false, value.matrix );
 	else
 		return false;
 

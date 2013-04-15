@@ -2,6 +2,9 @@
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Graphos", "Graphos\Graphos.vcxproj", "{7EEC6355-71B3-44EF-967C-44BF6A517ADC}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E207B80E-7051-40C2-BCE1-43891B38058C} = {E207B80E-7051-40C2-BCE1-43891B38058C}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GraphosMath", "GraphosMath\GraphosMath.vcxproj", "{BEACF9E7-DD71-4F5C-905A-36FCF4759399}"
 EndProject
@@ -12,12 +15,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Resources", "Resources", "{31919205-7D63-4EC7-9E35-C1D44D3C2001}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Assets", "Assets", "{D6CE1092-AB11-4A2B-9FB6-A9564FB2540B}"
-	ProjectSection(SolutionItems) = preProject
-		Resources\Assets\Cube.obj = Resources\Assets\Cube.obj
-		Resources\Assets\CubeMaterial.jpg = Resources\Assets\CubeMaterial.jpg
-		Resources\Assets\Poop.png = Resources\Assets\Poop.png
-		Resources\Assets\Sphere.obj = Resources\Assets\Sphere.obj
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shaders", "Shaders", "{DD7EB8EC-7C48-4C23-8E49-F58EBB543DCA}"
 	ProjectSection(SolutionItems) = preProject
@@ -40,33 +37,86 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Global Headers", "Global He
 		GL\x86\include\Helpers.h = GL\x86\include\Helpers.h
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Objects", "Objects", "{7C99F1A0-F834-492A-BC00-7D5F23E98DA8}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Meshes", "Meshes", "{0700A2AC-A74A-4F8F-B84F-7937B0BC7811}"
 	ProjectSection(SolutionItems) = preProject
-		Resources\Objects\Cube.json = Resources\Objects\Cube.json
+		Resources\Assets\Meshes\Cube.obj = Resources\Assets\Meshes\Cube.obj
+		Resources\Assets\Meshes\Sphere.obj = Resources\Assets\Meshes\Sphere.obj
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Objects", "Objects", "{8DF553C6-1D43-46F9-83B1-E27CB6C6EB40}"
+	ProjectSection(SolutionItems) = preProject
+		Resources\Assets\Objects\Cube.json = Resources\Assets\Objects\Cube.json
+		Resources\Assets\Objects\Sphere.json = Resources\Assets\Objects\Sphere.json
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Textures", "Textures", "{384A3782-A735-4BD5-B272-62E82F285E7B}"
+	ProjectSection(SolutionItems) = preProject
+		Resources\Assets\Textures\CubeMaterial.jpg = Resources\Assets\Textures\CubeMaterial.jpg
+		Resources\Assets\Textures\Poop.png = Resources\Assets\Textures\Poop.png
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameScripts", "GameScripts\GameScripts.csproj", "{E207B80E-7051-40C2-BCE1-43891B38058C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|Mixed Platforms = Debug|Mixed Platforms
 		Debug|Win32 = Debug|Win32
+		Release|Any CPU = Release|Any CPU
+		Release|Mixed Platforms = Release|Mixed Platforms
 		Release|Win32 = Release|Win32
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7EEC6355-71B3-44EF-967C-44BF6A517ADC}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{7EEC6355-71B3-44EF-967C-44BF6A517ADC}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
+		{7EEC6355-71B3-44EF-967C-44BF6A517ADC}.Debug|Mixed Platforms.Build.0 = Debug|Win32
 		{7EEC6355-71B3-44EF-967C-44BF6A517ADC}.Debug|Win32.ActiveCfg = Debug|Win32
 		{7EEC6355-71B3-44EF-967C-44BF6A517ADC}.Debug|Win32.Build.0 = Debug|Win32
+		{7EEC6355-71B3-44EF-967C-44BF6A517ADC}.Release|Any CPU.ActiveCfg = Release|Win32
+		{7EEC6355-71B3-44EF-967C-44BF6A517ADC}.Release|Mixed Platforms.ActiveCfg = Release|Win32
+		{7EEC6355-71B3-44EF-967C-44BF6A517ADC}.Release|Mixed Platforms.Build.0 = Release|Win32
 		{7EEC6355-71B3-44EF-967C-44BF6A517ADC}.Release|Win32.ActiveCfg = Release|Win32
 		{7EEC6355-71B3-44EF-967C-44BF6A517ADC}.Release|Win32.Build.0 = Release|Win32
+		{BEACF9E7-DD71-4F5C-905A-36FCF4759399}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{BEACF9E7-DD71-4F5C-905A-36FCF4759399}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
+		{BEACF9E7-DD71-4F5C-905A-36FCF4759399}.Debug|Mixed Platforms.Build.0 = Debug|Win32
 		{BEACF9E7-DD71-4F5C-905A-36FCF4759399}.Debug|Win32.ActiveCfg = Debug|Win32
 		{BEACF9E7-DD71-4F5C-905A-36FCF4759399}.Debug|Win32.Build.0 = Debug|Win32
+		{BEACF9E7-DD71-4F5C-905A-36FCF4759399}.Release|Any CPU.ActiveCfg = Release|Win32
+		{BEACF9E7-DD71-4F5C-905A-36FCF4759399}.Release|Mixed Platforms.ActiveCfg = Release|Win32
+		{BEACF9E7-DD71-4F5C-905A-36FCF4759399}.Release|Mixed Platforms.Build.0 = Release|Win32
 		{BEACF9E7-DD71-4F5C-905A-36FCF4759399}.Release|Win32.ActiveCfg = Release|Win32
 		{BEACF9E7-DD71-4F5C-905A-36FCF4759399}.Release|Win32.Build.0 = Release|Win32
+		{69F69B71-F075-4F99-9E20-B2381ED10EE5}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{69F69B71-F075-4F99-9E20-B2381ED10EE5}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
+		{69F69B71-F075-4F99-9E20-B2381ED10EE5}.Debug|Mixed Platforms.Build.0 = Debug|Win32
 		{69F69B71-F075-4F99-9E20-B2381ED10EE5}.Debug|Win32.ActiveCfg = Debug|Win32
 		{69F69B71-F075-4F99-9E20-B2381ED10EE5}.Debug|Win32.Build.0 = Debug|Win32
+		{69F69B71-F075-4F99-9E20-B2381ED10EE5}.Release|Any CPU.ActiveCfg = Release|Win32
+		{69F69B71-F075-4F99-9E20-B2381ED10EE5}.Release|Mixed Platforms.ActiveCfg = Release|Win32
+		{69F69B71-F075-4F99-9E20-B2381ED10EE5}.Release|Mixed Platforms.Build.0 = Release|Win32
 		{69F69B71-F075-4F99-9E20-B2381ED10EE5}.Release|Win32.ActiveCfg = Release|Win32
 		{69F69B71-F075-4F99-9E20-B2381ED10EE5}.Release|Win32.Build.0 = Release|Win32
+		{1EE828CC-4E0C-47AA-B551-D8E70FAB6BAC}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{1EE828CC-4E0C-47AA-B551-D8E70FAB6BAC}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
+		{1EE828CC-4E0C-47AA-B551-D8E70FAB6BAC}.Debug|Mixed Platforms.Build.0 = Debug|Win32
 		{1EE828CC-4E0C-47AA-B551-D8E70FAB6BAC}.Debug|Win32.ActiveCfg = Debug|Win32
 		{1EE828CC-4E0C-47AA-B551-D8E70FAB6BAC}.Debug|Win32.Build.0 = Debug|Win32
+		{1EE828CC-4E0C-47AA-B551-D8E70FAB6BAC}.Release|Any CPU.ActiveCfg = Release|Win32
+		{1EE828CC-4E0C-47AA-B551-D8E70FAB6BAC}.Release|Mixed Platforms.ActiveCfg = Release|Win32
+		{1EE828CC-4E0C-47AA-B551-D8E70FAB6BAC}.Release|Mixed Platforms.Build.0 = Release|Win32
 		{1EE828CC-4E0C-47AA-B551-D8E70FAB6BAC}.Release|Win32.ActiveCfg = Release|Win32
 		{1EE828CC-4E0C-47AA-B551-D8E70FAB6BAC}.Release|Win32.Build.0 = Release|Win32
+		{E207B80E-7051-40C2-BCE1-43891B38058C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E207B80E-7051-40C2-BCE1-43891B38058C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E207B80E-7051-40C2-BCE1-43891B38058C}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{E207B80E-7051-40C2-BCE1-43891B38058C}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{E207B80E-7051-40C2-BCE1-43891B38058C}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{E207B80E-7051-40C2-BCE1-43891B38058C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E207B80E-7051-40C2-BCE1-43891B38058C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E207B80E-7051-40C2-BCE1-43891B38058C}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{E207B80E-7051-40C2-BCE1-43891B38058C}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{E207B80E-7051-40C2-BCE1-43891B38058C}.Release|Win32.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -75,6 +125,8 @@ Global
 		{D6CE1092-AB11-4A2B-9FB6-A9564FB2540B} = {31919205-7D63-4EC7-9E35-C1D44D3C2001}
 		{DD7EB8EC-7C48-4C23-8E49-F58EBB543DCA} = {31919205-7D63-4EC7-9E35-C1D44D3C2001}
 		{10BA1DB2-7366-4B9C-8E60-DC3607F25E97} = {31919205-7D63-4EC7-9E35-C1D44D3C2001}
-		{7C99F1A0-F834-492A-BC00-7D5F23E98DA8} = {31919205-7D63-4EC7-9E35-C1D44D3C2001}
+		{0700A2AC-A74A-4F8F-B84F-7937B0BC7811} = {D6CE1092-AB11-4A2B-9FB6-A9564FB2540B}
+		{8DF553C6-1D43-46F9-83B1-E27CB6C6EB40} = {D6CE1092-AB11-4A2B-9FB6-A9564FB2540B}
+		{384A3782-A735-4BD5-B272-62E82F285E7B} = {D6CE1092-AB11-4A2B-9FB6-A9564FB2540B}
 	EndGlobalSection
 EndGlobal

@@ -13,7 +13,7 @@
 #include <dirent.h>
 #endif
 
-#include "WindowController.hpp"
+#include "WindowController.h"
 #include "Shader.h"
 
 using namespace std;

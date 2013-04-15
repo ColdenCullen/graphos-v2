@@ -24,8 +24,9 @@ namespace Graphos
 			
 			bool				LoadFromFile( std::string filePath );
 
-			bool				Update( void ) { return true; }
+			bool				Update( float deltaTime ) { return true; }
 			void				Draw( void );
+			void				Shutdown( void ) { }
 
 		private:
 			unsigned int		textureID;

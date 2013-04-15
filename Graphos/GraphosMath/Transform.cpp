@@ -2,10 +2,24 @@
 
 using namespace Graphos::Math;
 
-Transform::Transform( void )
+Transform::Transform( void ) : parent( nullptr ), matrix( Matrix4::Identity ), scale( Vector3( 1.0f, 1.0f, 1.0f ) ) { }
+
+void Transform::Rotate( Quaternion rotation )
 {
-	matrix = Matrix4::Identity;
-	scale = Vector3( 1.0f, 1.0f, 1.0f );
+	Rotate( rotation.x, rotation.y, rotation.z, rotation.w );
+}
+
+void Transform::Rotate( const float x, const float y, const float z )
+{
+	Vector3 oldCoord = position;
+
+	Translate( -oldCoord.x, -oldCoord.y, -oldCoord.z );
+
+	if( x != 0.0f ) RotateX( x * M_PI / 180 );
+	if( y != 0.0f ) RotateY( y * M_PI / 180 );
+	if( z != 0.0f ) RotateZ( z * M_PI / 180 );
+
+	Translate( oldCoord.x, oldCoord.y, oldCoord.z );
 }
 
 void Transform::Rotate( const float x, const float y, const float z, const float angle )

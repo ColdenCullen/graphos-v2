@@ -1,9 +1,9 @@
 #ifndef _GRAPHICS_CONTROLLER_H_
 #define _GRAPHICS_CONTROLLER_H_
 
-#include "WindowController.hpp"
+#include "WindowController.h"
 #include "ShaderController.h"
-#include "ConfigController.hpp"
+#include "ConfigController.h"
 
 namespace Graphos
 {

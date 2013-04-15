@@ -1,37 +1,36 @@
 #include "GameObject.h"
-#include <algorithm>
 
-using namespace Graphos::Content;
+using namespace Graphos;
 
-bool GameObject::Update( void )
+bool GameObject::Update( float deltaTime )
 {
 	bool result = true;
 
-	for_each(
-		begin( recipe ),
-		end( recipe ),
-		[ &result ]( pair<size_t, Ingredient*> ingredient )
-		{
-			if( !ingredient.second->Update() )
-				result = false;
-		}
-	);
+	for( auto ingredient = begin( recipe ); ingredient != end( recipe ); ++ingredient )
+		if( !ingredient->second->Update( deltaTime ) )
+			result = false;
 
 	return result;
 }
 
 void GameObject::Draw( void )
 {
-	shader.Use();
-	shader.SetUniform( "modelMatrix", transform.Matrix() );
-	shader.SetUniform( "shaderTexture", 0 );
+	shader->Use();
+	shader->SetUniform( "modelMatrix", transform.WorldMatrix() );
+	shader->SetUniform( "shaderTexture", 0 );
 
-	for_each(
-		begin( recipe ),
-		end( recipe ),
-		[]( pair<size_t, Ingredient*> ingredient )
+	for( auto ingredient = begin( recipe ); ingredient != end( recipe ); ++ingredient )
+		ingredient->second->Draw();
+}
+
+void GameObject::Shutdown( void )
+{
+	for( auto ingredient = begin( recipe ); ingredient != end( recipe ); ++ingredient )
+		if( dynamic_cast<AwesomiumView*>( ingredient->second ) || dynamic_cast<Script*>( ingredient->second ) )
 		{
-			ingredient.second->Draw();
+			ingredient->second->Shutdown();
+			delete ingredient->second;
 		}
-	);
+
+	recipe.clear();
 }

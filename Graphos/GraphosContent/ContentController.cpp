@@ -12,21 +12,29 @@ bool ContentController::Initialize( void )
 {
 	unordered_map<string, string> files = Helpers::ScanDir( CONTENT_PATH );
 
-	for_each(
-		begin( files ),
-		end( files ),
-		[&]( pair<string, string> pair )
+	string name;
+
+	for( auto pair = begin( files ); pair != end( files ); ++pair )
+	{
+		name = pair->first.substr( 0, pair->first.find( "." ) );
+
+		if( pair->second == "Meshes/" )
 		{
-			if( pair.second == ".obj" )
-			{
-				ingredientShelf[ pair.first ] = new Mesh( string( CONTENT_PATH ).append( pair.first ).append( pair.second ) );
-			}
-			else if( FreeImage_GetFileType( string( CONTENT_PATH ).append( pair.first ).append( pair.second ).c_str() ) != FIF_UNKNOWN )
-			{
-				ingredientShelf[ pair.first ] = new Texture( string( CONTENT_PATH ).append( pair.first ).append( pair.second ) );
-			}
+			ingredientShelf[ name ] = new Mesh( string( CONTENT_PATH ).append( pair->second ).append( pair->first ) );
 		}
-	);
+		else if( pair->second == "Textures/" )
+		{
+			ingredientShelf[ name ] = new Texture( string( CONTENT_PATH ).append( pair->second ).append( pair->first ) );
+		}
+	}
 
 	return true;
+}
+
+void ContentController::Shutdown( void )
+{
+	for( auto ingredient = begin( ingredientShelf ); ingredient != end( ingredientShelf ); ++ingredient )
+		delete ingredient->second;
+		
+	ingredientShelf.clear();
 }

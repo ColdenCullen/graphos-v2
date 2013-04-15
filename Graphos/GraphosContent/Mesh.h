@@ -6,8 +6,8 @@
 
 #include "Ingredient.h"
 
-#include "Vector3.hpp"
-#include "Vector2.hpp"
+#include "Vector3.h"
+#include "Vector2.h"
 
 namespace Graphos
 {
@@ -21,8 +21,9 @@ namespace Graphos
 
 			bool				LoadFromFile( std::string filePath );
 
-			bool				Update( void ) { return true; } 
+			bool				Update( float deltaTime ) { return true; } 
 			void				Draw( void );
+			void				Shutdown( void ) { }
 
 		private:
 			unsigned int		vertexBufferObject;

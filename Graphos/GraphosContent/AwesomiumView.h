@@ -5,9 +5,9 @@
 #include <Awesomium/WebCore.h>
 #include <Awesomium/BitmapSurface.h>
 #include <Awesomium/STLHelpers.h>
+#include <string>
 
 #include "Ingredient.h"
-#include "ConfigController.hpp"
 
 using namespace Awesomium;
 
@@ -18,13 +18,16 @@ namespace Graphos
 		class AwesomiumView : public Ingredient
 		{
 		public:
-			AwesomiumView( void );
+			AwesomiumView( void ) : webCore( nullptr ), webView( nullptr ), surface( nullptr ), buffer( nullptr ) { }
+			AwesomiumView( std::string url, unsigned int width, unsigned int height ) { Initialize( url, width, height ); }
 			~AwesomiumView( void );
 
-			bool				Update( void );
+			bool				Initialize( std::string url, unsigned int width, unsigned int height );
+			bool				Update( float deltaTime );
 			void				Draw( void );
+			void				Shutdown( void );
 
-			unsigned int		textureThing;
+			unsigned int		textureID;
 
 		private:
 			WebCore*			webCore;

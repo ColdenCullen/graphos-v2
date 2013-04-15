@@ -103,7 +103,7 @@ bool ShaderController::Initialize( void )
 #endif
 }
 
-Graphos::Graphics::Shader& ShaderController::GetShader( string shaderName )
+Shader& ShaderController::GetShader( string shaderName )
 {
 	return shaders.at( shaderName );
 }

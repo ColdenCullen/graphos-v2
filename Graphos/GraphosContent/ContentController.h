@@ -20,6 +20,7 @@ namespace Graphos
 		{
 		public:
 			bool				Initialize( void );
+			void				Shutdown( void );
 
 			// Returns content of the given type with the given name
 			template<class T>
