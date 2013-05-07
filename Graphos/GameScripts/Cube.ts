@@ -1,20 +1,13 @@
 /// <reference path="Graphos.ts" />
+include("Resources/Scripts/Graphos.js");
 
 // Class
 class Cube extends GameObject
 {
-    // Constructor
-    constructor()
-    {
-        super();
-    }
-
+    // Is called every frame
     Update( deltaTime: number ): void
     {
-        //if( Input.IsKeyDown( Keys["w"] ) )
-        //    console.log( "W KEY IS DOWWWWN" );
-
-        if( Input.IsKeyDown( Keys.space ) )
-            console.log( this.transform.position.x );
+        if( Input.IsKeyDown( Keys["space"] ) )
+            log( this.transform.position.x );
     }
 }

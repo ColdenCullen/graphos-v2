@@ -4,7 +4,7 @@
 #include <unordered_map>
 #include <string>
 #include <Gl/GLIncludes.h>
-#include "Matrix4.h"
+#include "Matrix.h"
 
 using namespace std;
 
@@ -29,7 +29,7 @@ namespace Graphos
 			void				Use( void ) const;
 			bool				SetUniform( string name, int value ) const;
 			bool				SetUniform( string name, float value ) const;
-			bool				SetUniform( string name, Graphos::Math::Matrix4 value ) const;
+			bool				SetUniform( string name, Graphos::Math::Matrix value ) const;
 
 		private:
 			unordered_map<string, unsigned int>

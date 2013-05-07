@@ -11,6 +11,14 @@
     },
 
 	"scripts": {
-		"indexPath": "Resources/Scripts/scripts.html"
+		"mainPath": "Resources/Scripts/Cube.js"
+	},
+
+	"physics": {
+		"gravity": {
+			"x": 0,
+			"y": 0,
+			"z": 0
+		}
 	}
 }

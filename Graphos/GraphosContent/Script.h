@@ -2,13 +2,12 @@
 #define _SCRIPT_H_
 
 #include <string>
-#include <Awesomium/WebCore.h>
-#include <Awesomium/STLHelpers.h>
+#include <v8.h>
 
 #include "Ingredient.h"
 
+using namespace v8;
 using namespace std;
-using namespace Awesomium;
 
 namespace Graphos
 {
@@ -17,14 +16,15 @@ namespace Graphos
 		class Script : public Ingredient
 		{
 		public:
-								Script( JSObject& instance, GameObject* owner = nullptr ) : instance( instance ), Ingredient( owner ) { }
+								Script( Local<Object> instance, GameObject* owner = nullptr ) : instance( instance ), Ingredient( owner ), updateFunction( Handle<Function>::Cast( instance->Get( String::New( "Update" ) ) ) ) { }
 
 			bool				Update( float deltaTime );
 			void				Draw( void ) { }
 			void				Shutdown( void ) { }
 
 		private:
-			JSObject			instance;
+			Local<Object>		instance;
+			Handle<Function>	updateFunction;
 		};
 	}
 }

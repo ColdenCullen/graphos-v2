@@ -7,28 +7,28 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		34C4A731170F776800FCE1E4 /* GraphosMath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 34C4A728170F776800FCE1E4 /* GraphosMath.cpp */; };
-		34C4A732170F776800FCE1E4 /* GraphosMath.h in Headers */ = {isa = PBXBuildFile; fileRef = 34C4A729170F776800FCE1E4 /* GraphosMath.h */; };
-		34C4A733170F776800FCE1E4 /* Matrix4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 34C4A72A170F776800FCE1E4 /* Matrix4.cpp */; };
-		34C4A734170F776800FCE1E4 /* Matrix4.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 34C4A72B170F776800FCE1E4 /* Matrix4.hpp */; };
-		34C4A735170F776800FCE1E4 /* Quaternion.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 34C4A72C170F776800FCE1E4 /* Quaternion.hpp */; };
-		34C4A736170F776800FCE1E4 /* Transform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 34C4A72D170F776800FCE1E4 /* Transform.cpp */; };
-		34C4A737170F776800FCE1E4 /* Transform.h in Headers */ = {isa = PBXBuildFile; fileRef = 34C4A72E170F776800FCE1E4 /* Transform.h */; };
-		34C4A738170F776800FCE1E4 /* Vector2.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 34C4A72F170F776800FCE1E4 /* Vector2.hpp */; };
-		34C4A739170F776800FCE1E4 /* Vector3.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 34C4A730170F776800FCE1E4 /* Vector3.hpp */; };
+		347857F417305FD5000C16E4 /* GraphosMath.h in Headers */ = {isa = PBXBuildFile; fileRef = 347857EE17305FD5000C16E4 /* GraphosMath.h */; };
+		347857F517305FD5000C16E4 /* Matrix4.h in Headers */ = {isa = PBXBuildFile; fileRef = 347857EF17305FD5000C16E4 /* Matrix4.h */; };
+		347857F617305FD5000C16E4 /* Quaternion.h in Headers */ = {isa = PBXBuildFile; fileRef = 347857F017305FD5000C16E4 /* Quaternion.h */; };
+		347857F717305FD5000C16E4 /* Transform.h in Headers */ = {isa = PBXBuildFile; fileRef = 347857F117305FD5000C16E4 /* Transform.h */; };
+		347857F817305FD5000C16E4 /* Vector2.h in Headers */ = {isa = PBXBuildFile; fileRef = 347857F217305FD5000C16E4 /* Vector2.h */; };
+		347857F917305FD5000C16E4 /* Vector3.h in Headers */ = {isa = PBXBuildFile; fileRef = 347857F317305FD5000C16E4 /* Vector3.h */; };
+		347857FD17305FEC000C16E4 /* Matrix4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 347857FA17305FEC000C16E4 /* Matrix4.cpp */; };
+		347857FE17305FEC000C16E4 /* Quaternion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 347857FB17305FEC000C16E4 /* Quaternion.cpp */; };
+		347857FF17305FEC000C16E4 /* Transform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 347857FC17305FEC000C16E4 /* Transform.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		347857EE17305FD5000C16E4 /* GraphosMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphosMath.h; sourceTree = "<group>"; };
+		347857EF17305FD5000C16E4 /* Matrix4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Matrix4.h; sourceTree = "<group>"; };
+		347857F017305FD5000C16E4 /* Quaternion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Quaternion.h; sourceTree = "<group>"; };
+		347857F117305FD5000C16E4 /* Transform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Transform.h; sourceTree = "<group>"; };
+		347857F217305FD5000C16E4 /* Vector2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vector2.h; sourceTree = "<group>"; };
+		347857F317305FD5000C16E4 /* Vector3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vector3.h; sourceTree = "<group>"; };
+		347857FA17305FEC000C16E4 /* Matrix4.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Matrix4.cpp; sourceTree = "<group>"; };
+		347857FB17305FEC000C16E4 /* Quaternion.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Quaternion.cpp; sourceTree = "<group>"; };
+		347857FC17305FEC000C16E4 /* Transform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Transform.cpp; sourceTree = "<group>"; };
 		34C4A721170F774000FCE1E4 /* libGraphosMath.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libGraphosMath.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		34C4A728170F776800FCE1E4 /* GraphosMath.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GraphosMath.cpp; sourceTree = "<group>"; };
-		34C4A729170F776800FCE1E4 /* GraphosMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphosMath.h; sourceTree = "<group>"; };
-		34C4A72A170F776800FCE1E4 /* Matrix4.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Matrix4.cpp; sourceTree = "<group>"; };
-		34C4A72B170F776800FCE1E4 /* Matrix4.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Matrix4.hpp; sourceTree = "<group>"; };
-		34C4A72C170F776800FCE1E4 /* Quaternion.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Quaternion.hpp; sourceTree = "<group>"; };
-		34C4A72D170F776800FCE1E4 /* Transform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Transform.cpp; sourceTree = "<group>"; };
-		34C4A72E170F776800FCE1E4 /* Transform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Transform.h; sourceTree = "<group>"; };
-		34C4A72F170F776800FCE1E4 /* Vector2.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Vector2.hpp; sourceTree = "<group>"; };
-		34C4A730170F776800FCE1E4 /* Vector3.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Vector3.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,9 +62,9 @@
 		34C4A740170F77B000FCE1E4 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				34C4A728170F776800FCE1E4 /* GraphosMath.cpp */,
-				34C4A72A170F776800FCE1E4 /* Matrix4.cpp */,
-				34C4A72D170F776800FCE1E4 /* Transform.cpp */,
+				347857FA17305FEC000C16E4 /* Matrix4.cpp */,
+				347857FB17305FEC000C16E4 /* Quaternion.cpp */,
+				347857FC17305FEC000C16E4 /* Transform.cpp */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -72,12 +72,12 @@
 		34C4A741170F77B600FCE1E4 /* Headers */ = {
 			isa = PBXGroup;
 			children = (
-				34C4A729170F776800FCE1E4 /* GraphosMath.h */,
-				34C4A72E170F776800FCE1E4 /* Transform.h */,
-				34C4A72B170F776800FCE1E4 /* Matrix4.hpp */,
-				34C4A72C170F776800FCE1E4 /* Quaternion.hpp */,
-				34C4A72F170F776800FCE1E4 /* Vector2.hpp */,
-				34C4A730170F776800FCE1E4 /* Vector3.hpp */,
+				347857EE17305FD5000C16E4 /* GraphosMath.h */,
+				347857EF17305FD5000C16E4 /* Matrix4.h */,
+				347857F017305FD5000C16E4 /* Quaternion.h */,
+				347857F117305FD5000C16E4 /* Transform.h */,
+				347857F217305FD5000C16E4 /* Vector2.h */,
+				347857F317305FD5000C16E4 /* Vector3.h */,
 			);
 			name = Headers;
 			sourceTree = "<group>";
@@ -89,12 +89,12 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				34C4A732170F776800FCE1E4 /* GraphosMath.h in Headers */,
-				34C4A734170F776800FCE1E4 /* Matrix4.hpp in Headers */,
-				34C4A735170F776800FCE1E4 /* Quaternion.hpp in Headers */,
-				34C4A737170F776800FCE1E4 /* Transform.h in Headers */,
-				34C4A738170F776800FCE1E4 /* Vector2.hpp in Headers */,
-				34C4A739170F776800FCE1E4 /* Vector3.hpp in Headers */,
+				347857F417305FD5000C16E4 /* GraphosMath.h in Headers */,
+				347857F517305FD5000C16E4 /* Matrix4.h in Headers */,
+				347857F617305FD5000C16E4 /* Quaternion.h in Headers */,
+				347857F717305FD5000C16E4 /* Transform.h in Headers */,
+				347857F817305FD5000C16E4 /* Vector2.h in Headers */,
+				347857F917305FD5000C16E4 /* Vector3.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -149,9 +149,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				34C4A731170F776800FCE1E4 /* GraphosMath.cpp in Sources */,
-				34C4A733170F776800FCE1E4 /* Matrix4.cpp in Sources */,
-				34C4A736170F776800FCE1E4 /* Transform.cpp in Sources */,
+				347857FD17305FEC000C16E4 /* Matrix4.cpp in Sources */,
+				347857FE17305FEC000C16E4 /* Quaternion.cpp in Sources */,
+				347857FF17305FEC000C16E4 /* Transform.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -220,8 +220,10 @@
 		34C4A726170F774000FCE1E4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				EXECUTABLE_EXTENSION = a;
 				EXECUTABLE_PREFIX = lib;
+				GCC_VERSION = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SYMROOT = "\"$(SRCROOT)/../Build\"";
 			};
@@ -230,8 +232,10 @@
 		34C4A727170F774000FCE1E4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				EXECUTABLE_EXTENSION = a;
 				EXECUTABLE_PREFIX = lib;
+				GCC_VERSION = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SYMROOT = "\"$(SRCROOT)/../Build\"";
 			};

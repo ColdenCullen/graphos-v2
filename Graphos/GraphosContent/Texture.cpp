@@ -4,13 +4,8 @@ using namespace Graphos::Content;
 
 bool Texture::LoadFromFile( std::string filePath )
 {
-	// Load image
-	FIBITMAP* imageData = FreeImage_Load( FreeImage_GetFileType( filePath.c_str(), 0 ), filePath.c_str() );
-
-	// Convert to 32 bits
-	FIBITMAP* temp = imageData;
-	imageData = FreeImage_ConvertTo32Bits( imageData );
-	FreeImage_Unload( temp );
+	// Load and convert to 32 bits
+	FIBITMAP* imageData = FreeImage_ConvertTo32Bits( FreeImage_Load( FreeImage_GetFileType( filePath.c_str(), 0 ), filePath.c_str() ) );
 
 	// Get dimensions
 	width = FreeImage_GetWidth( imageData );
@@ -35,4 +30,10 @@ bool Texture::LoadFromFile( std::string filePath )
 void Texture::Draw( void )
 {
 	glBindTexture( GL_TEXTURE_2D, textureID );
+}
+
+void Texture::Shutdown( void )
+{
+	glBindTexture( GL_TEXTURE_2D, NULL );
+	glDeleteBuffers( 1, &textureID );
 }

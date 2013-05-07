@@ -25,10 +25,8 @@ void OutputShaderErrorMessage( HWND hwnd, unsigned int shaderId, const char* sha
 
 	// Create a char buffer to hold the info log.
 	infoLog = new char[logSize];
-	if(!infoLog)
-	{
+	if( !infoLog )
 		return;
-	}
 
 	// Now retrieve the info log.
 	glGetShaderInfoLog(shaderId, logSize, NULL, infoLog);
@@ -37,23 +35,19 @@ void OutputShaderErrorMessage( HWND hwnd, unsigned int shaderId, const char* sha
 	fout.open("shader-error.txt");
 
 	// Write out the error message.
-	for(i=0; i<logSize; i++)
-	{
+	for(i=0; i<logSize; i++ )
 		fout << infoLog[i];
-	}
 
 	// Close the file.
 	fout.close();
 
 	// Convert the shader filename to a wide character string.
-	error = mbstowcs_s(&convertedChars, newString, 128, shaderFilename, 128);
-	if(error != 0)
-	{
+	error = mbstowcs_s( &convertedChars, newString, 128, shaderFilename, 128 );
+	if( error != 0 )
 		return;
-	}
 
 	// Pop a message up on the screen to notify the user to check the text file for compile errors.
-	MessageBox(hwnd, L"Error compiling shader.  Check shader-error.txt for message.", newString, MB_OK);
+	MessageBox( hwnd, L"Error compiling shader.  Check shader-error.txt for message.", newString, MB_OK );
 
 	delete[] infoLog;
 
@@ -111,20 +105,16 @@ Shader& ShaderController::GetShader( string shaderName )
 bool ShaderController::AddShader( string path, string name )	
 {
 	// Load shader text
-	string vertexShaderBuffer = Helpers::ReadFile( path + name + ".vs.sl" );
-	string fragmentShaderBuffer = Helpers::ReadFile( path + name + ".fs.sl" );
+	string vertexShaderBuffer = Helpers::ReadFile( path + name + ".vs.gl" );
+	string fragmentShaderBuffer = Helpers::ReadFile( path + name + ".fs.gl" );
 	int vertexShaderLength = vertexShaderBuffer.size();
 	int fragmentShaderLength = fragmentShaderBuffer.size();
 
 	// If text is valid
 	if( !vertexShaderBuffer.empty() && !fragmentShaderBuffer.empty() )
 	{
-		unsigned int vertex = glCreateShader( GL_VERTEX_SHADER );
-		unsigned int frag = glCreateShader( GL_FRAGMENT_SHADER );
-		unsigned int prog = glCreateProgram();
-
 		// Create shader
-		Shader newShader( vertex, frag, prog );
+		Shader newShader( glCreateShader( GL_VERTEX_SHADER ), glCreateShader( GL_FRAGMENT_SHADER ), glCreateProgram() );
 
 		// Load the source
 		const char* vertexShaderCString = vertexShaderBuffer.c_str();
@@ -164,7 +154,7 @@ bool ShaderController::AddShader( string path, string name )
 		glAttachShader( newShader.programID, newShader.vertexShaderID );
 		glAttachShader( newShader.programID, newShader.fragmentShaderID );
 
-		//Link everything
+		// Link everything
 		glLinkProgram( newShader.programID );
 
 		// Check completeness

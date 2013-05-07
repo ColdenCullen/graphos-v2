@@ -8,17 +8,9 @@
  #include "stdafx.h"
 #endif
 
-#include "ConfigController.h"
+#include "Config.h"
 #include "Input.h"
 #include "GraphosMath.h"
-
-// Platform specific typedefs
-#if defined( _WIN32 )
- typedef HDC GLDeviceContext;
- typedef HGLRC GLRenderContext;
-#elif defined ( __APPLE__ )
- typedef AGLContext GLRenderContext;
-#endif
 
 using namespace Graphos::Math;
 
@@ -41,16 +33,16 @@ namespace Graphos
 			unsigned int		GetHeight( void )	{ return height; }
 			//GLDeviceContext&		GetDeviceContext( void ) { return deviceContext; }
 			GLRenderContext&	RenderContext( void ) { return renderContext; }
-			Matrix4&			PerspectiveMatrix( void ) { return perspectiveMatrix; }
-			Matrix4&			OrthogonalMatrix( void ) { return orthogonalMatrix; }
+			Matrix&			PerspectiveMatrix( void ) { return perspectiveMatrix; }
+			Matrix&			OrthogonalMatrix( void ) { return orthogonalMatrix; }
 
 		protected:
 			unsigned int		width, screenWidth;
 			unsigned int		height, screenHeight;
 			bool				fullScreen;
 
-			Matrix4				perspectiveMatrix;
-			Matrix4				orthogonalMatrix;
+			Matrix				perspectiveMatrix;
+			Matrix				orthogonalMatrix;
 			//GLDeviceContext	deviceContext;
 			GLRenderContext		renderContext;
 		};

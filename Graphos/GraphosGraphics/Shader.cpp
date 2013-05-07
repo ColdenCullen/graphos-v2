@@ -69,12 +69,12 @@ bool Shader::SetUniform( string name, float value ) const
 	return true;
 }
 
-bool Shader::SetUniform( string name, Matrix4 value ) const
+bool Shader::SetUniform( string name, Matrix value ) const
 {
 	auto currentUniform = uniforms.find( name );
 
 	if( currentUniform != end( uniforms ) && currentUniform->second != -1 )
-		glUniformMatrix4fv( currentUniform->second, 1, false, value.matrix );
+		glUniformMatrix4fv( currentUniform->second, 1, false, value.dataArray );
 	else
 		return false;
 

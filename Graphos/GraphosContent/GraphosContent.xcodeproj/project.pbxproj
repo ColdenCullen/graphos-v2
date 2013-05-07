@@ -7,30 +7,60 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		34A30FB5170FC1EA002C20F6 /* libFreeImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 34A30FB4170FC1EA002C20F6 /* libFreeImage.a */; };
-		34C4A710170F772D00FCE1E4 /* ConfigController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 34C4A708170F772D00FCE1E4 /* ConfigController.cpp */; };
-		34C4A711170F772D00FCE1E4 /* ConfigController.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 34C4A709170F772D00FCE1E4 /* ConfigController.hpp */; };
-		34C4A712170F772D00FCE1E4 /* MaterialController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 34C4A70A170F772D00FCE1E4 /* MaterialController.cpp */; };
-		34C4A713170F772D00FCE1E4 /* MaterialController.h in Headers */ = {isa = PBXBuildFile; fileRef = 34C4A70B170F772D00FCE1E4 /* MaterialController.h */; };
-		34C4A714170F772D00FCE1E4 /* Model.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 34C4A70C170F772D00FCE1E4 /* Model.cpp */; };
-		34C4A715170F772D00FCE1E4 /* Model.h in Headers */ = {isa = PBXBuildFile; fileRef = 34C4A70D170F772D00FCE1E4 /* Model.h */; };
-		34C4A716170F772D00FCE1E4 /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 34C4A70E170F772D00FCE1E4 /* Texture.cpp */; };
-		34C4A717170F772D00FCE1E4 /* Texture.h in Headers */ = {isa = PBXBuildFile; fileRef = 34C4A70F170F772D00FCE1E4 /* Texture.h */; };
-		34C4A79D170F839F00FCE1E4 /* libjsoncpp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 34C4A79C170F839F00FCE1E4 /* libjsoncpp.a */; };
+		3478581D17306038000C16E4 /* AssetController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3478580417306038000C16E4 /* AssetController.cpp */; };
+		3478581E17306038000C16E4 /* AssetController.h in Headers */ = {isa = PBXBuildFile; fileRef = 3478580517306038000C16E4 /* AssetController.h */; };
+		3478581F17306038000C16E4 /* AwesomiumView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3478580617306038000C16E4 /* AwesomiumView.cpp */; };
+		3478582017306038000C16E4 /* AwesomiumView.h in Headers */ = {isa = PBXBuildFile; fileRef = 3478580717306038000C16E4 /* AwesomiumView.h */; };
+		3478582117306038000C16E4 /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3478580817306038000C16E4 /* Camera.cpp */; };
+		3478582217306038000C16E4 /* Camera.h in Headers */ = {isa = PBXBuildFile; fileRef = 3478580917306038000C16E4 /* Camera.h */; };
+		3478582317306038000C16E4 /* Collider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3478580A17306038000C16E4 /* Collider.cpp */; };
+		3478582417306038000C16E4 /* Collider.h in Headers */ = {isa = PBXBuildFile; fileRef = 3478580B17306038000C16E4 /* Collider.h */; };
+		3478582517306038000C16E4 /* Config.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3478580C17306038000C16E4 /* Config.cpp */; };
+		3478582617306038000C16E4 /* Config.h in Headers */ = {isa = PBXBuildFile; fileRef = 3478580D17306038000C16E4 /* Config.h */; };
+		3478582717306038000C16E4 /* Ingredient.h in Headers */ = {isa = PBXBuildFile; fileRef = 3478580E17306038000C16E4 /* Ingredient.h */; };
+		3478582817306038000C16E4 /* Mesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3478580F17306038000C16E4 /* Mesh.cpp */; };
+		3478582917306038000C16E4 /* Mesh.h in Headers */ = {isa = PBXBuildFile; fileRef = 3478581017306038000C16E4 /* Mesh.h */; };
+		3478582A17306038000C16E4 /* Physics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3478581117306038000C16E4 /* Physics.cpp */; };
+		3478582B17306038000C16E4 /* Physics.h in Headers */ = {isa = PBXBuildFile; fileRef = 3478581217306038000C16E4 /* Physics.h */; };
+		3478582C17306038000C16E4 /* Rigidbody.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3478581317306038000C16E4 /* Rigidbody.cpp */; };
+		3478582D17306038000C16E4 /* Rigidbody.h in Headers */ = {isa = PBXBuildFile; fileRef = 3478581417306038000C16E4 /* Rigidbody.h */; };
+		3478582E17306038000C16E4 /* Script.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3478581517306038000C16E4 /* Script.cpp */; };
+		3478582F17306038000C16E4 /* Script.h in Headers */ = {isa = PBXBuildFile; fileRef = 3478581617306038000C16E4 /* Script.h */; };
+		3478583017306038000C16E4 /* ScriptController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3478581717306038000C16E4 /* ScriptController.cpp */; };
+		3478583117306038000C16E4 /* ScriptController.h in Headers */ = {isa = PBXBuildFile; fileRef = 3478581817306038000C16E4 /* ScriptController.h */; };
+		3478583217306038000C16E4 /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3478581917306038000C16E4 /* Texture.cpp */; };
+		3478583317306038000C16E4 /* Texture.h in Headers */ = {isa = PBXBuildFile; fileRef = 3478581A17306038000C16E4 /* Texture.h */; };
+		3478583417306038000C16E4 /* UserInterface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3478581B17306038000C16E4 /* UserInterface.cpp */; };
+		3478583517306038000C16E4 /* UserInterface.h in Headers */ = {isa = PBXBuildFile; fileRef = 3478581C17306038000C16E4 /* UserInterface.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		34A30FB4170FC1EA002C20F6 /* libFreeImage.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFreeImage.a; path = ../GL/x86/lib/libFreeImage.a; sourceTree = "<group>"; };
+		3478580417306038000C16E4 /* AssetController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AssetController.cpp; sourceTree = "<group>"; };
+		3478580517306038000C16E4 /* AssetController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetController.h; sourceTree = "<group>"; };
+		3478580617306038000C16E4 /* AwesomiumView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AwesomiumView.cpp; sourceTree = "<group>"; };
+		3478580717306038000C16E4 /* AwesomiumView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AwesomiumView.h; sourceTree = "<group>"; };
+		3478580817306038000C16E4 /* Camera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Camera.cpp; sourceTree = "<group>"; };
+		3478580917306038000C16E4 /* Camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Camera.h; sourceTree = "<group>"; };
+		3478580A17306038000C16E4 /* Collider.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Collider.cpp; sourceTree = "<group>"; };
+		3478580B17306038000C16E4 /* Collider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Collider.h; sourceTree = "<group>"; };
+		3478580C17306038000C16E4 /* Config.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Config.cpp; sourceTree = "<group>"; };
+		3478580D17306038000C16E4 /* Config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
+		3478580E17306038000C16E4 /* Ingredient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ingredient.h; sourceTree = "<group>"; };
+		3478580F17306038000C16E4 /* Mesh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Mesh.cpp; sourceTree = "<group>"; };
+		3478581017306038000C16E4 /* Mesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mesh.h; sourceTree = "<group>"; };
+		3478581117306038000C16E4 /* Physics.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Physics.cpp; sourceTree = "<group>"; };
+		3478581217306038000C16E4 /* Physics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Physics.h; sourceTree = "<group>"; };
+		3478581317306038000C16E4 /* Rigidbody.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Rigidbody.cpp; sourceTree = "<group>"; };
+		3478581417306038000C16E4 /* Rigidbody.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Rigidbody.h; sourceTree = "<group>"; };
+		3478581517306038000C16E4 /* Script.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Script.cpp; sourceTree = "<group>"; };
+		3478581617306038000C16E4 /* Script.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Script.h; sourceTree = "<group>"; };
+		3478581717306038000C16E4 /* ScriptController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ScriptController.cpp; sourceTree = "<group>"; };
+		3478581817306038000C16E4 /* ScriptController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScriptController.h; sourceTree = "<group>"; };
+		3478581917306038000C16E4 /* Texture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Texture.cpp; sourceTree = "<group>"; };
+		3478581A17306038000C16E4 /* Texture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Texture.h; sourceTree = "<group>"; };
+		3478581B17306038000C16E4 /* UserInterface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UserInterface.cpp; sourceTree = "<group>"; };
+		3478581C17306038000C16E4 /* UserInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInterface.h; sourceTree = "<group>"; };
 		34C4A701170F76DA00FCE1E4 /* libGraphosContent.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libGraphosContent.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		34C4A708170F772D00FCE1E4 /* ConfigController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ConfigController.cpp; sourceTree = "<group>"; };
-		34C4A709170F772D00FCE1E4 /* ConfigController.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ConfigController.hpp; sourceTree = "<group>"; };
-		34C4A70A170F772D00FCE1E4 /* MaterialController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MaterialController.cpp; sourceTree = "<group>"; };
-		34C4A70B170F772D00FCE1E4 /* MaterialController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MaterialController.h; sourceTree = "<group>"; };
-		34C4A70C170F772D00FCE1E4 /* Model.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Model.cpp; sourceTree = "<group>"; };
-		34C4A70D170F772D00FCE1E4 /* Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Model.h; sourceTree = "<group>"; };
-		34C4A70E170F772D00FCE1E4 /* Texture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Texture.cpp; sourceTree = "<group>"; };
-		34C4A70F170F772D00FCE1E4 /* Texture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Texture.h; sourceTree = "<group>"; };
-		34C4A79C170F839F00FCE1E4 /* libjsoncpp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libjsoncpp.a; path = ../GL/x86/lib/libjsoncpp.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,8 +68,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				34A30FB5170FC1EA002C20F6 /* libFreeImage.a in Frameworks */,
-				34C4A79D170F839F00FCE1E4 /* libjsoncpp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -51,7 +79,6 @@
 			children = (
 				34C4A73F170F77A000FCE1E4 /* Headers */,
 				34C4A73E170F779900FCE1E4 /* Source */,
-				34C4A750170F7DAE00FCE1E4 /* Dependencies */,
 				34C4A702170F76DA00FCE1E4 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -67,10 +94,18 @@
 		34C4A73E170F779900FCE1E4 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				34C4A708170F772D00FCE1E4 /* ConfigController.cpp */,
-				34C4A70A170F772D00FCE1E4 /* MaterialController.cpp */,
-				34C4A70C170F772D00FCE1E4 /* Model.cpp */,
-				34C4A70E170F772D00FCE1E4 /* Texture.cpp */,
+				3478580417306038000C16E4 /* AssetController.cpp */,
+				3478580617306038000C16E4 /* AwesomiumView.cpp */,
+				3478580817306038000C16E4 /* Camera.cpp */,
+				3478580A17306038000C16E4 /* Collider.cpp */,
+				3478580C17306038000C16E4 /* Config.cpp */,
+				3478580F17306038000C16E4 /* Mesh.cpp */,
+				3478581117306038000C16E4 /* Physics.cpp */,
+				3478581317306038000C16E4 /* Rigidbody.cpp */,
+				3478581517306038000C16E4 /* Script.cpp */,
+				3478581717306038000C16E4 /* ScriptController.cpp */,
+				3478581917306038000C16E4 /* Texture.cpp */,
+				3478581B17306038000C16E4 /* UserInterface.cpp */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -78,21 +113,21 @@
 		34C4A73F170F77A000FCE1E4 /* Headers */ = {
 			isa = PBXGroup;
 			children = (
-				34C4A709170F772D00FCE1E4 /* ConfigController.hpp */,
-				34C4A70B170F772D00FCE1E4 /* MaterialController.h */,
-				34C4A70D170F772D00FCE1E4 /* Model.h */,
-				34C4A70F170F772D00FCE1E4 /* Texture.h */,
+				3478580517306038000C16E4 /* AssetController.h */,
+				3478580717306038000C16E4 /* AwesomiumView.h */,
+				3478580917306038000C16E4 /* Camera.h */,
+				3478580B17306038000C16E4 /* Collider.h */,
+				3478580D17306038000C16E4 /* Config.h */,
+				3478580E17306038000C16E4 /* Ingredient.h */,
+				3478581017306038000C16E4 /* Mesh.h */,
+				3478581217306038000C16E4 /* Physics.h */,
+				3478581417306038000C16E4 /* Rigidbody.h */,
+				3478581617306038000C16E4 /* Script.h */,
+				3478581817306038000C16E4 /* ScriptController.h */,
+				3478581A17306038000C16E4 /* Texture.h */,
+				3478581C17306038000C16E4 /* UserInterface.h */,
 			);
 			name = Headers;
-			sourceTree = "<group>";
-		};
-		34C4A750170F7DAE00FCE1E4 /* Dependencies */ = {
-			isa = PBXGroup;
-			children = (
-				34A30FB4170FC1EA002C20F6 /* libFreeImage.a */,
-				34C4A79C170F839F00FCE1E4 /* libjsoncpp.a */,
-			);
-			name = Dependencies;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -102,10 +137,19 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				34C4A711170F772D00FCE1E4 /* ConfigController.hpp in Headers */,
-				34C4A713170F772D00FCE1E4 /* MaterialController.h in Headers */,
-				34C4A715170F772D00FCE1E4 /* Model.h in Headers */,
-				34C4A717170F772D00FCE1E4 /* Texture.h in Headers */,
+				3478581E17306038000C16E4 /* AssetController.h in Headers */,
+				3478582017306038000C16E4 /* AwesomiumView.h in Headers */,
+				3478582217306038000C16E4 /* Camera.h in Headers */,
+				3478582417306038000C16E4 /* Collider.h in Headers */,
+				3478582617306038000C16E4 /* Config.h in Headers */,
+				3478582717306038000C16E4 /* Ingredient.h in Headers */,
+				3478582917306038000C16E4 /* Mesh.h in Headers */,
+				3478582B17306038000C16E4 /* Physics.h in Headers */,
+				3478582D17306038000C16E4 /* Rigidbody.h in Headers */,
+				3478582F17306038000C16E4 /* Script.h in Headers */,
+				3478583117306038000C16E4 /* ScriptController.h in Headers */,
+				3478583317306038000C16E4 /* Texture.h in Headers */,
+				3478583517306038000C16E4 /* UserInterface.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -160,10 +204,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				34C4A710170F772D00FCE1E4 /* ConfigController.cpp in Sources */,
-				34C4A712170F772D00FCE1E4 /* MaterialController.cpp in Sources */,
-				34C4A714170F772D00FCE1E4 /* Model.cpp in Sources */,
-				34C4A716170F772D00FCE1E4 /* Texture.cpp in Sources */,
+				3478581D17306038000C16E4 /* AssetController.cpp in Sources */,
+				3478581F17306038000C16E4 /* AwesomiumView.cpp in Sources */,
+				3478582117306038000C16E4 /* Camera.cpp in Sources */,
+				3478582317306038000C16E4 /* Collider.cpp in Sources */,
+				3478582517306038000C16E4 /* Config.cpp in Sources */,
+				3478582817306038000C16E4 /* Mesh.cpp in Sources */,
+				3478582A17306038000C16E4 /* Physics.cpp in Sources */,
+				3478582C17306038000C16E4 /* Rigidbody.cpp in Sources */,
+				3478582E17306038000C16E4 /* Script.cpp in Sources */,
+				3478583017306038000C16E4 /* ScriptController.cpp in Sources */,
+				3478583217306038000C16E4 /* Texture.cpp in Sources */,
+				3478583417306038000C16E4 /* UserInterface.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -232,36 +284,46 @@
 		34C4A706170F76DA00FCE1E4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LIBRARY = "libc++";
 				COMBINE_HIDPI_IMAGES = YES;
 				EXECUTABLE_EXTENSION = a;
 				EXECUTABLE_PREFIX = lib;
-				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/../GL/x86/include\"";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../External Dependencies/x86/include\"",
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/../GL/x86/lib\"",
-					"\"$(SRCROOT)/../GL/x86/bin\"",
+					"\"$(SRCROOT)/../External Dependencies/x86/lib\"",
+					"\"$(SRCROOT)/../External Dependencies/x86/bin\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SYMROOT = "\"$(SRCROOT)/../Build\"";
-				USER_HEADER_SEARCH_PATHS = "";
+				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/../GraphosGraphics\" \"$(SRCROOT)/../GraphosMath\" \"$(SRCROOT)/../Graphos\"";
 			};
 			name = Debug;
 		};
 		34C4A707170F76DA00FCE1E4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LIBRARY = "libc++";
 				COMBINE_HIDPI_IMAGES = YES;
 				EXECUTABLE_EXTENSION = a;
 				EXECUTABLE_PREFIX = lib;
-				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/../GL/x86/include\"";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../External Dependencies/x86/include\"",
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/../GL/x86/lib\"",
-					"\"$(SRCROOT)/../GL/x86/bin\"",
+					"\"$(SRCROOT)/../External Dependencies/x86/lib\"",
+					"\"$(SRCROOT)/../External Dependencies/x86/bin\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SYMROOT = "\"$(SRCROOT)/../Build\"";
-				USER_HEADER_SEARCH_PATHS = "";
+				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/../GraphosGraphics\" \"$(SRCROOT)/../GraphosMath\" \"$(SRCROOT)/../Graphos\"";
 			};
 			name = Release;
 		};

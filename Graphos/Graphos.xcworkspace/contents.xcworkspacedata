@@ -3,68 +3,95 @@
    version = "1.0">
    <Group
       location = "container:"
-      name = "Global Headers">
-      <FileRef
-         location = "group:GL/x86/include/GL/glincludes.h">
-      </FileRef>
-      <FileRef
-         location = "group:GL/x86/include/Helpers.h">
-      </FileRef>
-   </Group>
-   <Group
-      location = "container:"
       name = "Resources">
       <Group
-         location = "container:"
+         location = "group:Resources/Assets"
          name = "Assets">
-         <FileRef
-            location = "group:Resources/Assets/Cube.obj">
-         </FileRef>
-         <FileRef
-            location = "group:Resources/Assets/CubeMaterial.jpg">
-         </FileRef>
-         <FileRef
-            location = "group:Resources/Assets/Sphere.obj">
-         </FileRef>
+         <Group
+            location = "group:Meshes"
+            name = "Meshes">
+            <FileRef
+               location = "group:Cube.obj">
+            </FileRef>
+            <FileRef
+               location = "group:Sphere.obj">
+            </FileRef>
+         </Group>
+         <Group
+            location = "group:Textures"
+            name = "Textures">
+            <FileRef
+               location = "group:CubeMaterial.jpg">
+            </FileRef>
+            <FileRef
+               location = "group:Poop.png">
+            </FileRef>
+         </Group>
+         <Group
+            location = "group:Objects"
+            name = "Objects">
+            <FileRef
+               location = "group:Cube.json">
+            </FileRef>
+            <FileRef
+               location = "group:Sphere.json">
+            </FileRef>
+         </Group>
       </Group>
       <Group
-         location = "container:"
+         location = "group:Resources/Config"
          name = "Config">
          <FileRef
-            location = "group:Resources/Config/Config.json">
+            location = "group:Config.json">
          </FileRef>
       </Group>
       <Group
-         location = "container:"
+         location = "group:Resources/Shaders"
          name = "Shaders">
          <FileRef
-            location = "group:Resources/Shaders/color.fs.sl">
+            location = "group:color.fs.gl"
+            assignedFileDataType = "org.khronos.glsl-source">
          </FileRef>
          <FileRef
-            location = "group:Resources/Shaders/color.vs.sl">
+            location = "group:color.vs.gl"
+            assignedFileDataType = "org.khronos.glsl-source">
          </FileRef>
          <FileRef
-            location = "group:Resources/Shaders/light.fs.sl">
+            location = "group:light.fs.gl"
+            assignedFileDataType = "org.khronos.glsl-source">
          </FileRef>
          <FileRef
-            location = "group:Resources/Shaders/light.vs.sl">
+            location = "group:light.vs.gl"
+            assignedFileDataType = "org.khronos.glsl-source">
          </FileRef>
          <FileRef
-            location = "group:Resources/Shaders/texture.fs.sl">
+            location = "group:texture.fs.gl"
+            assignedFileDataType = "org.khronos.glsl-source">
          </FileRef>
          <FileRef
-            location = "group:Resources/Shaders/texture.vs.sl">
+            location = "group:texture.vs.gl"
+            assignedFileDataType = "org.khronos.glsl-source">
+         </FileRef>
+      </Group>
+      <Group
+         location = "group:Resources/UIs"
+         name = "UIs">
+         <FileRef
+            location = "group:MainMenu.html">
+         </FileRef>
+         <FileRef
+            location = "group:MainMenu.css">
          </FileRef>
       </Group>
    </Group>
    <FileRef
-      location = "group:GraphosGraphics/GraphosGraphics/../../Graphos/Graphos.xcodeproj">
-   </FileRef>
-   <FileRef
-      location = "group:GraphosGraphics/GraphosGraphics.xcodeproj">
+      location = "group:Graphos/Graphos.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:GraphosContent/GraphosContent.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:GraphosGraphics/GraphosGraphics.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:GraphosMath/GraphosMath.xcodeproj">

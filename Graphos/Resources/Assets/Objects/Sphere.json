@@ -1,10 +1,12 @@
 {
 	"Name": "Sphere",
 	
+	"Shader": "texture",
+	
 	"AwesomiumView": {
-		"width": 1920,
-		"height": 1080,
-		"url": "http://ColdenCullen.com/"
+		"width": 800,
+		"height": 600,
+		"url": "http://Google.com/"
 	},
 	
 	"Mesh": {
@@ -13,8 +15,8 @@
 	
 	"Transform": {
 		"Position": {
-			"x": -1.0,
-			"y": 0,
+			"x": 0.0,
+			"y": 0.0,
 			"z": 3.0
 		},
 		"Rotation": {
@@ -23,9 +25,29 @@
 			"z": 0
 		},
 		"Scale": {
-			"x": 0.5,
-			"y": 0.5,
-			"z": 0.5
+			"x": 0.25,
+			"y": 0.25,
+			"z": 0.25
 		}
+	},
+
+	"Rigidbody": {
+		"LinearVelocity": {
+			"x": 0,
+			"y": 0,
+			"z": 0
+		},
+		"AngularVelocity": {
+			"x": 0,
+			"y": 0,
+			"z": 0
+		},
+		"LinearDrag": 0.1,
+		"AngularDrag": 0.5
+	},
+
+	"Collider": {
+		"Type": "Sphere",
+		"Radius": 0.25
 	}
 }

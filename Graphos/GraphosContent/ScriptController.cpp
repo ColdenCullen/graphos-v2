@@ -6,88 +6,174 @@
 #include "Helpers.h"
 
 using namespace std;
-using namespace Awesomium;
 using namespace Graphos::Content;
 using namespace Graphos::Graphics;
 
-Graphos::Content::ScriptController::~ScriptController( void )
+#pragma region Handlers
+#pragma region Helpers
+Handle<Value> IsKeyDown( const Arguments& args )
 {
-	//delete window;
-
-	if( WebCore::instance() )
-		WebCore::Shutdown();
-
-	delete jsHandler;
+	return Boolean::New( Input::Get().IsKeyDown( args[ 0 ]->Int32Value() ) );
 }
+
+Handle<Value> IncludeHandler(const Arguments& args)
+{
+	for (int i = 0; i < args.Length(); i++)
+	{
+		String::Utf8Value str(args[i]);
+
+		// load_file loads the file with this name into a string,
+		// I imagine you can write a function to do this :)
+		std::string js_file = Helpers::ReadFile(*str);
+
+		if(js_file.length() > 0)
+		{
+			Handle<String> source = String::New( js_file.c_str() );
+			Handle<v8::Script> script = v8::Script::Compile( source );
+			return script->Run();
+		}
+	}
+	return Undefined();
+}
+
+Handle<Value> PrintHandler( const Arguments& args )
+{
+	for( int ii = 0; ii < args.Length(); ++ii )
+		cout << *String::Utf8Value( args[ ii ] );
+
+	cout << endl;
+
+	return Undefined();
+}
+#pragma endregion
+
+#pragma region Transform
+// Access transform
+Handle<Value> GetTransform(Local<String> property, const AccessorInfo& info)
+{
+	// Get object holder
+	Local<Object> self = info.Holder();
+
+	Handle<Object> global = info.GetIsolate()->GetCurrentContext()->Global();
+
+	// Get owner
+	GameObject* owner = GameObject::GetGameObject( self->Get( String::New( "id" ) )->Uint32Value() );
+
+	// Create position
+	Handle<Object> position = Handle<Function>::Cast( global->Get( String::New( "Vector3" ) ) )->CallAsConstructor( 0, nullptr )->ToObject();
+	position->Set( String::New( "x" ), Number::New( owner->transform.Position().x ) );
+	position->Set( String::New( "y" ), Number::New( owner->transform.Position().y ) );
+	position->Set( String::New( "z" ), Number::New( owner->transform.Position().z ) );
+
+	// Create rotation
+	Handle<Object> rotation = Handle<Function>::Cast( global->Get( String::New( "Vector3" ) ) )->CallAsConstructor( 0, nullptr )->ToObject();
+	rotation->Set( String::New( "x" ), Number::New( owner->transform.Rotation().x ) );
+	rotation->Set( String::New( "y" ), Number::New( owner->transform.Rotation().y ) );
+	rotation->Set( String::New( "z" ), Number::New( owner->transform.Rotation().z ) );
+
+	// Create scale
+	Handle<Object> scale = Handle<Function>::Cast( global->Get( String::New( "Vector3" ) ) )->CallAsConstructor( 0, nullptr )->ToObject();
+	scale->Set( String::New( "x" ), Number::New( owner->transform.Scale().x ) );
+	scale->Set( String::New( "y" ), Number::New( owner->transform.Scale().y ) );
+	scale->Set( String::New( "z" ), Number::New( owner->transform.Scale().z ) );
+
+	// Link them all
+	Handle<Object> transform = Object::New();
+	transform->Set( String::New( "position" ), position );
+	transform->Set( String::New( "rotation" ), rotation );
+	transform->Set( String::New( "scale" ), scale );
+
+	return transform;
+}
+
+/*
+// Change transform
+void SetTransform(Local<String> property, Local<Value> value, const AccessorInfo& info)
+{
+	Local<Object> self = info.Holder();
+	Local<External> wrap = Local<External>::Cast(self->GetInternalField(0));
+	void* ptr = wrap->Value();
+	static_cast<Point*>(ptr)->x_ = value->Int32Value();
+}
+*/
+#pragma endregion
+#pragma endregion
 
 bool ScriptController::Initialize( void )
 {
-	// Initialize Awesomium
-	if( WebCore::instance() )
-		webCore = WebCore::instance();
-	else
-	{
-		WebConfig config;
+	// Create global object template, add function handlers
+	Handle<ObjectTemplate> globalObjectTemplate = ObjectTemplate::New();
+	globalObjectTemplate->Set( "include", FunctionTemplate::New( IncludeHandler ) );
+	globalObjectTemplate->Set( "log", FunctionTemplate::New( PrintHandler ) );
 
-		//config.log_level = kLogLevel_Verbose;
-		//config.log_path = WSLit( "D:/Awesomium.log" );
+	// Setup Input
+	Handle<ObjectTemplate> input = ObjectTemplate::New();
+	input->Set( "IsKeyDown", FunctionTemplate::New( IsKeyDown ) );
+	globalObjectTemplate->Set( "Input", input );
 
-		webCore = WebCore::Initialize( config );
-	}
+	// Create the context for initializing the scripts
+	context = Context::New( nullptr, globalObjectTemplate );
 
-	// Get file path
-	char abspath[ 256 ];
-#ifdef WIN32
-	_fullpath( abspath, ConfigController::Get().GetData<string>( "scripts.indexPath" ).c_str(), MAX_PATH );
-#else
-	realpath( filePath.c_str(), abspath );
-#endif
+	// Scope for created variables
+	Context::Scope contextScope( context );
 
-	webView = webCore->CreateWebView( 800, 600 );
-	webView->LoadURL( WebURL( WSLit( abspath ) ) );
+	// Load and compile script
+	v8::Script::Compile(
+		String::New(
+			Helpers::ReadFile(
+				Config::Get().GetData<string>( "scripts.mainPath" )
+			).c_str()
+		)
+	)->Run();
 
-	jsHandler = new MyHandler( this );
-
-	webView->set_js_method_handler( jsHandler );
-
-	while( webView->IsLoading() )
-		webCore->Update();
-
-	webCore->Update();
-
-	// Get window, default scope
-	window = webView->ExecuteJavascriptWithResult( WSLit( "window" ), WSLit( "" ) ).ToObject();
-
-	// Reassign console.log so that it outputs through the console
-	window.GetProperty( WSLit( "console" ) ).ToObject().SetCustomMethod( WSLit( "log" ), false );
-
-	// Assign Input.IsKeyDown
-	webView->CreateGlobalJavascriptObject( WSLit( "Input" ) );
-	input = window.GetProperty( WSLit( "Input" ) ).ToObject();
-	input.SetCustomMethod( WSLit( "IsKeyDown" ), true );
+	// Get the "global" object
+	globalObject = context->Global();
 
 	return true;
 }
 
-Script* ScriptController::CreateInstanceVariable( string className, GameObject* owner /*= nullptr */ )
+void ScriptController::Shutdown( void )
 {
-	if( webView )
+	if( isInitialized )
 	{
-		JSValue newInstance = webView->ExecuteJavascriptWithResult( WSLit( string( "new " ).append( className ).append( "()" ).c_str() ), WSLit( "" ) );
+		//handleScope.~HandleScope();
+		//context.Dispose();
 
-		if( newInstance.IsObject() )
-		{
-			webView->CreateGlobalJavascriptObject( WSLit( className.c_str() ) );
-			window.SetProperty( WSLit( className.c_str() ), newInstance.ToObject() );
-			return new Script( window.GetProperty( WSLit( className.c_str() ) ).ToObject(), owner );
-		}
-		else
-			return nullptr;
+		isInitialized = false;
+	}
+}
+
+Content::Script* ScriptController::CreateObjectInstance( string className, unsigned int ownerID, GameObject* owner /*= nullptr */ )
+{
+	if( !isInitialized )
+		Initialize();
+
+	// Create a scope
+	Context::Scope contextScope( context );
+
+	// Get an instance of the class
+	Local<Function> ctor = Local<Function>::Cast( globalObject->Get( String::New( className.c_str() ) ) );
+
+	// Return object
+	if( !ctor.IsEmpty() )
+	{
+		// Get object
+		Local<Object> instance = ctor->CallAsConstructor( 0, nullptr )->ToObject();
+
+		// Set id
+		instance->Set( String::New( "id" ), Int32::New( ownerID ) );
+
+		// Set transform accessor
+		instance->SetAccessor( String::New( "transform" ), GetTransform, nullptr );
+
+		// Return new script
+		return new Script( instance, owner );
 	}
 	else
 		return nullptr;
 }
 
+/*
 void ScriptController::MyHandler::OnMethodCall( WebView* caller, unsigned int remoteObjId, const WebString& methodName, const JSArray& args )
 {
 	if( methodName == WSLit( "log" ) )
@@ -111,6 +197,26 @@ JSValue ScriptController::MyHandler::OnMethodCallWithReturnValue( WebView* calle
 		if( args[ 0 ].IsInteger() )
 			return JSValue( Input::Get().IsKeyDown( args[ 0 ].ToInteger() ) );
 	}
+	if( methodName == WSLit( "UpdateTransformC" ) && args.size() == 1 )
+	{
+		// Get GameObject reference
+		string name = ToString( args[ 0 ].ToString() );
+
+		GameObject& obj = GameObject::GetGameObject( name );
+
+		// Get values
+		const Vector3& positionVec = obj.transform.Position();
+
+		JSObject transform, position;
+		position.SetProperty( WSLit( "x" ), JSValue( positionVec.x ) );
+		position.SetProperty( WSLit( "y" ), JSValue( positionVec.y ) );
+		position.SetProperty( WSLit( "z" ), JSValue( positionVec.z ) );
+
+		transform.SetProperty( WSLit( "position" ), position );
+
+		return transform;
+	}
 
 	return JSValue::Undefined();
 }
+*/

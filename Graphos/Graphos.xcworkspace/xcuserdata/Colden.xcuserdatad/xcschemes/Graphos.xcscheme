@@ -56,8 +56,8 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "34C4A6A3170F757A00FCE1E4"
-               BuildableName = "Graphos"
+               BlueprintIdentifier = "3401E1B61731796700C86794"
+               BuildableName = "Graphos.app"
                BlueprintName = "Graphos"
                ReferencedContainer = "container:Graphos/Graphos.xcodeproj">
             </BuildableReference>
@@ -74,8 +74,8 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "34C4A6A3170F757A00FCE1E4"
-            BuildableName = "Graphos"
+            BlueprintIdentifier = "3401E1B61731796700C86794"
+            BuildableName = "Graphos.app"
             BlueprintName = "Graphos"
             ReferencedContainer = "container:Graphos/Graphos.xcodeproj">
          </BuildableReference>
@@ -93,8 +93,8 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "34C4A6A3170F757A00FCE1E4"
-            BuildableName = "Graphos"
+            BlueprintIdentifier = "3401E1B61731796700C86794"
+            BuildableName = "Graphos.app"
             BlueprintName = "Graphos"
             ReferencedContainer = "container:Graphos/Graphos.xcodeproj">
          </BuildableReference>
@@ -111,8 +111,8 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "34C4A6A3170F757A00FCE1E4"
-            BuildableName = "Graphos"
+            BlueprintIdentifier = "3401E1B61731796700C86794"
+            BuildableName = "Graphos.app"
             BlueprintName = "Graphos"
             ReferencedContainer = "container:Graphos/Graphos.xcodeproj">
          </BuildableReference>

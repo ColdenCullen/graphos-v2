@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		347858021730600C000C16E4 /* Shader.h in Headers */ = {isa = PBXBuildFile; fileRef = 347858001730600C000C16E4 /* Shader.h */; };
+		347858031730600C000C16E4 /* WindowController.h in Headers */ = {isa = PBXBuildFile; fileRef = 347858011730600C000C16E4 /* WindowController.h */; };
 		34A30FB2170FB937002C20F6 /* OSXController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 34A30FB0170FB937002C20F6 /* OSXController.cpp */; };
 		34C4A6E9170F769B00FCE1E4 /* GraphicsController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 34C4A6E4170F769B00FCE1E4 /* GraphicsController.cpp */; };
 		34C4A6EA170F769B00FCE1E4 /* GraphicsController.h in Headers */ = {isa = PBXBuildFile; fileRef = 34C4A6E5170F769B00FCE1E4 /* GraphicsController.h */; };
@@ -16,16 +18,11 @@
 		34C4A6F4170F76B100FCE1E4 /* ShaderController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 34C4A6EF170F76B100FCE1E4 /* ShaderController.cpp */; };
 		34C4A6F5170F76B100FCE1E4 /* ShaderController.h in Headers */ = {isa = PBXBuildFile; fileRef = 34C4A6F0170F76B100FCE1E4 /* ShaderController.h */; };
 		34C4A6F6170F76B100FCE1E4 /* Win32Controller.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 34C4A6F1170F76B100FCE1E4 /* Win32Controller.cpp */; };
-		34C4A6F7170F76B100FCE1E4 /* WindowController.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 34C4A6F2170F76B100FCE1E4 /* WindowController.hpp */; };
-		34C4A746170F77F500FCE1E4 /* Resource.h in Headers */ = {isa = PBXBuildFile; fileRef = 34C4A742170F77F500FCE1E4 /* Resource.h */; };
-		34C4A747170F77F500FCE1E4 /* stdafx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 34C4A743170F77F500FCE1E4 /* stdafx.cpp */; };
-		34C4A748170F77F500FCE1E4 /* stdafx.h in Headers */ = {isa = PBXBuildFile; fileRef = 34C4A744170F77F500FCE1E4 /* stdafx.h */; };
-		34C4A749170F77F500FCE1E4 /* targetver.h in Headers */ = {isa = PBXBuildFile; fileRef = 34C4A745170F77F500FCE1E4 /* targetver.h */; };
-		34C4A74F170F7B7C00FCE1E4 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34C4A74D170F7B7C00FCE1E4 /* OpenGL.framework */; };
-		34C4A7B5170F867400FCE1E4 /* libglew32.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 34C4A7B4170F867400FCE1E4 /* libglew32.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		347858001730600C000C16E4 /* Shader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Shader.h; sourceTree = "<group>"; };
+		347858011730600C000C16E4 /* WindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WindowController.h; sourceTree = "<group>"; };
 		34A30FB0170FB937002C20F6 /* OSXController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OSXController.cpp; sourceTree = "<group>"; };
 		34C4A6C8170F75C600FCE1E4 /* libGraphosGraphics.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libGraphosGraphics.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		34C4A6E4170F769B00FCE1E4 /* GraphicsController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GraphicsController.cpp; sourceTree = "<group>"; };
@@ -36,13 +33,6 @@
 		34C4A6EF170F76B100FCE1E4 /* ShaderController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ShaderController.cpp; sourceTree = "<group>"; };
 		34C4A6F0170F76B100FCE1E4 /* ShaderController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShaderController.h; sourceTree = "<group>"; };
 		34C4A6F1170F76B100FCE1E4 /* Win32Controller.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Win32Controller.cpp; sourceTree = "<group>"; };
-		34C4A6F2170F76B100FCE1E4 /* WindowController.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = WindowController.hpp; sourceTree = "<group>"; };
-		34C4A742170F77F500FCE1E4 /* Resource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Resource.h; sourceTree = "<group>"; };
-		34C4A743170F77F500FCE1E4 /* stdafx.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = stdafx.cpp; sourceTree = "<group>"; };
-		34C4A744170F77F500FCE1E4 /* stdafx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stdafx.h; sourceTree = "<group>"; };
-		34C4A745170F77F500FCE1E4 /* targetver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = targetver.h; sourceTree = "<group>"; };
-		34C4A74D170F7B7C00FCE1E4 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
-		34C4A7B4170F867400FCE1E4 /* libglew32.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libglew32.a; path = ../GL/x86/lib/libglew32.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,8 +40,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				34C4A7B5170F867400FCE1E4 /* libglew32.a in Frameworks */,
-				34C4A74F170F7B7C00FCE1E4 /* OpenGL.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,8 +51,6 @@
 			children = (
 				34C4A73C170F778A00FCE1E4 /* Headers */,
 				34C4A73D170F778F00FCE1E4 /* Source */,
-				34C4A74A170F780300FCE1E4 /* Windows-Specific */,
-				34C4A6CF170F75CC00FCE1E4 /* Dependencies */,
 				34C4A6C9170F75C600FCE1E4 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -77,22 +63,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		34C4A6CF170F75CC00FCE1E4 /* Dependencies */ = {
-			isa = PBXGroup;
-			children = (
-				34C4A7B4170F867400FCE1E4 /* libglew32.a */,
-				34C4A74D170F7B7C00FCE1E4 /* OpenGL.framework */,
-			);
-			name = Dependencies;
-			sourceTree = "<group>";
-		};
 		34C4A73C170F778A00FCE1E4 /* Headers */ = {
 			isa = PBXGroup;
 			children = (
+				347858001730600C000C16E4 /* Shader.h */,
+				347858011730600C000C16E4 /* WindowController.h */,
 				34C4A6E5170F769B00FCE1E4 /* GraphicsController.h */,
 				34C4A6E7170F769B00FCE1E4 /* Input.h */,
 				34C4A6F0170F76B100FCE1E4 /* ShaderController.h */,
-				34C4A6F2170F76B100FCE1E4 /* WindowController.hpp */,
 			);
 			name = Headers;
 			sourceTree = "<group>";
@@ -110,17 +88,6 @@
 			name = Source;
 			sourceTree = "<group>";
 		};
-		34C4A74A170F780300FCE1E4 /* Windows-Specific */ = {
-			isa = PBXGroup;
-			children = (
-				34C4A742170F77F500FCE1E4 /* Resource.h */,
-				34C4A744170F77F500FCE1E4 /* stdafx.h */,
-				34C4A743170F77F500FCE1E4 /* stdafx.cpp */,
-				34C4A745170F77F500FCE1E4 /* targetver.h */,
-			);
-			name = "Windows-Specific";
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -131,10 +98,8 @@
 				34C4A6EA170F769B00FCE1E4 /* GraphicsController.h in Headers */,
 				34C4A6EC170F769B00FCE1E4 /* Input.h in Headers */,
 				34C4A6F5170F76B100FCE1E4 /* ShaderController.h in Headers */,
-				34C4A6F7170F76B100FCE1E4 /* WindowController.hpp in Headers */,
-				34C4A746170F77F500FCE1E4 /* Resource.h in Headers */,
-				34C4A748170F77F500FCE1E4 /* stdafx.h in Headers */,
-				34C4A749170F77F500FCE1E4 /* targetver.h in Headers */,
+				347858021730600C000C16E4 /* Shader.h in Headers */,
+				347858031730600C000C16E4 /* WindowController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -194,7 +159,6 @@
 				34C4A6F3170F76B100FCE1E4 /* Shader.cpp in Sources */,
 				34C4A6F4170F76B100FCE1E4 /* ShaderController.cpp in Sources */,
 				34C4A6F6170F76B100FCE1E4 /* Win32Controller.cpp in Sources */,
-				34C4A747170F77F500FCE1E4 /* stdafx.cpp in Sources */,
 				34A30FB2170FB937002C20F6 /* OSXController.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -266,11 +230,10 @@
 			buildSettings = {
 				EXECUTABLE_EXTENSION = a;
 				EXECUTABLE_PREFIX = lib;
-				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/../GL/x86/include\"";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../GL/x86/lib\"",
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../External Dependencies/x86/include\"",
 				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SYMROOT = "\"$(SRCROOT)/../Build\"";
 				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/../GraphosMath\" \"$(SRCROOT)/../GraphosContent\"";
@@ -282,11 +245,10 @@
 			buildSettings = {
 				EXECUTABLE_EXTENSION = a;
 				EXECUTABLE_PREFIX = lib;
-				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/../GL/x86/include\"";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../GL/x86/lib\"",
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../External Dependencies/x86/include\"",
 				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SYMROOT = "\"$(SRCROOT)/../Build\"";
 				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/../GraphosMath\" \"$(SRCROOT)/../GraphosContent\"";

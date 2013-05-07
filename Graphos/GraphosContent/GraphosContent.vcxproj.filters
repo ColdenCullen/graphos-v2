@@ -19,6 +19,18 @@
     <Filter Include="Source Files\Ingredients">
       <UniqueIdentifier>{34667482-9c3d-484e-9adf-0680977a584a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Controllers">
+      <UniqueIdentifier>{c198494b-bfbe-46da-b57b-01c6e9cc5d83}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Controllers">
+      <UniqueIdentifier>{44d56759-07cd-4344-a918-15c56ff02f9b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Ingredients\Colliders">
+      <UniqueIdentifier>{54b89c34-c6e0-4b68-b156-b33fe9522925}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Ingredients\Colliders">
+      <UniqueIdentifier>{34e8c8f1-2ea5-4748-95fd-48571f8f972b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AwesomiumView.h">
@@ -30,43 +42,85 @@
     <ClInclude Include="Texture.h">
       <Filter>Header Files\Ingredients</Filter>
     </ClInclude>
-    <ClInclude Include="ContentController.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Mesh.h">
       <Filter>Header Files\Ingredients</Filter>
-    </ClInclude>
-    <ClInclude Include="ScriptController.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Script.h">
       <Filter>Header Files\Ingredients</Filter>
     </ClInclude>
-    <ClInclude Include="ConfigController.h">
+    <ClInclude Include="Rigidbody.h">
+      <Filter>Header Files\Ingredients</Filter>
+    </ClInclude>
+    <ClInclude Include="Physics.h">
+      <Filter>Header Files\Controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="ScriptController.h">
+      <Filter>Header Files\Controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="Config.h">
+      <Filter>Header Files\Controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Header Files\Ingredients</Filter>
+    </ClInclude>
+    <ClInclude Include="AssetController.h">
+      <Filter>Header Files\Controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="UserInterface.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Collider.h">
+      <Filter>Header Files\Ingredients\Colliders</Filter>
+    </ClInclude>
+    <ClInclude Include="SphereCollider.h">
+      <Filter>Header Files\Ingredients\Colliders</Filter>
+    </ClInclude>
+    <ClInclude Include="BoxCollider.h">
+      <Filter>Header Files\Ingredients\Colliders</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ConfigController.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="AwesomiumView.cpp">
       <Filter>Source Files\Ingredients</Filter>
     </ClCompile>
     <ClCompile Include="Texture.cpp">
       <Filter>Source Files\Ingredients</Filter>
     </ClCompile>
-    <ClCompile Include="ContentController.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Mesh.cpp">
       <Filter>Source Files\Ingredients</Filter>
     </ClCompile>
-    <ClCompile Include="ScriptController.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Script.cpp">
       <Filter>Source Files\Ingredients</Filter>
+    </ClCompile>
+    <ClCompile Include="Rigidbody.cpp">
+      <Filter>Source Files\Ingredients</Filter>
+    </ClCompile>
+    <ClCompile Include="Physics.cpp">
+      <Filter>Source Files\Controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="ScriptController.cpp">
+      <Filter>Source Files\Controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="Config.cpp">
+      <Filter>Source Files\Controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Source Files\Ingredients</Filter>
+    </ClCompile>
+    <ClCompile Include="AssetController.cpp">
+      <Filter>Source Files\Controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="UserInterface.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Collider.cpp">
+      <Filter>Source Files\Ingredients\Colliders</Filter>
+    </ClCompile>
+    <ClCompile Include="SphereCollider.cpp">
+      <Filter>Source Files\Ingredients\Colliders</Filter>
+    </ClCompile>
+    <ClCompile Include="BoxCollider.cpp">
+      <Filter>Source Files\Ingredients\Colliders</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

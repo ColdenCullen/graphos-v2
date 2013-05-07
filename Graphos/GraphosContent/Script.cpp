@@ -3,27 +3,18 @@
 
 #include <iostream>
 
-using namespace Graphos::Content;
+using namespace Graphos;
 
-bool Script::Update( float deltaTime )
+bool Content::Script::Update( float deltaTime )
 {
-	if( owner )
-	{
-		JSObject transform, position;
+	//instance.InvokeAsync( WSLit( "UpdateTransformS" ), JSArray() );
 
-		position.SetProperty( WSLit( "x" ), JSValue( owner->transform.Position().x ) );
-		position.SetProperty( WSLit( "y" ), JSValue( owner->transform.Position().y ) );
-		position.SetProperty( WSLit( "z" ), JSValue( owner->transform.Position().z ) );
+	Handle<Value> args[ 1 ];
+	args[ 0 ] = Number::New( deltaTime );
 
-		transform.SetProperty( WSLit( "position" ), position );
+	updateFunction->Call( instance, 1, args );
 
-		instance.SetPropertyAsync( WSLit( "transform" ), transform );
-	}
-
-	JSArray args;
-	args.Push( JSValue( deltaTime ) );
-
-	instance.InvokeAsync( WSLit( "Update" ), args );
+	//instance.InvokeAsync( WSLit( "Update" ), args );
 
 	return true;
 }

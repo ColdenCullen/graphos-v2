@@ -77,11 +77,6 @@
       <ProjName>Graphos</ProjName>
     </ProjBinary>
   </Binaries>
-  <Reports>
-    <Report>
-      <Path>F:\Documents\RIT\20123\DSA1\Project\Graphos\Graphos130415.vsp</Path>
-    </Report>
-  </Reports>
   <Launches>
     <ProjBinary>
       <Path>:PB:{7EEC6355-71B3-44EF-967C-44BF6A517ADC}|Graphos\Graphos.vcxproj</Path>

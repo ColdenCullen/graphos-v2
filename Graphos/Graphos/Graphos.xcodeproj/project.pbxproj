@@ -7,60 +7,120 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		34C4A6DF170F766A00FCE1E4 /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 34C4A6D6170F766A00FCE1E4 /* Camera.cpp */; };
-		34C4A6E0170F766A00FCE1E4 /* DrawableGameObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 34C4A6D8170F766A00FCE1E4 /* DrawableGameObject.cpp */; };
-		34C4A6E1170F766A00FCE1E4 /* GameObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 34C4A6DA170F766A00FCE1E4 /* GameObject.cpp */; };
-		34C4A6E2170F766A00FCE1E4 /* GraphosGame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 34C4A6DC170F766A00FCE1E4 /* GraphosGame.cpp */; };
-		34C4A6E3170F766A00FCE1E4 /* Main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 34C4A6DE170F766A00FCE1E4 /* Main.cpp */; };
-		34C4A7B8170F86FD00FCE1E4 /* libGraphosContent.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 34C4A7B6170F86FD00FCE1E4 /* libGraphosContent.a */; };
-		34C4A7B9170F86FD00FCE1E4 /* libGraphosMath.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 34C4A7B7170F86FD00FCE1E4 /* libGraphosMath.a */; };
+		3401E1BA1731796700C86794 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3401E1B91731796700C86794 /* Cocoa.framework */; };
+		3401E1C41731796700C86794 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3401E1C21731796700C86794 /* InfoPlist.strings */; };
+		3401E1C61731796700C86794 /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3401E1C51731796700C86794 /* main.mm */; };
+		3401E1CA1731796700C86794 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 3401E1C81731796700C86794 /* Credits.rtf */; };
+		3401E1CD1731796700C86794 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3401E1CC1731796700C86794 /* AppDelegate.mm */; };
+		3401E1D01731796700C86794 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3401E1CE1731796700C86794 /* MainMenu.xib */; };
+		3401E1F317317CC500C86794 /* libjsoncpp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 346A6D6817305E8B003ACCFF /* libjsoncpp.a */; };
+		3401E1F417317CC500C86794 /* libv8_snapshot.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 347858431730723B000C16E4 /* libv8_snapshot.a */; };
+		3401E1F617317CC500C86794 /* libv8_base.x64.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3401E1F517317CC500C86794 /* libv8_base.x64.a */; };
+		3401E1F81731953C00C86794 /* libfreeimage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3401E1F71731953C00C86794 /* libfreeimage.a */; };
+		3401E1FA1731978100C86794 /* libGLEW.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3401E1F91731978100C86794 /* libGLEW.a */; };
+		3401E2001731A31100C86794 /* OpenGLView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3401E1FF1731A31100C86794 /* OpenGLView.mm */; };
+		3401E2021731A42D00C86794 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 346A6D6C17305EC4003ACCFF /* OpenGL.framework */; };
+		3401E2031731A43500C86794 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3401E1BD1731796700C86794 /* CoreData.framework */; };
+		3401E2041731A43E00C86794 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3401E1BE1731796700C86794 /* Foundation.framework */; };
+		3487AFCF1731B00700DEC502 /* libGraphosContent.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3487AFCC1731B00600DEC502 /* libGraphosContent.a */; };
+		3487AFD01731B00700DEC502 /* libGraphosGraphics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3487AFCD1731B00600DEC502 /* libGraphosGraphics.a */; };
+		3487AFD11731B00700DEC502 /* libGraphosMath.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3487AFCE1731B00600DEC502 /* libGraphosMath.a */; };
+		3487AFD81731C2D300DEC502 /* GraphosGame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 347858381730607C000C16E4 /* GraphosGame.cpp */; };
+		3487AFD91731C2D800DEC502 /* GameObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 347858361730607C000C16E4 /* GameObject.cpp */; };
+		3487AFDC1731C5DA00DEC502 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3478583E17306947000C16E4 /* AppKit.framework */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		34C4A6A2170F757A00FCE1E4 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 1;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
-		34C4A6A4170F757A00FCE1E4 /* Graphos */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Graphos; sourceTree = BUILT_PRODUCTS_DIR; };
-		34C4A6D6170F766A00FCE1E4 /* Camera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Camera.cpp; sourceTree = "<group>"; };
-		34C4A6D7170F766A00FCE1E4 /* Camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Camera.h; sourceTree = "<group>"; };
-		34C4A6D8170F766A00FCE1E4 /* DrawableGameObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DrawableGameObject.cpp; sourceTree = "<group>"; };
-		34C4A6D9170F766A00FCE1E4 /* DrawableGameObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawableGameObject.h; sourceTree = "<group>"; };
-		34C4A6DA170F766A00FCE1E4 /* GameObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameObject.cpp; sourceTree = "<group>"; };
-		34C4A6DB170F766A00FCE1E4 /* GameObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameObject.h; sourceTree = "<group>"; };
-		34C4A6DC170F766A00FCE1E4 /* GraphosGame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GraphosGame.cpp; sourceTree = "<group>"; };
-		34C4A6DD170F766A00FCE1E4 /* GraphosGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphosGame.h; sourceTree = "<group>"; };
-		34C4A6DE170F766A00FCE1E4 /* Main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Main.cpp; sourceTree = "<group>"; };
-		34C4A7B6170F86FD00FCE1E4 /* libGraphosContent.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGraphosContent.a; path = ../DerivedData/build/Graphos/Build/Products/Debug/libGraphosContent.a; sourceTree = "<group>"; };
-		34C4A7B7170F86FD00FCE1E4 /* libGraphosMath.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGraphosMath.a; path = ../DerivedData/build/Graphos/Build/Products/Debug/libGraphosMath.a; sourceTree = "<group>"; };
+		3401E1B71731796700C86794 /* Graphos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Graphos.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3401E1B91731796700C86794 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		3401E1BD1731796700C86794 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		3401E1BE1731796700C86794 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		3401E1C11731796700C86794 /* GraphosOSX-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GraphosOSX-Info.plist"; sourceTree = "<group>"; };
+		3401E1C31731796700C86794 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3401E1C51731796700C86794 /* main.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = main.mm; sourceTree = "<group>"; };
+		3401E1C71731796700C86794 /* GraphosOSX-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GraphosOSX-Prefix.pch"; sourceTree = "<group>"; };
+		3401E1C91731796700C86794 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		3401E1CB1731796700C86794 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		3401E1CC1731796700C86794 /* AppDelegate.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = AppDelegate.mm; sourceTree = "<group>"; };
+		3401E1CF1731796700C86794 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		3401E1F517317CC500C86794 /* libv8_base.x64.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.objfile"; name = libv8_base.x64.a; path = "../External Dependencies/x86/lib/libv8_base.x64.a"; sourceTree = "<group>"; };
+		3401E1F71731953C00C86794 /* libfreeimage.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.objfile"; name = libfreeimage.a; path = "../External Dependencies/x86/lib/libfreeimage.a"; sourceTree = "<group>"; };
+		3401E1F91731978100C86794 /* libGLEW.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.objfile"; name = libGLEW.a; path = "../External Dependencies/x86/lib/libGLEW.a"; sourceTree = "<group>"; };
+		3401E1FE1731A31100C86794 /* OpenGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenGLView.h; sourceTree = "<group>"; };
+		3401E1FF1731A31100C86794 /* OpenGLView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OpenGLView.mm; sourceTree = "<group>"; };
+		346A6D6817305E8B003ACCFF /* libjsoncpp.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.objfile"; name = libjsoncpp.a; path = "../External Dependencies/x86/lib/libjsoncpp.a"; sourceTree = "<group>"; };
+		346A6D6C17305EC4003ACCFF /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		347858361730607C000C16E4 /* GameObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameObject.cpp; sourceTree = "<group>"; };
+		347858371730607C000C16E4 /* GameObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameObject.h; sourceTree = "<group>"; };
+		347858381730607C000C16E4 /* GraphosGame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GraphosGame.cpp; sourceTree = "<group>"; };
+		347858391730607C000C16E4 /* GraphosGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphosGame.h; sourceTree = "<group>"; };
+		3478583A1730607C000C16E4 /* Main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Main.cpp; sourceTree = "<group>"; };
+		3478583E17306947000C16E4 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		347858401730698F000C16E4 /* glincludes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = glincludes.h; path = "../External Dependencies/x86/include/GL/glincludes.h"; sourceTree = "<group>"; };
+		3478584117306996000C16E4 /* Helpers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Helpers.h; path = "../External Dependencies/x86/include/Helpers.h"; sourceTree = "<group>"; };
+		347858431730723B000C16E4 /* libv8_snapshot.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.objfile"; name = libv8_snapshot.a; path = "../External Dependencies/x86/lib/libv8_snapshot.a"; sourceTree = "<group>"; };
+		3487AFCB1731A94F00DEC502 /* TestGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestGame.h; sourceTree = "<group>"; };
+		3487AFCC1731B00600DEC502 /* libGraphosContent.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.objfile"; name = libGraphosContent.a; path = "/Users/Colden/Library/Developer/Xcode/DerivedData/Graphos-fxcfqhlgndribjabkufilfqornxo/Build/Products/Debug/libGraphosContent.a"; sourceTree = "<absolute>"; };
+		3487AFCD1731B00600DEC502 /* libGraphosGraphics.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.objfile"; name = libGraphosGraphics.a; path = "/Users/Colden/Library/Developer/Xcode/DerivedData/Graphos-fxcfqhlgndribjabkufilfqornxo/Build/Products/Debug/libGraphosGraphics.a"; sourceTree = "<absolute>"; };
+		3487AFCE1731B00600DEC502 /* libGraphosMath.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.objfile"; name = libGraphosMath.a; path = "/Users/Colden/Library/Developer/Xcode/DerivedData/Graphos-fxcfqhlgndribjabkufilfqornxo/Build/Products/Debug/libGraphosMath.a"; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		34C4A6A1170F757A00FCE1E4 /* Frameworks */ = {
+		3401E1B41731796700C86794 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				34C4A7B8170F86FD00FCE1E4 /* libGraphosContent.a in Frameworks */,
-				34C4A7B9170F86FD00FCE1E4 /* libGraphosMath.a in Frameworks */,
+				3487AFDC1731C5DA00DEC502 /* AppKit.framework in Frameworks */,
+				3401E1BA1731796700C86794 /* Cocoa.framework in Frameworks */,
+				3401E2031731A43500C86794 /* CoreData.framework in Frameworks */,
+				3401E2041731A43E00C86794 /* Foundation.framework in Frameworks */,
+				3401E2021731A42D00C86794 /* OpenGL.framework in Frameworks */,
+				3487AFCF1731B00700DEC502 /* libGraphosContent.a in Frameworks */,
+				3487AFD01731B00700DEC502 /* libGraphosGraphics.a in Frameworks */,
+				3487AFD11731B00700DEC502 /* libGraphosMath.a in Frameworks */,
+				3401E1FA1731978100C86794 /* libGLEW.a in Frameworks */,
+				3401E1F81731953C00C86794 /* libfreeimage.a in Frameworks */,
+				3401E1F317317CC500C86794 /* libjsoncpp.a in Frameworks */,
+				3401E1F617317CC500C86794 /* libv8_base.x64.a in Frameworks */,
+				3401E1F417317CC500C86794 /* libv8_snapshot.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3401E1BF1731796700C86794 /* GraphosCocoa */ = {
+			isa = PBXGroup;
+			children = (
+				3401E1C51731796700C86794 /* main.mm */,
+				3401E1CB1731796700C86794 /* AppDelegate.h */,
+				3401E1CC1731796700C86794 /* AppDelegate.mm */,
+				3401E1CE1731796700C86794 /* MainMenu.xib */,
+				3401E1FE1731A31100C86794 /* OpenGLView.h */,
+				3401E1FF1731A31100C86794 /* OpenGLView.mm */,
+				3401E1C01731796700C86794 /* Supporting Files */,
+			);
+			name = GraphosCocoa;
+			path = GraphosOSX;
+			sourceTree = "<group>";
+		};
+		3401E1C01731796700C86794 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				3401E1C11731796700C86794 /* GraphosOSX-Info.plist */,
+				3401E1C21731796700C86794 /* InfoPlist.strings */,
+				3401E1C71731796700C86794 /* GraphosOSX-Prefix.pch */,
+				3401E1C81731796700C86794 /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		34C4A69B170F757A00FCE1E4 = {
 			isa = PBXGroup;
 			children = (
 				34C4A73B170F777E00FCE1E4 /* Headers */,
 				34C4A73A170F777500FCE1E4 /* Source */,
+				3401E1BF1731796700C86794 /* GraphosCocoa */,
 				34C4A6BE170F75B300FCE1E4 /* Dependencies */,
 				34C4A6A5170F757A00FCE1E4 /* Products */,
 			);
@@ -69,7 +129,7 @@
 		34C4A6A5170F757A00FCE1E4 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				34C4A6A4170F757A00FCE1E4 /* Graphos */,
+				3401E1B71731796700C86794 /* Graphos.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -77,8 +137,19 @@
 		34C4A6BE170F75B300FCE1E4 /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
-				34C4A7B6170F86FD00FCE1E4 /* libGraphosContent.a */,
-				34C4A7B7170F86FD00FCE1E4 /* libGraphosMath.a */,
+				3478583E17306947000C16E4 /* AppKit.framework */,
+				3401E1B91731796700C86794 /* Cocoa.framework */,
+				3401E1BD1731796700C86794 /* CoreData.framework */,
+				3401E1BE1731796700C86794 /* Foundation.framework */,
+				346A6D6C17305EC4003ACCFF /* OpenGL.framework */,
+				3487AFCC1731B00600DEC502 /* libGraphosContent.a */,
+				3487AFCD1731B00600DEC502 /* libGraphosGraphics.a */,
+				3487AFCE1731B00600DEC502 /* libGraphosMath.a */,
+				3401E1F71731953C00C86794 /* libfreeimage.a */,
+				3401E1F91731978100C86794 /* libGLEW.a */,
+				346A6D6817305E8B003ACCFF /* libjsoncpp.a */,
+				3401E1F517317CC500C86794 /* libv8_base.x64.a */,
+				347858431730723B000C16E4 /* libv8_snapshot.a */,
 			);
 			name = Dependencies;
 			sourceTree = "<group>";
@@ -86,11 +157,9 @@
 		34C4A73A170F777500FCE1E4 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				34C4A6D6170F766A00FCE1E4 /* Camera.cpp */,
-				34C4A6D8170F766A00FCE1E4 /* DrawableGameObject.cpp */,
-				34C4A6DA170F766A00FCE1E4 /* GameObject.cpp */,
-				34C4A6DC170F766A00FCE1E4 /* GraphosGame.cpp */,
-				34C4A6DE170F766A00FCE1E4 /* Main.cpp */,
+				347858361730607C000C16E4 /* GameObject.cpp */,
+				347858381730607C000C16E4 /* GraphosGame.cpp */,
+				3478583A1730607C000C16E4 /* Main.cpp */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -98,10 +167,11 @@
 		34C4A73B170F777E00FCE1E4 /* Headers */ = {
 			isa = PBXGroup;
 			children = (
-				34C4A6D7170F766A00FCE1E4 /* Camera.h */,
-				34C4A6D9170F766A00FCE1E4 /* DrawableGameObject.h */,
-				34C4A6DB170F766A00FCE1E4 /* GameObject.h */,
-				34C4A6DD170F766A00FCE1E4 /* GraphosGame.h */,
+				3478584117306996000C16E4 /* Helpers.h */,
+				347858401730698F000C16E4 /* glincludes.h */,
+				347858371730607C000C16E4 /* GameObject.h */,
+				347858391730607C000C16E4 /* GraphosGame.h */,
+				3487AFCB1731A94F00DEC502 /* TestGame.h */,
 			);
 			name = Headers;
 			sourceTree = "<group>";
@@ -109,22 +179,22 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		34C4A6A3170F757A00FCE1E4 /* Graphos */ = {
+		3401E1B61731796700C86794 /* Graphos */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 34C4A6AD170F757A00FCE1E4 /* Build configuration list for PBXNativeTarget "Graphos" */;
+			buildConfigurationList = 3401E1E91731796800C86794 /* Build configuration list for PBXNativeTarget "Graphos" */;
 			buildPhases = (
-				34C4A6A0170F757A00FCE1E4 /* Sources */,
-				34C4A6A1170F757A00FCE1E4 /* Frameworks */,
-				34C4A6A2170F757A00FCE1E4 /* CopyFiles */,
+				3401E1B31731796700C86794 /* Sources */,
+				3401E1B41731796700C86794 /* Frameworks */,
+				3401E1B51731796700C86794 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = Graphos;
-			productName = Graphos;
-			productReference = 34C4A6A4170F757A00FCE1E4 /* Graphos */;
-			productType = "com.apple.product-type.tool";
+			productName = GraphosOSX;
+			productReference = 3401E1B71731796700C86794 /* Graphos.app */;
+			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
@@ -147,27 +217,121 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				34C4A6A3170F757A00FCE1E4 /* Graphos */,
+				3401E1B61731796700C86794 /* Graphos */,
 			);
 		};
 /* End PBXProject section */
 
+/* Begin PBXResourcesBuildPhase section */
+		3401E1B51731796700C86794 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3401E1C41731796700C86794 /* InfoPlist.strings in Resources */,
+				3401E1CA1731796700C86794 /* Credits.rtf in Resources */,
+				3401E1D01731796700C86794 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
-		34C4A6A0170F757A00FCE1E4 /* Sources */ = {
+		3401E1B31731796700C86794 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				34C4A6DF170F766A00FCE1E4 /* Camera.cpp in Sources */,
-				34C4A6E0170F766A00FCE1E4 /* DrawableGameObject.cpp in Sources */,
-				34C4A6E1170F766A00FCE1E4 /* GameObject.cpp in Sources */,
-				34C4A6E2170F766A00FCE1E4 /* GraphosGame.cpp in Sources */,
-				34C4A6E3170F766A00FCE1E4 /* Main.cpp in Sources */,
+				3487AFD91731C2D800DEC502 /* GameObject.cpp in Sources */,
+				3487AFD81731C2D300DEC502 /* GraphosGame.cpp in Sources */,
+				3401E1C61731796700C86794 /* main.mm in Sources */,
+				3401E1CD1731796700C86794 /* AppDelegate.mm in Sources */,
+				3401E2001731A31100C86794 /* OpenGLView.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXVariantGroup section */
+		3401E1C21731796700C86794 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3401E1C31731796700C86794 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		3401E1C81731796700C86794 /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3401E1C91731796700C86794 /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		3401E1CE1731796700C86794 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3401E1CF1731796700C86794 /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
+		3401E1E51731796800C86794 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GraphosOSX/GraphosOSX-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../External Dependencies/x86/include\"",
+				);
+				INFOPLIST_FILE = "GraphosOSX/GraphosOSX-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../External Dependencies/x86/lib\"",
+					"\"/Users/Colden/Library/Developer/Xcode/DerivedData/Graphos-fxcfqhlgndribjabkufilfqornxo/Build/Products/Debug\"",
+				);
+				LINKER_DISPLAYS_MANGLED_NAMES = NO;
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/../GraphosMath\" \"$(SRCROOT)/../GraphosGraphics\" \"$(SRCROOT)/../GraphosContent\"";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		3401E1E61731796800C86794 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GraphosOSX/GraphosOSX-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../External Dependencies/x86/include\"",
+				);
+				INFOPLIST_FILE = "GraphosOSX/GraphosOSX-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../External Dependencies/x86/lib\"",
+					"\"/Users/Colden/Library/Developer/Xcode/DerivedData/Graphos-fxcfqhlgndribjabkufilfqornxo/Build/Products/Debug\"",
+				);
+				LINKER_DISPLAYS_MANGLED_NAMES = NO;
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/../GraphosMath\" \"$(SRCROOT)/../GraphosGraphics\" \"$(SRCROOT)/../GraphosContent\"";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
 		34C4A6AB170F757A00FCE1E4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -227,51 +391,23 @@
 			};
 			name = Release;
 		};
-		34C4A6AE170F757A00FCE1E4 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/../GL/x86/include\"";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../DerivedData/build/Graphos/Build/Products/Debug\"",
-				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SYMROOT = "\"$(SRCROOT)/../Build\"";
-				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/../GraphosMath\" \"$(SRCROOT)/../GraphosContent\" \"$(SRCROOT)/../GraphosGraphics\"";
-			};
-			name = Debug;
-		};
-		34C4A6AF170F757A00FCE1E4 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/../GL/x86/include\"";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../DerivedData/build/Graphos/Build/Products/Debug\"",
-				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SYMROOT = "\"$(SRCROOT)/../Build\"";
-				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/../GraphosMath\" \"$(SRCROOT)/../GraphosContent\" \"$(SRCROOT)/../GraphosGraphics\"";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		3401E1E91731796800C86794 /* Build configuration list for PBXNativeTarget "Graphos" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3401E1E51731796800C86794 /* Debug */,
+				3401E1E61731796800C86794 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		34C4A69F170F757A00FCE1E4 /* Build configuration list for PBXProject "Graphos" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				34C4A6AB170F757A00FCE1E4 /* Debug */,
 				34C4A6AC170F757A00FCE1E4 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		34C4A6AD170F757A00FCE1E4 /* Build configuration list for PBXNativeTarget "Graphos" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				34C4A6AE170F757A00FCE1E4 /* Debug */,
-				34C4A6AF170F757A00FCE1E4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

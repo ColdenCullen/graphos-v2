@@ -18,7 +18,7 @@ bool Win32Controller::Initialize( void )
 	screenWidth = GetSystemMetrics( SM_CXSCREEN );
 	screenHeight = GetSystemMetrics( SM_CYSCREEN );
 
-	fullScreen = ConfigController::Get().GetData<bool>( "display.fullscreen" );
+	fullScreen = Config::Get().GetData<bool>( "display.fullscreen" );
 	if( fullScreen )
 	{
 		width	= screenWidth;
@@ -26,8 +26,8 @@ bool Win32Controller::Initialize( void )
 	}
 	else
 	{
-		width	= ConfigController::Get().GetData<unsigned int>( "display.width" );
-		height	= ConfigController::Get().GetData<unsigned int>( "display.height" );
+		width	= Config::Get().GetData<unsigned int>( "display.width" );
+		height	= Config::Get().GetData<unsigned int>( "display.height" );
 	}
 
 	if( !fullScreen && ( width <= 0 || height <= 0 ) )
@@ -143,6 +143,10 @@ bool Win32Controller::Initialize( void )
 
 	// Enable depth testing
 	glEnable( GL_DEPTH_TEST );
+	
+	// Enable transparency
+	glEnable( GL_BLEND );
+	glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
 
 	// Set front face
 	glFrontFace( GL_CW );
@@ -193,36 +197,34 @@ void Win32Controller::Resize( bool fullScreen, unsigned int newWidth, unsigned i
 	}
 
 	SetWindowLong( hWnd, GWL_STYLE, style );
-	SetWindowPos( hWnd, NULL, ( screenWidth - width ) / 2, ( screenHeight - height ) / 2, width, height, SWP_NOZORDER | SWP_NOACTIVATE | SWP_FRAMECHANGED );
+	SetWindowPos( hWnd, NULL, ( screenWidth - width ) / 2, ( screenHeight - height ) / 2, width + ( 2 * GetSystemMetrics( SM_CYBORDER ) ), height + GetSystemMetrics( SM_CYCAPTION ) + GetSystemMetrics( SM_CYBORDER ), SWP_NOZORDER | SWP_NOACTIVATE | SWP_FRAMECHANGED );
 	ShowWindow( hWnd, SW_NORMAL );
 
 	glViewport( 0, 0, width, height );
 
-	perspectiveMatrix = Matrix4::BuildPerspective( (float)M_PI / 4.0f, (float)width / (float)height, 0.001f, 1000.0f );
-	orthogonalMatrix  = Matrix4::BuildOrthogonal( (float)width, (float)height, 0.01f, 100.0f );
-	//orthogonalMatrix  = Matrix4::BuildOrthogonal( 2.0f, 2.0f, 0.01f, 100.0f );
-
+	perspectiveMatrix = Matrix::BuildPerspective( (float)M_PI / 4.0f, (float)width / (float)height, 0.001f, 1000.0f );
+	orthogonalMatrix  = Matrix::BuildOrthogonal( (float)width, (float)height, 0.001f, 1000.0f );
 }
 
 void Win32Controller::Reload( void )
 {
 	Resize(
-		ConfigController::Get().GetData<bool>( "display.fullscreen" ),
-		ConfigController::Get().GetData<unsigned int>( "display.width" ),
-		ConfigController::Get().GetData<unsigned int>( "display.height" ) );
+		Config::Get().GetData<bool>( "display.fullscreen" ),
+		Config::Get().GetData<unsigned int>( "display.width" ),
+		Config::Get().GetData<unsigned int>( "display.height" ) );
 
 	// Enable back face culling
-	if( ConfigController::Get().GetData<bool>( "graphics.backfaceculling" ) )
+	if( Config::Get().GetData<bool>( "graphics.backfaceculling" ) )
 	{
 		glEnable( GL_CULL_FACE );
 		glCullFace( GL_BACK );
 	}
 
 	// Turn on of off the vsync
-	if( ConfigController::Get().GetData<bool>( "graphics.vsync" ) )
-		wglSwapIntervalEXT( 1 );
+	if( Config::Get().GetData<bool>( "graphics.vsync" ) )
+		wglSwapIntervalEXT( true );
 	else
-		wglSwapIntervalEXT( 0 );
+		wglSwapIntervalEXT( false );
 }
 
 void Win32Controller::MessageLoop( void )

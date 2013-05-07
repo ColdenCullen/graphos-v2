@@ -11,7 +11,7 @@
 // OSX ONLY
 #if defined( __APPLE__ )
 
-#include "WindowController.hpp"
+#include "WindowController.h"
 
 using namespace Graphos::Math;
 using namespace Graphos::Content;

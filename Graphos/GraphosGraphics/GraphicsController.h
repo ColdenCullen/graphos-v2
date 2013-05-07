@@ -3,7 +3,7 @@
 
 #include "WindowController.h"
 #include "ShaderController.h"
-#include "ConfigController.h"
+#include "Config.h"
 
 namespace Graphos
 {

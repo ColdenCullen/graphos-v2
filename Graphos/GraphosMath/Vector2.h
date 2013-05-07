@@ -31,6 +31,7 @@ namespace Graphos
 				return *this;
 			}
 
+			// Arithmetic
 			Vector2 operator+( const Vector2& other ) const
 			{
 				return Vector2( x + other.x, y + other.y );
@@ -41,21 +42,49 @@ namespace Graphos
 				return Vector2( x - other.x, y - other.y );
 			}
 
-			float operator%( const Vector2& other ) const
+			Vector2 operator-=( const Vector2& other )
+			{
+				x -= other.x;
+				y -= other.y;
+
+				return *this;
+			}
+
+			// Cross product
+			float Cross( const Vector2& other ) const
 			{
 				return ( x * other.y ) - ( y * other.x );
 			}
+			// Cross product
+			float operator%( const Vector2& other ) const
+			{
+				return Cross( other );
+			}
 
-			float operator*( const Vector2& other ) const
+			// Dot product
+			float Dot( const Vector2& other ) const
 			{
 				return ( x * other.x ) + ( y * other.y );
 			}
+			// Dot product
+			float operator*( const Vector2& other ) const
+			{
+				return Dot( other );
+			}
 
+			// Multiply by scaler
 			Vector2 operator*( const float other ) const
 			{
 				return Vector2( x * other, y * other );
 			}
 
+			// Conversion function
+			operator float()
+			{
+				return Magnitude();
+			}
+
+			// Magnitude
 			float Magnitude( void ) const
 			{
 				return sqrt( ( x * x ) + ( y * y ) );

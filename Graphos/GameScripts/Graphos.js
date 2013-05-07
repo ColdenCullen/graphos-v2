@@ -1,7 +1,18 @@
-// Interface for GameObjects
+// Interface for Vectors
+var Vector3 = (function () {
+    function Vector3() { }
+    return Vector3;
+})();
+// Interface for object transforms
+var Transform = (function () {
+    function Transform() { }
+    return Transform;
+})();
+// Class with variables and functions
 var GameObject = (function () {
     function GameObject() { }
-    GameObject.prototype.Update = function (deltaTime) {
+    GameObject.prototype.Update = // Abstract method for updating object
+    function (deltaTime) {
         throw new Error("Implement your own damn Update!");
     };
     return GameObject;

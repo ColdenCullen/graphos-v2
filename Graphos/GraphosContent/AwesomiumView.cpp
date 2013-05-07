@@ -3,26 +3,17 @@
 using namespace std;
 using namespace Graphos::Content;
 
-AwesomiumView::~AwesomiumView( void )
-{
-	// KILL EVERYTHING	webView->Destroy();
-	WebCore::Shutdown();
-	delete[] buffer;
-}
-
 bool AwesomiumView::Initialize( string url, unsigned int width, unsigned int height )
 {
 	// Generate a texture to use
 	glGenTextures( 1, &textureID );
 
-	// Initialize Awesomium
-	if( WebCore::instance() )
-		webCore = WebCore::instance();
-	else
-		webCore = WebCore::Initialize( WebConfig() );
+	if( !WebCore::instance() )
+		WebCore::Initialize( WebConfig() );
 
-	webView = webCore->CreateWebView( width, height );
+	webView = WebCore::instance()->CreateWebView( width, height );
 	webView->LoadURL( WebURL( WSLit( url.c_str() ) ) );
+	webView->SetTransparent( true );
 
 	// Initialize buffer
 	buffer = new unsigned char[ width * height * 4 ];
@@ -32,13 +23,13 @@ bool AwesomiumView::Initialize( string url, unsigned int width, unsigned int hei
 
 bool AwesomiumView::Update( float deltaTime )
 {
-	if( webCore )
+	if( WebCore::instance() )
 	{
 		// Update page
-		webCore->Update();
+		WebCore::instance()->Update();
 
 		// Get the surface
-		surface = (BitmapSurface*)webView->surface();
+		surface = static_cast<BitmapSurface*>( webView->surface() );
 	}
 
 	return true;
@@ -46,7 +37,7 @@ bool AwesomiumView::Update( float deltaTime )
 
 void AwesomiumView::Draw( void )
 {
-	if( webCore )
+	if( WebCore::instance() )
 	{
 		glBindTexture( GL_TEXTURE_2D, textureID );
 
@@ -61,10 +52,13 @@ void AwesomiumView::Draw( void )
 				glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST );
 			}
 		}
-	}	
+	}
 }
 
 void AwesomiumView::Shutdown( void )
 {
+	// KILL EVERYTHING
+	webView->Destroy();
+	//WebCore::Shutdown();
 	delete[] buffer;
 }

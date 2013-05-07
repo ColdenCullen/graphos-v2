@@ -64,13 +64,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="GraphosMath.cpp" />
-    <ClCompile Include="Matrix4.cpp" />
+    <ClCompile Include="Matrix.cpp" />
+    <ClCompile Include="Quaternion.cpp" />
     <ClCompile Include="Transform.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GraphosMath.h" />
-    <ClInclude Include="Matrix4.h" />
+    <ClInclude Include="Matrix.h" />
     <ClInclude Include="Quaternion.h" />
     <ClInclude Include="Transform.h" />
     <ClInclude Include="Vector2.h" />

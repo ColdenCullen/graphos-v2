@@ -17,7 +17,6 @@ bool Mesh::LoadFromFile( string filePath )
 	vector<Vector3> normals;
 
 	vector<GLfloat>	outputData;
-	unsigned int	dataPointer = 0;
 
 	istringstream file( Helpers::ReadFile( filePath ) );
 	string line;
@@ -127,4 +126,10 @@ void Mesh::Draw( void )
 
 	// Draw
 	glDrawElements( GL_TRIANGLES, numElements, GL_UNSIGNED_INT, 0 );
+}
+
+void Mesh::Shutdown( void )
+{
+	glDeleteBuffers( 1, &vertexBufferObject );
+	glDeleteBuffers( 1, &vertexArrayObject );
 }

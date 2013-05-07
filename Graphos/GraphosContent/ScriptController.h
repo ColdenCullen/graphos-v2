@@ -2,16 +2,16 @@
 #define _SCRIPTCONTROLLER_H_
 
 #include <string>
-#include <Awesomium/WebCore.h>
-#include <Awesomium/STLHelpers.h>
+#include <v8.h>
 
 #include "Script.h"
 #include "Input.h"
-#include "ConfigController.h"
+#include "Config.h"
+#include "GameObject.h"
 
+using namespace v8;
 using namespace std;
 using namespace Graphos;
-using namespace Awesomium;
 
 namespace Graphos
 {
@@ -21,8 +21,9 @@ namespace Graphos
 		{
 		public:
 			bool				Initialize( void );
+			void				Shutdown( void );
 
-			Script*				CreateInstanceVariable( string className, GameObject* owner = nullptr );
+			Script*				CreateObjectInstance( string className, unsigned int ownerID, GameObject* owner = nullptr );
 
 			static
 			ScriptController&	Get( void )
@@ -32,30 +33,15 @@ namespace Graphos
 			}
 		
 		private:
-								ScriptController( void ) : webCore( nullptr ), webView( nullptr ) { }
+								ScriptController( void ) : isInitialized( false ) { }
 								ScriptController( const ScriptController& );
-								~ScriptController( void );
 			void				operator=( const ScriptController& );
 
-			class MyHandler : public JSMethodHandler
-			{
-			public:
-				MyHandler( ScriptController* owner ) : owner( owner ) { }
+			HandleScope			handleScope;
+			Persistent<Context>	context;
+			Local<Object>		globalObject;
 
-				void OnMethodCall( WebView* caller, unsigned int remoteObjId, const WebString& methodName, const JSArray& args );
-
-				JSValue OnMethodCallWithReturnValue( WebView* caller, unsigned int remote_object_id, const WebString& method_name, const JSArray& args );
-
-				ScriptController* owner;
-			};
-
-			WebCore*			webCore;
-			WebView*			webView;
-
-			MyHandler*			jsHandler;
-
-			JSObject			window;
-			JSObject			input;
+			bool				isInitialized;
 		};
 	}
 }

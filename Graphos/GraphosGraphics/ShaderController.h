@@ -9,8 +9,11 @@
 #include <string>
 #include <sstream>
 #include <stdlib.h>
-#ifdef _WIN32
-#include <dirent.h>
+
+#if defined( _WIN32 )
+ #include <windirent.h>
+#elif defined( __APPLE__ )
+ #include <dirent.h>
 #endif
 
 #include "WindowController.h"

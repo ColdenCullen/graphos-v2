@@ -23,7 +23,7 @@ namespace Graphos
 
 			bool				Update( float deltaTime ) { return true; } 
 			void				Draw( void );
-			void				Shutdown( void ) { }
+			void				Shutdown( void );
 
 		private:
 			unsigned int		vertexBufferObject;

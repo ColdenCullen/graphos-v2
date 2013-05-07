@@ -1,22 +1,29 @@
 // Interface for Vectors
-interface Vector3
+class Vector3
 {
-    x: Number;
-    y: Number;
-    z: Number;
+    public x: Number;
+    public y: Number;
+    public z: Number;
 }
 
 // Interface for object transforms
-interface Transform
+class Transform
 {
-    position: Vector3;
+    public position: Vector3;
+    public rotation: Vector3;
+    public scale: Vector3;
 }
 
-// Interface for GameObjects
+// Class with variables and functions
 class GameObject
 {
+    // ID of owner object
+    public id: string;
+
+    // Transform object
     public transform: Transform;
 
+    // Abstract method for updating object
     public Update( deltaTime: number ): void
     {
         throw new Error( "Implement your own damn Update!" );
@@ -29,6 +36,12 @@ interface Input
     IsKeyDown( key: number ): bool;
 }
 declare var Input: Input;
+
+// Print function
+declare function log(toPrint: any): void;
+
+// Include function
+declare function include(path: string): void;
 
 var Keys = {
     "backspace": 8,

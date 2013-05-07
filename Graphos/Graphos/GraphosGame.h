@@ -8,11 +8,15 @@
 #include <json/json.h>
 
 #include "GraphicsController.h"
-#include "ContentController.h"
+#include "AssetController.h"
 #include "ShaderController.h"
 #include "AwesomiumView.h"
 #include "GameObject.h"
 #include "ScriptController.h"
+#include "RigidBody.h"
+#include "SphereCollider.h"
+#include "BoxCollider.h"
+#include "Physics.h"
 
 using namespace std;
 
@@ -21,24 +25,22 @@ namespace Graphos
 	class GraphosGame
 	{
 	public:
-							~GraphosGame( void );
-
 		void				Run( void );
 
 	protected:
 		virtual bool		Initialize( void ) = 0;
-		virtual bool		Update( void ) = 0;
+		virtual bool		Update( float deltaTime ) = 0;
 		virtual void		Draw( void ) = 0;
 		virtual void		Shutdown( void ) = 0;
 
-		unordered_map<string, GameObject*>
+		unordered_map<unsigned int, GameObject>*
 							objects;
 
 		float				deltaTime;
 
-	private:
 		void				LoadObjects( void );
 		void				DeleteObjects( void );
+		void				Reset( void );
 	};
 }
 

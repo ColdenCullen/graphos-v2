@@ -1,5 +1,5 @@
-#ifndef _INGREDIENT_H_
-#define _INGREDIENT_H_
+#ifndef __INGREDIENT
+#define __INGREDIENT
 
 namespace Graphos
 {
@@ -11,6 +11,7 @@ namespace Graphos
 		{
 		public:
 								Ingredient( GameObject* owner = nullptr ) : owner( owner ) { }
+			virtual				~Ingredient( void ) { }
 
 			virtual bool		Update( float deltaTime ) = 0;
 			virtual void		Draw( void ) = 0;
@@ -22,4 +23,4 @@ namespace Graphos
 	}
 }
 
-#endif//_INGREDIENT_H_
+#endif//__INGREDIENT
