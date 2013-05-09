@@ -396,12 +396,25 @@
 		width: 100%;
 		text-align: center;
 		margin-bottom: 0.4em;
+		color: #666;
+		text-shadow: 1px 1px 2px rgb(121, 121, 121);
 	}
+
+	.top-name.colden
+	{
+		color: rgb(199, 8, 8);
+	}
+
+	.top-name.daniel
+	{
+		color: rgb(0, 97, 202);
+	}
+
 	.amp
 	{
-		margin: 3em 0 0 0;
-		text-align: center;
-		font-size: 20em;
+		margin-top: 160px !important;
+		text-align: left;
+		font-size: 9em;
 	}
 	
 	.icon
@@ -464,7 +477,7 @@
 	.icon-user:before			{ content: '\E137'; }
 	.icon-home:before			{ content: '\E106'; }
 	.icon-pause:before			{ content: '\E09d'; }
-	.icon-gear:before			{ content: '\E055'; }
+	.icon-settings:before		{ content: '\E055'; }
 	
 	.icon-dribbble:before		{ content: '\E03f'; }
 	.icon-facebook:before		{ content: '\E047'; }
@@ -472,6 +485,81 @@
 	.icon-linkedin:before		{ content: '\E083'; }
 	.icon-tumblr:before			{ content: '\E03f'; }
 	.icon-twitter:before		{ content: '\E12f'; }
+
+/*********************************************************************************/
+/* Checkbox Style                                                                */
+/*********************************************************************************/
+.check {
+  position:relative;
+  -webkit-appearance: none;
+  -moz-appearance: none!important;
+  width:40px;
+  height:40px;
+  -webkit-border-radius:6px;
+     -moz-border-radius:6px;
+          border-radius:6px;
+  font:2em 'Source Sans Pro';
+  text-align:center;
+  transition: all .3s ease-in-out;
+  -moz-transition: all .3s ease-in-out;
+  -webkit-transition: all .3s ease-in-out;
+  background:#2980B9;
+}
+
+.check:after {
+  position:absolute;
+  top:9px;
+  left:8px;
+  content:"";       
+  background:url('images/tick-sprite.png');
+  width:22px;
+  height:22px;
+}
+
+.check:checked {
+  transition: all .3s ease-in-out;
+  -moz-transition: all .3s ease-in-out;
+  -webkit-transition: all .3s ease-in-out;
+  background:#3498DB;
+}
+
+.check:checked:after {
+  position:absolute;
+  top:9px;
+  left:6px;
+  content:"";       
+  background:url('images/tick-sprite.png');
+  background-position:-20px;
+  width:22px;
+  height:22px;
+}
+
+/*********************************************************************************/
+/* Range Style                                                                   */
+/*********************************************************************************/
+input[type='range'] {
+   position: absolute;
+   right: 10px;
+   left: 10px;
+   width:300px;
+   -webkit-appearance: none;
+   -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+           border-radius: 5px;
+   background: #34495E;
+   height: 10px;
+   margin: 30px auto;
+}
+
+ input[type='range']::-webkit-slider-thumb {
+-webkit-appearance: none;
+-webkit-border-radius: 100px;
+-moz-border-radius: 100px;
+-webkit-border-radius: 100px;
+background-color: #1ABC9C;
+height: 20px;
+width: 20px;
+}
 		
 /*********************************************************************************/
 /* Nav                                                                           */

@@ -279,6 +279,7 @@
 				#paused .pic .arrow
 				{
 					width: 9.75em;
+					top: 85%;
 				}
 
 					#me .pic .arrow:before,
@@ -307,7 +308,7 @@
 					}
 			
 			#me header,
-			#pausd header
+			#paused header
 			{
 				position: absolute;
 				left: 0;
@@ -316,6 +317,11 @@
 				height: 100%;
 				margin-left: 2.5em;
 			}
+
+			#paused header
+			{
+				margin-left: 0;
+			}
 			
 			#me h1
 			{
@@ -323,6 +329,7 @@
 				left: 0;
 				bottom: 59.5%;
 				margin: 0;
+				font-size: 3em;
 			}
 
 			#paused h1
@@ -331,17 +338,20 @@
 				left: 0;
 				bottom: 50%;
 				margin: 0;
-				font-size: 15em;
+				font-size: 13em;
+				text-align: center;
+				width: 100%;
 			}
 			
 			#me .byline
 			{
 				position: absolute;
-				left: 0;
+				left: 2em;
 				top: 49.5%;
 				font-size: 1.5em;
 				letter-spacing: -0.015em;
 				margin-top: 0;
+				text-align: center;
 			}
 
 /*********************************************************************************/
