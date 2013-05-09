@@ -61,7 +61,8 @@ void GraphosGame::Run( void )
 		Physics::Get().Update();
 
 		// Update the UI
-		ui->Update( deltaTime );
+		if( currentState == Menu )
+			ui->Update( deltaTime );
 
 		// Update objects in list
 		if( currentState == Game )
@@ -89,7 +90,8 @@ void GraphosGame::Run( void )
 				iterator->second.Draw();
 
 		// Draw the UI last
-		ui->Draw();
+		if( currentState == Menu )
+			ui->Draw();
 
 		// End drawing
 		GraphicsController::Get().CallGLFunction( GraphicsController::END );

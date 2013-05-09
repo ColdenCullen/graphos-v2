@@ -26,7 +26,7 @@
 	},
 	"ui" : 
 	{
-		"filePath" : "Resources/UIs/MainMenu.html",
+		"filePath" : "Resources/UIs/index.html",
 		"scale" : 
 		{
 			"x" : 1.0,
