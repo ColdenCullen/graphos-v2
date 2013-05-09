@@ -30,6 +30,7 @@
 				<!-- Nav -->
 					<nav id="nav">
 						<a href="#me" class="icon icon-home active"><span>Home</span></a>
+						<a href="#settings" class="icon icon-settings"><span>Settings</span></a>
 						<a href="#work" class="icon icon-user"><span>Credits</span></a>
 						<a href="#paused" class="icon icon-pause"><span>Paused</span></a>
 					</nav>
@@ -41,7 +42,7 @@
 							<article id="me" class="panel">
 								<header>
 									<h1>Pinball Americana</h1>
-									<span class="byline">Lovingly created by<br />Colden Cullen &amp;<br />Daniel Jost</span>
+									<span class="byline">Lovingly created by<br />Colden Cullen &amp; Daniel Jost</span>
 								</header>
 								<a href="#paused" class="jumplink pic" onclick="GraphosGame.ChangeState( 'Game' );">
 									<span class="jumplink arrow icon icon-right">Click here to begin</span>
@@ -49,29 +50,39 @@
 								</a>
 							</article>
 
-						<!-- Work --> 
+						<!-- Settings -->
+							<article id="settings" class="panel">
+								<header>
+									<h1>Settings</h1>
+								</header>
+								<input class="check" type="checkbox" />
+								<p>
+									<input type="range" min="0" max="1" value="1" step="0" />
+								</p>
+							</article>
+
+						<!-- Credits --> 
 							<article id="work" class="panel">
 								<div class="row">
 									<div class="5u">
-										<h2 class="top-name">Colden Cullen</h2>
+										<h2 class="top-name colden">Colden Cullen</h2>
 										<img class="photo" src="https://graph.facebook.com/TheCOOLLOSER/picture?width=300&amp;height=300" />
 									</div>
-									<div class="2u"><span class="amp">&amp;</span></div>
+									<div class="2u amp"><span>&amp;</span></div>
 									<div class="5u">
-										<h2 class="top-name">Daniel Jost</h2>
+										<h2 class="top-name daniel">Daniel Jost</h2>
 										<img class="photo" src="https://graph.facebook.com/DanielPJost/picture?width=300&amp;height=300" />
 									</div>
 								</div>
 							</article>
 
-							<!-- Paused -->
+						<!-- Paused -->
 							<article id="paused" class="panel">
 								<header>
 									<h1>PAUSED</h1>
 								</header>
 								<a href="#paused" class="jumplink pic" onclick="GraphosGame.ChangeState( 'Game' );">
 									<span class="jumplink arrow icon icon-right">Click here to resume</span>
-									<!--<img src="images/home.png" />-->
 								</a>
 							</article>
 					</div>
