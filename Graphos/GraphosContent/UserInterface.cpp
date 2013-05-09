@@ -80,7 +80,7 @@ bool UserInterface::Update( float deltaTime )
 
 	if( Input::Get().IsKeyDown( VK_LBUTTON, false ) )
 		view->webView->InjectMouseDown( kMouseButton_Left );
-	if( !Input::Get().IsKeyDown( VK_LBUTTON, false ) )
+	else
 		view->webView->InjectMouseUp( kMouseButton_Left );
 
 	view->Update( deltaTime );
@@ -111,16 +111,27 @@ void UserInterface::JavaScriptHandler::OnMethodCall( WebView* caller, unsigned i
 	// If called on GraphosGame
 	if( remoteObjectID == owner->graphosGame.remote_id() )
 	{
-		if( methodName == WSLit( "ChangeState" ) )
+		if( methodName == WSLit( "ChangeState" ) && args.size() == 1 )
 		{
 			if( args[ 0 ].ToString() == WSLit( "Game" ) )
 				owner->owner->ChangeState( Game );
 			else if( args[ 0 ].ToString() == WSLit( "Menu" ) )
 				owner->owner->ChangeState( Menu );
 		}
-		else if( methodName == WSLit( "SetConfig" ) )
+		else if( methodName == WSLit( "SetConfig" ) && args.size() == 2 )
 		{
-			Config::Get().SetData( "graphics.backfaceculling", true );
+			if( args[ 0 ].IsBoolean() )
+				Config::Get().SetData( ToString( args[ 0 ].ToString() ), args[ 1 ].ToBoolean() );
+			else if( args[ 0 ].IsInteger() )
+				Config::Get().SetData( ToString( args[ 0 ].ToString() ), args[ 1 ].ToInteger() );
+			else if( args[ 0 ].IsDouble() )
+				Config::Get().SetData( ToString( args[ 0 ].ToString() ), static_cast<float>( args[ 1 ].ToDouble() ) );
+			else if( args[ 0 ].IsString() )
+				Config::Get().SetData( ToString( args[ 0 ].ToString() ), ToString( args[ 1 ].ToString() ) );
+		}
+		else if( methodName == WSLit( "ApplyChanges" ) && args.size() == 0 )
+		{
+			owner->owner->Reset();
 		}
 	}
 }

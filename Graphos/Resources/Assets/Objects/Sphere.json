@@ -43,7 +43,19 @@
 			"z": 0
 		},
 		"LinearDrag": 0.1,
-		"AngularDrag": 0.5
+		"AngularDrag": 0.5,
+		"Constraints": {
+			"Position": {
+				"x": false,
+				"y": false,
+				"z": false
+			},
+			"Rotation": {
+				"x": false,
+				"y": false,
+				"z": false
+			}
+		}
 	},
 
 	"Collider": {

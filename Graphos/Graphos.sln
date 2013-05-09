@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2010
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Graphos", "Graphos\Graphos.vcxproj", "{7EEC6355-71B3-44EF-967C-44BF6A517ADC}"
 	ProjectSection(ProjectDependencies) = postProject
 		{E207B80E-7051-40C2-BCE1-43891B38058C} = {E207B80E-7051-40C2-BCE1-43891B38058C}
@@ -60,8 +60,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameScripts", "GameScripts\
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UIs", "UIs", "{287054AC-BB72-4B8A-B675-F2604FBF0A54}"
 	ProjectSection(SolutionItems) = preProject
-		Resources\UIs\MainMenu.css = Resources\UIs\MainMenu.css
-		Resources\UIs\MainMenu.html = Resources\UIs\MainMenu.html
+		Resources\UIs\index.html = Resources\UIs\index.html
 	EndProjectSection
 EndProject
 Global

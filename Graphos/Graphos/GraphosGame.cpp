@@ -100,181 +100,18 @@ void GraphosGame::Run( void )
 	Stop();
 }
 
-void GraphosGame::LoadObjects( void )
-{
-	unordered_map<string, string> files = Helpers::ScanDir( OBJECTS_PATH );
-	Json::Reader reader;
-	Json::Value root;
-
-	Json::Value current;
-
-	// For iterating (sometimes)
-	int ii = 0;
-
-	// Map for parents, to be added after all objects are loaded
-	unordered_map<unsigned int, string> parentMap;
-
-	for( auto file = begin( files ); file != end( files ); ++file )
-	{
-		if( reader.parse( Helpers::ReadFile( string( OBJECTS_PATH ).append( file->second ).append( file->first ) ), root ) )
-		{
-			if( ( current = root.get( "Name", root ) ) != root )
-			{
-				// Create object, get pointer to it
-				string name = current.asString();
-				unsigned int id = GameObject::CreateObject( name, &( ShaderController::Get().GetShader( root.get( "Shader", root ).asString() ) ) );
-				GameObject* newObj = GameObject::GetGameObject( name );
-
-				// Get parent
-				if( ( current = root.get( "Parent", root ) ) != root )
-					parentMap[ id ] = current.asString();
-
-				// Set texture
-				if( ( current = root.get( "Texture", root ) ) != root )
-					newObj->AddIngredient<Texture>(
-						AssetController::Get().GetContent<Texture>( current.get( "Name", root ).asString() )
-					);
-					
-				// Set physics Rigid Body object
-				if( ( current = root.get( "Rigidbody", root ) ) != root )
-				{
-					Rigidbody* rb = new Rigidbody( newObj );
-
-					// Get rigid body's values
-					Json::Value currentRigidbody = current.get( "LinearVelocity", root );
-
-					// Add initial velocities and drags
-					rb->linearVelocity.x = currentRigidbody.get( "x", root ).asDouble();
-					rb->linearVelocity.y = currentRigidbody.get( "y", root ).asDouble();
-					rb->linearVelocity.z = currentRigidbody.get( "z", root ).asDouble();
-
-					currentRigidbody = root.get( "Rigidbody", root ).get( "AngularVelocity", root );
-
-					// Add initial velocities and drags
-					rb->angularVelocity.x = currentRigidbody.get( "x", root ).asDouble();
-					rb->angularVelocity.y = currentRigidbody.get( "y", root ).asDouble();
-					rb->angularVelocity.z = currentRigidbody.get( "z", root ).asDouble();
-
-					// Add initial velocities and drags
-					rb->linearDrag = root.get( "Rigidbody", root ).get( "LinearDrag", root ).asDouble();
-					rb->angularDrag = root.get( "Rigidbody", root ).get( "AngularDrag", root ).asDouble();
-
-					newObj->AddIngredient<Rigidbody>( rb );
-				}
-
-				// Add webview
-				if( ( current = root.get( "AwesomiumView", root ) ) != root && ii == 0 )
-					newObj->AddIngredient<AwesomiumView>(
-						new AwesomiumView(
-							current.get( "url", root ).asString(),
-							current.get( "width", root ).asUInt(),
-							current.get( "height", root ).asUInt()
-						)
-					);
-
-				// Add a script
-				if( ( current = root.get( "Script", root ) ) != root )
-					newObj->AddIngredient<Content::Script>(
-						ScriptController::Get().CreateObjectInstance(
-							current.get( "Class", root ).asString(),
-							id,
-							newObj
-						)
-					);
-
-				// Add a mesh
-				if( ( current = root.get( "Mesh", root ) ) != root )
-					newObj->AddIngredient<Mesh>(
-						AssetController::Get().GetContent<Mesh>( current.get( "Name", root ).asString() )
-					);
-
-				// Transform object
-				if( ( current = root.get( "Transform", root ) ) != root )
-				{
-					Json::Value currentTransform;
-
-					if( ( currentTransform = current.get( "Scale", root ) ) != root )
-						newObj->transform.Scale(
-							currentTransform.get( "x", root ).asDouble(),
-							currentTransform.get( "y", root ).asDouble(),
-							currentTransform.get( "z", root ).asDouble()
-						);
-					if( ( currentTransform = current.get( "Position", root ) ) != root )
-						newObj->transform.Translate(
-							currentTransform.get( "x", root ).asDouble(),
-							currentTransform.get( "y", root ).asDouble(),
-							currentTransform.get( "z", root ).asDouble()
-						);
-					if( ( currentTransform = current.get( "Rotation", root ) ) != root )
-						newObj->transform.Rotate(
-							currentTransform.get( "x", root ).asDouble(),
-							currentTransform.get( "y", root ).asDouble(),
-							currentTransform.get( "z", root ).asDouble()
-						);
-				}
-
-				// Setup collider
-				if( ( current = root.get( "Collider", root ) ) != root )
-				{
-					Json::Value currentCol;
-					string type = current.get( "Type", root ).asString();
-					Collider* col;
-
-					if( type == "Sphere" )
-					{
-						col = new SphereCollider( newObj );
-						static_cast<SphereCollider*>( col )->radius = static_cast<float>( current.get( "Radius", root ).asDouble() );
-					}
-					else if( type == "Box" )
-					{
-						col = new BoxCollider( newObj );
-
-						if( ( currentCol = current.get( "Size", root ) ) != root )
-							static_cast<BoxCollider*>( col )->size = Vector3(
-								currentCol.get( "x", root ).asDouble(),
-								currentCol.get( "y", root ).asDouble(),
-								currentCol.get( "z", root ).asDouble()
-
-							);
-						else
-							static_cast<BoxCollider*>( col )->size = Vector3( 1.0f, 1.0f, 1.0f );
-					}
-
-					if( ( currentCol = current.get( "Offset", root ) ) != root )
-					{
-						col->centerOffset = Vector3(
-							currentCol.get( "x", root ).asDouble(),
-							currentCol.get( "y", root ).asDouble(),
-							currentCol.get( "z", root ).asDouble()
-						);
-					}
-
-					if( ( currentCol = current.get( "Bounce", root ) ) != root )
-					{
-						col->bounce = currentCol.asDouble();
-					}
-
-					newObj->AddIngredient<Collider>( col );
-					Physics::Get().AddCollider( col );
-				}
-			}
-		}
-	}
-
-	objects = &GameObject::GetObjectsList();
-
-	for( auto parentPair = begin( parentMap ); parentPair != end( parentMap ); ++parentPair )
-		GameObject::GetGameObject( parentPair->first )->transform.parent = &GameObject::GetGameObject( parentPair->second )->transform;
-
-	objectsLoaded = true;
-}
-
 void GraphosGame::DeleteObjects( void )
 {
-	for( auto object = objects->begin(); object != objects->end(); ++object )
-		object->second.Shutdown();
-	
-	GameObject::ClearObjects();
+	if( objects != nullptr )
+	{
+		for( auto object = objects->begin(); object != objects->end(); ++object )
+			object->second.Shutdown();
+
+		GameObject::ClearObjects();
+		objects = nullptr;
+
+		objectsLoaded = false;
+	}
 }
 
 void GraphosGame::Reset( void )
@@ -309,6 +146,7 @@ bool GraphosGame::Start( void )
 {
 	objectsLoaded = false;
 	currentState = Menu;
+	objects = nullptr;
 
 	bool isDone = false;
 
@@ -345,4 +183,188 @@ void GraphosGame::Stop( void )
 	Physics::Get().Shutdown();
 	AssetController::Get().Shutdown();
 	ScriptController::Get().Shutdown();
+}
+
+void GraphosGame::LoadObjects( void )
+{
+	unordered_map<string, string> files = Helpers::ScanDir( OBJECTS_PATH );
+	Json::Reader reader;
+	Json::Value root;
+
+	Json::Value current;
+
+	// For iterating (sometimes)
+	int ii = 0;
+
+	// Map for parents, to be added after all objects are loaded
+	unordered_map<unsigned int, string> parentMap;
+
+	for( auto file = begin( files ); file != end( files ); ++file )
+	{
+		if( reader.parse( Helpers::ReadFile( string( OBJECTS_PATH ).append( file->second ).append( file->first ) ), root ) )
+		{
+			if( ( current = root.get( "Name", root ) ) != root )
+			{
+				// Create object, get pointer to it
+				string name = current.asString();
+				unsigned int id = GameObject::CreateObject( name, &( ShaderController::Get().GetShader( root[ "Shader" ].asString() ) ) );
+				GameObject* newObj = GameObject::GetGameObject( name );
+
+				// Get parent
+				if( ( current = root.get( "Parent", root ) ) != root )
+					parentMap[ id ] = current.asString();
+
+				// Set texture
+				if( ( current = root.get( "Texture", root ) ) != root )
+					newObj->AddIngredient(
+						AssetController::Get().GetContent<Texture>( current[ "Name" ].asString() )
+					);
+
+				// Set physics Rigid Body object
+				if( ( current = root.get( "Rigidbody", root ) ) != root )
+				{
+					Rigidbody* rb = new Rigidbody( newObj );
+
+					// Get rigid body's values
+					Json::Value currentRigidbody = current[ "LinearVelocity" ];
+
+					// Add initial velocities and drags
+					rb->linearVelocity.x = currentRigidbody[ "x" ].asDouble();
+					rb->linearVelocity.y = currentRigidbody[ "y" ].asDouble();
+					rb->linearVelocity.z = currentRigidbody[ "z" ].asDouble();
+
+					currentRigidbody = current[ "AngularVelocity" ];
+
+					// Add initial velocities and drags
+					rb->angularVelocity.x = currentRigidbody[ "x" ].asDouble();
+					rb->angularVelocity.y = currentRigidbody[ "y" ].asDouble();
+					rb->angularVelocity.z = currentRigidbody[ "z" ].asDouble();
+
+					// Add initial velocities and drags
+					rb->linearDrag = root.get( "Rigidbody", root ).get( "LinearDrag", root ).asDouble();
+					rb->angularDrag = root.get( "Rigidbody", root ).get( "AngularDrag", root ).asDouble();
+
+					if( ( currentRigidbody = current.get( "Constraints", root ) ) != root )
+					{
+						if( currentRigidbody.get( "Position", root ) != root )
+						{
+							rb->positionConstraints.x = static_cast<float>( currentRigidbody[ "Position" ][ "x" ].asBool() );
+							rb->positionConstraints.y = static_cast<float>( currentRigidbody[ "Position" ][ "y" ].asBool() );
+							rb->positionConstraints.z = static_cast<float>( currentRigidbody[ "Position" ][ "z" ].asBool() );
+						}
+						if( currentRigidbody.get( "Rotation", root ) != root )
+						{
+							rb->rotationConstraints.x = static_cast<float>( currentRigidbody[ "Rotation" ][ "x" ].asBool() );
+							rb->rotationConstraints.y = static_cast<float>( currentRigidbody[ "Rotation" ][ "y" ].asBool() );
+							rb->rotationConstraints.z = static_cast<float>( currentRigidbody[ "Rotation" ][ "z" ].asBool() );
+						}
+					}
+
+					newObj->AddIngredient( rb );
+				}
+
+				// Add webview
+				if( ( current = root.get( "AwesomiumView", root ) ) != root && ii == 0 )
+					newObj->AddIngredient(
+						new AwesomiumView(
+							current[ "url" ].asString(),
+							current[ "width" ].asUInt(),
+							current[ "height" ].asUInt()
+						)
+					);
+
+				// Add a script
+				if( ( current = root.get( "Script", root ) ) != root )
+					newObj->AddIngredient(
+						ScriptController::Get().CreateObjectInstance(
+							current[ "Class" ].asString(),
+							id,
+							newObj
+						)
+					);
+
+				// Add a mesh
+				if( ( current = root.get( "Mesh", root ) ) != root )
+					newObj->AddIngredient(
+						AssetController::Get().GetContent<Mesh>( current[ "Name" ].asString() )
+					);
+
+				// Transform object
+				if( ( current = root.get( "Transform", root ) ) != root )
+				{
+					Json::Value currentTransform;
+
+					if( ( currentTransform = current.get( "Scale", root ) ) != root )
+						newObj->transform.Scale(
+							currentTransform[ "x" ].asDouble(),
+							currentTransform[ "y" ].asDouble(),
+							currentTransform[ "z" ].asDouble()
+						);
+					if( ( currentTransform = current.get( "Position", root ) ) != root )
+						newObj->transform.Translate(
+							currentTransform[ "x" ].asDouble(),
+							currentTransform[ "y" ].asDouble(),
+							currentTransform[ "z" ].asDouble()
+						);
+					if( ( currentTransform = current.get( "Rotation", root ) ) != root )
+						newObj->transform.Rotate(
+							currentTransform[ "x" ].asDouble(),
+							currentTransform[ "y" ].asDouble(),
+							currentTransform[ "z" ].asDouble()
+						);
+				}
+
+				// Setup collider
+				if( ( current = root.get( "Collider", root ) ) != root )
+				{
+					Json::Value currentCol;
+					string type = current[ "Type" ].asString();
+					Collider* col;
+
+					if( type == "Sphere" )
+					{
+						col = new SphereCollider( newObj );
+						static_cast<SphereCollider*>( col )->radius = static_cast<float>( current[ "Radius" ].asDouble() );
+					}
+					else if( type == "Box" )
+					{
+						col = new BoxCollider( newObj );
+
+						if( ( currentCol = current.get( "Size", root ) ) != root )
+							static_cast<BoxCollider*>( col )->size = Vector3(
+								currentCol[ "x" ].asDouble(),
+								currentCol[ "y" ].asDouble(),
+								currentCol[ "z" ].asDouble()
+							);
+						else
+							static_cast<BoxCollider*>( col )->size = Vector3( 1.0f, 1.0f, 1.0f );
+					}
+
+					if( ( currentCol = current.get( "Offset", root ) ) != root )
+					{
+						col->centerOffset = Vector3(
+								currentCol[ "x" ].asDouble(),
+								currentCol[ "y" ].asDouble(),
+								currentCol[ "z" ].asDouble()
+							);
+					}
+
+					if( ( currentCol = current.get( "Bounce", root ) ) != root )
+					{
+						col->bounce = currentCol.asDouble();
+					}
+
+					newObj->AddIngredient<Collider>( col );
+					Physics::Get().AddCollider( col );
+				}
+			}
+		}
+	}
+
+	objects = &GameObject::GetObjectsList();
+
+	for( auto parentPair = begin( parentMap ); parentPair != end( parentMap ); ++parentPair )
+		GameObject::GetGameObject( parentPair->first )->transform.parent = &GameObject::GetGameObject( parentPair->second )->transform;
+
+	objectsLoaded = true;
 }

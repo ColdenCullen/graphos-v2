@@ -30,6 +30,7 @@ namespace Graphos
 	public:
 		void				Run( void );
 		void				ChangeState( GameState newState ) { currentState = newState; }
+		void				Reset( void );
 
 	protected:
 		virtual bool		Initialize( void ) = 0;
@@ -47,7 +48,6 @@ namespace Graphos
 
 		void				LoadObjects( void );
 		void				DeleteObjects( void );
-		void				Reset( void );
 
 	private:
 		bool				Start( void );

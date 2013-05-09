@@ -9,7 +9,14 @@ bool AwesomiumView::Initialize( string url, unsigned int width, unsigned int hei
 	glGenTextures( 1, &textureID );
 
 	if( !WebCore::instance() )
-		WebCore::Initialize( WebConfig() );
+	{
+		WebConfig config;
+
+		config.additional_options = WebStringArray( 1 );
+		config.additional_options[ 0 ] = WSLit( "--allow-file-access-from-files" );
+
+		WebCore::Initialize( config );
+	}
 
 	webView = WebCore::instance()->CreateWebView( width, height );
 	webView->LoadURL( WebURL( WSLit( url.c_str() ) ) );

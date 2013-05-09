@@ -23,6 +23,9 @@ bool Win32Controller::Initialize( void )
 	{
 		width	= screenWidth;
 		height	= screenHeight;
+
+		Config::Get().SetData( "display.width", screenWidth );
+		Config::Get().SetData( "display.height", screenHeight );
 	}
 	else
 	{
@@ -188,6 +191,10 @@ void Win32Controller::Resize( bool fullScreen, unsigned int newWidth, unsigned i
 		width  = screenWidth;
 		height = screenHeight;
 		style |= GWS_FULLSCREEN;
+
+		// Update config
+		Config::Get().SetData( "display.width", screenWidth );
+		Config::Get().SetData( "display.height", screenHeight );
 	}
 	else
 	{

@@ -30,6 +30,10 @@ namespace Graphos
 		// Velocities
 		Vector3				linearVelocity;
 		Vector3				angularVelocity;
+
+		// Constraints
+		Vector3				positionConstraints;
+		Vector3				rotationConstraints;
 	};
 }
 

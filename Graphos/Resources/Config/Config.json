@@ -8,7 +8,7 @@
 	},
 	"graphics" : 
 	{
-		"backfaceculling" : true,
+		"backfaceculling" : "true",
 		"vsync" : false
 	},
 	"physics" : 

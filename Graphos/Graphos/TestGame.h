@@ -29,12 +29,11 @@ namespace Graphos
 		bool Initialize( void )
 		{
 			// Call parent's load objects
-			LoadObjects();
+			//LoadObjects();
 
 			cam = nullptr;//new Camera();
-
-			cube = GameObject::GetGameObject( "LeftCube" );
-			sphere = GameObject::GetGameObject( "Sphere" );
+			cube = nullptr;
+			sphere = nullptr;
 
 			return true;
 		}
@@ -45,7 +44,10 @@ namespace Graphos
 			// Quit condition
 			if( Input::Get().IsKeyDown( VK_ESCAPE, true ) )
 			{
-				return false;
+				if( currentState == Game )
+					currentState = Menu;
+				else if( currentState == Menu )
+					return false;
 			}
 
 			if( Input::Get().IsKeyDown( VK_F5, true ) )
@@ -55,6 +57,12 @@ namespace Graphos
 
 			if( currentState == Game )
 			{
+				if( sphere == nullptr || cube == nullptr )
+				{
+					cube = GameObject::GetGameObject( "LeftCube" );
+					sphere = GameObject::GetGameObject( "Sphere" );
+				}
+
 				if( Input::Get().IsKeyDown( VK_SPACE, true ) )
 					sphere->GetIngredient<Rigidbody>()->AddForce( 1.0f, 0.0f, 0.0f );
 	
@@ -62,44 +70,44 @@ namespace Graphos
 				if( Input::Get().IsKeyDown( VK_LEFT, false ) )
 				{
 					cube->transform.Translate( -0.01f, 0.0f, 0.0f );
-					sphere->transform.Translate( -0.01f, 0.0f, 0.0f );
+					//sphere->transform.Translate( -0.01f, 0.0f, 0.0f );
 				}
 				if( Input::Get().IsKeyDown( VK_RIGHT, false ) )
 				{
 					cube->transform.Translate( 0.01f, 0.0f, 0.0f );
-					sphere->transform.Translate( 0.01f, 0.0f, 0.0f );
+					//sphere->transform.Translate( 0.01f, 0.0f, 0.0f );
 				}
 				if( Input::Get().IsKeyDown( VK_UP, false ) )
 				{
 					cube->transform.Translate( 0.0f, 0.01f, 0.0f );
-					sphere->transform.Translate( 0.0f, 0.01f, 0.0f );
+					//sphere->transform.Translate( 0.0f, 0.01f, 0.0f );
 				}
 				if( Input::Get().IsKeyDown( VK_DOWN, false ) )
 				{
 					cube->transform.Translate( 0.0f, -0.01f, 0.0f );
-					sphere->transform.Translate( 0.0f, -0.01f, 0.0f );
+					//sphere->transform.Translate( 0.0f, -0.01f, 0.0f );
 				}
 	
 				// Rotate
 				if( Input::Get().IsKeyDown( VK_A, false ) )
 				{
-					cube->transform.Rotate( 0.0f, 15.0f, 0.0f, 0.0f );
-					sphere->transform.Rotate( 0.0f, 15.0f, 0.0f, 0.0f );
+					cube->transform.Rotate( 0.0f, 15.0f, 0.0f );
+					//sphere->transform.Rotate( 0.0f, 15.0f, 0.0f );
 				}
 				if( Input::Get().IsKeyDown( VK_D, false ) )
 				{
-					cube->transform.Rotate( 0.0f, -15.0f, .0f, 0.0f );
-					sphere->transform.Rotate( 0.0f, -15.0f, .0f, 0.0f );
+					cube->transform.Rotate( 0.0f, -15.0f, .0f );
+					//sphere->transform.Rotate( 0.0f, -15.0f, .0f );
 				}
 				if( Input::Get().IsKeyDown( VK_W, false ) )
 				{
-					cube->transform.Rotate( -15.0f, 0.0f, 0.0f, 0.0f );
-					sphere->transform.Rotate( -15.0f, 0.0f, 0.0f, 0.0f );
+					cube->transform.Rotate( -15.0f, 0.0f, 0.0f );
+					//sphere->transform.Rotate( -15.0f, 0.0f, 0.0f );
 				}
 				if( Input::Get().IsKeyDown( VK_S, false ) )
 				{
-					cube->transform.Rotate( 15.0f, 0.0f, 0.0f, 0.0f );
-					sphere->transform.Rotate( 15.0f, 0.0f, 0.0f, 0.0f );
+					cube->transform.Rotate( 15.0f, 0.0f, 0.0f );
+					//sphere->transform.Rotate( 15.0f, 0.0f, 0.0f );
 				}
 			}
 #endif

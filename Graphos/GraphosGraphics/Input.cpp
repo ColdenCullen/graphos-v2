@@ -67,7 +67,11 @@ Point Input::GetMousePos( /*Transform& camera, float zPlane*/ ) const
 	POINT i;
 	GetCursorPos( &i );
 	ScreenToClient( WindowController::Get().GetHWnd(), &i );
-	i.x -= GetSystemMetrics( SM_CYBORDER );
+
+	// Adjust for border
+	if( !Content::Config::Get().GetData<bool>( "display.fullscreen" ) )
+		i.x -= GetSystemMetrics( SM_CYBORDER );
+
 	//i.y -= GetSystemMetrics( /*SM_CYCAPTION*/SM_CYBORDER );
 	return Point( i.x, i.y );
 	

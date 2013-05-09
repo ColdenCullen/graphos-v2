@@ -48,6 +48,7 @@
 
 //#include "Transform.h"
 #include "WindowController.h"
+#include "Config.h"
 #include "../GraphosMath/Transform.h"
 
 namespace Graphos
