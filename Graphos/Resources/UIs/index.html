@@ -1,0 +1,90 @@
+<!DOCTYPE HTML>
+<!--
+	Astral 2.0 by HTML5 UP
+	html5up.net | @n33co
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Pinball Americana</title>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="description" content="A 3D pinball game." />
+		<meta name="keywords" content="3D, pinball, game, dsa1" />
+		<link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400" rel="stylesheet" />
+		<script src="js/jquery-1.9.1.min.js"></script>
+		<script src="js/config.js"></script>
+		<script src="js/skel.min.js"></script>
+		<noscript>
+			<link rel="stylesheet" href="css/skel-noscript.css" />
+			<link rel="stylesheet" href="css/style.css" />
+			<link rel="stylesheet" href="css/style-desktop.css" />
+			<link rel="stylesheet" href="css/noscript.css" />
+		</noscript>
+		<!--[if lte IE 8]><script src="js/html5shiv.js"></script><link rel="stylesheet" href="css/ie8.css" /><![endif]-->
+	</head>
+	<body class="homepage">
+
+		<!-- Wrapper-->
+			<div id="wrapper">
+				
+				<!-- Nav -->
+					<nav id="nav">
+						<a href="#me" class="icon icon-home active"><span>Home</span></a>
+						<a href="#work" class="icon icon-user"><span>Credits</span></a>
+						<a href="#paused" class="icon icon-pause"><span>Paused</span></a>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+						
+						<!-- Me -->
+							<article id="me" class="panel">
+								<header>
+									<h1>Pinball Americana</h1>
+									<span class="byline">Lovingly created by<br />Colden Cullen &amp;<br />Daniel Jost</span>
+								</header>
+								<a href="#paused" class="jumplink pic" onclick="GraphosGame.ChangeState( 'Game' );">
+									<span class="jumplink arrow icon icon-right">Click here to begin</span>
+									<img src="images/home.png" />
+								</a>
+							</article>
+
+						<!-- Work --> 
+							<article id="work" class="panel">
+								<div class="row">
+									<div class="5u">
+										<h2 class="top-name">Colden Cullen</h2>
+										<img class="photo" src="https://graph.facebook.com/TheCOOLLOSER/picture?width=300&amp;height=300" />
+									</div>
+									<div class="2u"><span class="amp">&amp;</span></div>
+									<div class="5u">
+										<h2 class="top-name">Daniel Jost</h2>
+										<img class="photo" src="https://graph.facebook.com/DanielPJost/picture?width=300&amp;height=300" />
+									</div>
+								</div>
+							</article>
+
+							<!-- Paused -->
+							<article id="paused" class="panel">
+								<header>
+									<h1>PAUSED</h1>
+								</header>
+								<a href="#paused" class="jumplink pic" onclick="GraphosGame.ChangeState( 'Game' );">
+									<span class="jumplink arrow icon icon-right">Click here to resume</span>
+									<!--<img src="images/home.png" />-->
+								</a>
+							</article>
+					</div>
+		
+				<!-- Footer -->
+					<div id="footer">
+						<ul class="links">
+							<li>&copy; Daniel Jost &amp; Colden Cullen</li>
+							<li>Design by html5up.net</li>
+						</ul>
+					</div>
+		
+			</div>
+
+	</body>
+</html>
