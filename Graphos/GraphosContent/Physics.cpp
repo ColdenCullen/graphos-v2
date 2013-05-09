@@ -19,63 +19,102 @@ void Physics::Update( void )
 	bool isColliding;
 
 	// Iterate through each collider
-	for( auto outside = begin( colliders ); outside != end( colliders ); ++outside )
+	for( auto outsideCollider = begin( colliders ); outsideCollider != end( colliders ); ++outsideCollider )
 	{
 		//*
 		Collider* insideTemp = GameObject::GetGameObject( "Sphere" )->GetIngredient<Collider>();
-		Collider** inside = &insideTemp;
+		Collider** insideCollider = &insideTemp;
 		//*/
 
 		// Iterate through each collider after it
 		//for( auto inside = outside + 1; inside != end( colliders ); ++inside )
-		if( outside != find( begin( colliders ), end( colliders ), *inside ) )
+		if( outsideCollider != find( begin( colliders ), end( colliders ), *insideCollider ) )
 		{
 			// Check for collisions
-			if( ( *inside )->Type() == Sphere && ( *outside )->Type() == Sphere )
+			if( ( *insideCollider )->Type() == Sphere && ( *outsideCollider )->Type() == Sphere )
 			{
 				// Check if colliding.
-				isColliding = ( normal = ( ( *outside )->Owner()->transform.Position() - ( *inside )->Owner()->transform.Position() ) ).Magnitude() <
-					static_cast<SphereCollider*>( *outside )->radius + static_cast<SphereCollider*>( *inside )->radius;
+				isColliding = ( normal = ( ( *outsideCollider )->Owner()->transform.Position() - ( *insideCollider )->Owner()->transform.Position() ) ).Magnitude() <
+					static_cast<SphereCollider*>( *outsideCollider )->radius + static_cast<SphereCollider*>( *insideCollider )->radius;
 			}
 			else
 			{
-				isColliding = CheckGJK( *inside, *outside );
+				isColliding = CheckGJK( *insideCollider, *outsideCollider );
 			}
 			
 			// Act on collisions;
 			if( isColliding )
 			{
 				// Get rigid bodies involved in the collision
-				Rigidbody* outsideRB = ( *outside )->Owner()->GetIngredient<Rigidbody>();
-				Rigidbody* insideRB = ( *inside )->Owner()->GetIngredient<Rigidbody>();
+				Rigidbody* outsideRB = ( *outsideCollider )->Owner()->GetIngredient<Rigidbody>();
+				Rigidbody* insideRB = ( *insideCollider )->Owner()->GetIngredient<Rigidbody>();
 
 				// If one object is movable
 				if( outsideRB == nullptr || insideRB == nullptr )
 				{
-					GameObject* movableObj = outsideRB != nullptr ? ( *outside )->Owner() : ( *inside )->Owner();
-					GameObject* nonMovable = outsideRB == nullptr ? ( *outside )->Owner() : ( *inside )->Owner();
+					GameObject* movableObj = outsideRB != nullptr ? ( *outsideCollider )->Owner() : ( *insideCollider )->Owner();
+					GameObject* nonMovable = outsideRB == nullptr ? ( *outsideCollider )->Owner() : ( *insideCollider )->Owner();
 
-					//if( movableObj->GetIngredient<Collider>()->Type() == Sphere )
-					switch( nonMovable->GetIngredient<Collider>()->Type() )
+					SphereCollider* movableCol = static_cast<SphereCollider*>( movableObj->GetIngredient<Collider>() );
+
+					if( movableObj->GetIngredient<Collider>()->Type() == Sphere )
 					{
-					case Sphere:
-						normal = (
-								( movableObj->transform.Position() + movableObj->GetIngredient<Collider>()->centerOffset ) -
-								( nonMovable->transform.Position() + nonMovable->GetIngredient<Collider>()->centerOffset )
-							).Normalize();
-						break;
-					case Box:
-						normal = Vector3( 1.0f, 0.0f, 0.0f );
-						break;
-					default:
+						switch( nonMovable->GetIngredient<Collider>()->Type() )
+						{
+						case Sphere:
+							{
+								normal = ( movableCol->Position() - nonMovable->GetIngredient<Collider>()->Position() ).Normalize();
+								break;
+							}
 
-						break;
+						case Box:
+							{
+								BoxCollider* nonMovableCol = static_cast<BoxCollider*>( nonMovable->GetIngredient<Collider>() );
+
+								if( nonMovableCol->Position().x - movableCol->Position().x > nonMovableCol->size.x / 2 )
+									normal.x = -1.0f;
+								else if( movableCol->Position().x - nonMovableCol->Position().x > nonMovableCol->size.x / 2 )
+									normal.x = 1.0f;
+								else
+									normal.x = 0.0f;
+
+								if( nonMovableCol->Position().y - movableCol->Position().y > nonMovableCol->size.y / 2 )
+									normal.y = -1.0f;
+								else if( movableCol->Position().y - nonMovableCol->Position().y > nonMovableCol->size.y / 2 )
+									normal.y = 1.0f;
+								else
+									normal.y = 0.0f;
+
+								normal = normal.Normalize();
+
+								//normal.x = abs( testNormal.x );
+								//normal.y = abs( testNormal.y );
+								normal.z = 0.0f;
+
+								break;
+							}
+						default:
+							{
+								break;
+							}
+						}
+						
+						Vector3& moveVel = movableObj->GetIngredient<Rigidbody>()->linearVelocity;
+
+						float velDot = moveVel.Dot( normal );
+						Vector3 diff = normal * ( moveVel.Dot( normal ) * -2 );
+
+						if( moveVel.Dot( normal ) < 0.0f )
+						{
+							// Reflect velocity
+							moveVel = ( normal * ( moveVel.Dot( normal ) * -2 ) ) + moveVel;
+
+							// Multiply by bounce values
+							moveVel *= ( *insideCollider )->bounce * ( *outsideCollider )->bounce;
+						}
+
+						velDot = moveVel.Dot( normal );
 					}
-					
-					Vector3& movVel = movableObj->GetIngredient<Rigidbody>()->linearVelocity;
-
-					if( movVel.Dot( normal ) > 0.0f )
-						movVel = ( -2 * movVel.Dot( normal ) * normal + movVel );
 				}
 				// if both are movable
 				else

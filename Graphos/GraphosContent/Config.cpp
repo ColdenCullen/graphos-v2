@@ -3,8 +3,6 @@
 #define _USE_READ_FILE
 #include <Helpers.h>
 
-#define CONFIG_PATH "Resources/Config/Config.json"
-
 using namespace std;
 using namespace Graphos::Content;
 
@@ -12,18 +10,18 @@ bool Config::LoadSettings( void )
 {
 	Json::Reader reader;
 
-	if( !reader.parse( Helpers::ReadFile( CONFIG_PATH ), config ) )
+	if( !reader.parse( Helpers::ReadFile( "Resources/Config/Config.json" ), config ) )
 		return false;
 
 	return true;
 }
 
-Json::Value Config::GetValueAtPath( string path )
+Json::Value& Config::GetValueAtPath( string path )
 {
 	string left;
 	string right = path;
 	int currentIndex;
-	Json::Value currentValue = config;
+	Json::Value* currentValue = &config;
 
 	do
 	{
@@ -39,10 +37,10 @@ Json::Value Config::GetValueAtPath( string path )
 			left = right;
 		}
 
-		currentValue = currentValue.get( left, currentValue );
+		currentValue = &( *currentValue )[ left ];
 	} while( currentIndex != string::npos );
 
-	return currentValue;
+	return *currentValue;
 }
 
 #pragma region GetData
@@ -77,5 +75,5 @@ const char* Config::GetData<const char*>( string path )
 {
 	return GetValueAtPath( path ).asCString();
 }
-#endif
+#endif//__APPLE__
 #pragma endregion

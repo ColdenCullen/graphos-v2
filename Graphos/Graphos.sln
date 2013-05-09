@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Graphos", "Graphos\Graphos.vcxproj", "{7EEC6355-71B3-44EF-967C-44BF6A517ADC}"
 	ProjectSection(ProjectDependencies) = postProject
 		{E207B80E-7051-40C2-BCE1-43891B38058C} = {E207B80E-7051-40C2-BCE1-43891B38058C}
@@ -45,6 +45,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Meshes", "Meshes", "{0700A2
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Objects", "Objects", "{8DF553C6-1D43-46F9-83B1-E27CB6C6EB40}"
 	ProjectSection(SolutionItems) = preProject
+		Resources\Assets\Objects\LeftCube.json = Resources\Assets\Objects\LeftCube.json
 		Resources\Assets\Objects\RightCube.json = Resources\Assets\Objects\RightCube.json
 		Resources\Assets\Objects\Sphere.json = Resources\Assets\Objects\Sphere.json
 	EndProjectSection

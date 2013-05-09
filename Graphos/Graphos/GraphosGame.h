@@ -1,5 +1,5 @@
-#ifndef _GRAPHOSGAME_H_
-#define _GRAPHOSGAME_H_
+#ifndef __GRAPHOS_GAME
+#define __GRAPHOS_GAME
 
 #include <ctime>
 #include <vector>
@@ -17,15 +17,19 @@
 #include "SphereCollider.h"
 #include "BoxCollider.h"
 #include "Physics.h"
+#include "UserInterface.h"
 
 using namespace std;
 
 namespace Graphos
 {
+	enum GameState { Menu, Game };
+
 	class GraphosGame
 	{
 	public:
 		void				Run( void );
+		void				ChangeState( GameState newState ) { currentState = newState; }
 
 	protected:
 		virtual bool		Initialize( void ) = 0;
@@ -36,12 +40,19 @@ namespace Graphos
 		unordered_map<unsigned int, GameObject>*
 							objects;
 
+		bool				objectsLoaded;
+		GameState			currentState;
 		float				deltaTime;
+		UserInterface*		ui;
 
 		void				LoadObjects( void );
 		void				DeleteObjects( void );
 		void				Reset( void );
+
+	private:
+		bool				Start( void );
+		void				Stop( void );
 	};
 }
 
-#endif//_GRAPHOSGAME_H_
+#endif//__GRAPHOS_GAME

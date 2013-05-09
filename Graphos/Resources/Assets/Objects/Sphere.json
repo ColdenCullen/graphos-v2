@@ -48,6 +48,7 @@
 
 	"Collider": {
 		"Type": "Sphere",
-		"Radius": 0.25
+		"Radius": 0.25,
+		"Bounce": 1.0
 	}
 }

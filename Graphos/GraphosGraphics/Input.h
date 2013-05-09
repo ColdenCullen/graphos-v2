@@ -47,6 +47,7 @@
 #endif
 
 //#include "Transform.h"
+#include "WindowController.h"
 #include "../GraphosMath/Transform.h"
 
 namespace Graphos
@@ -76,7 +77,7 @@ namespace Graphos
 
 			bool				IsKeyDown( unsigned int input, const bool checkPrevious = false );
 
-			Point				GetMousePos( Transform& camera, float zPlane ) const;
+			Point				GetMousePos( /*Transform& camera, float zPlane*/ ) const;
 
 		private:
 			Input( void );

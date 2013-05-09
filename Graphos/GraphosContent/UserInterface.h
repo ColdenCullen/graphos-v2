@@ -3,10 +3,11 @@
 
 #include <GL/GLIncludes.h>
 #include <string>
-//#include <Awesomium/WebCore.h>
-//#include <Awesomium/STLHelpers.h>
+#include <Awesomium/WebCore.h>
+#include <Awesomium/STLHelpers.h>
 //#include <Awesomium/BitmapSurface.h>
 
+#include "Input.h"
 #include "Transform.h"
 #include "AwesomiumView.h"
 #include "WindowController.h"
@@ -15,21 +16,24 @@
 #define DEPTH 1.0f
 
 using namespace std;
-//using namespace Awesomium;
+using namespace Awesomium;
 
 namespace Graphos
 {
+	class GraphosGame;
+
 	namespace Content
 	{
 		class UserInterface
 		{
 		public:
-								UserInterface( string url );
+								UserInterface( GraphosGame* owner );
+								~UserInterface();
 
 			bool				Update( float deltaTime );
 			void				Draw( void );
 
-		//private:
+		private:
 			// GL Texture ID
 			unsigned int		textureID;
 
@@ -38,14 +42,32 @@ namespace Graphos
 
 			Transform			transform;
 
+			GraphosGame*		owner;
+
 			// Awesomium view
 			AwesomiumView*		view;
+			JSObject			graphosGame;
 
 			// GL Mesh data
 			unsigned int		vertexBufferObject;
 			unsigned int		vertexArrayObject;
 			unsigned int		indexBuffer;
 			unsigned int		numElements;
+
+			//////////////////////////////////////////////////////////////////////////
+			// JS Method Handler
+			//////////////////////////////////////////////////////////////////////////
+			struct JavaScriptHandler : public JSMethodHandler
+			{
+			public:
+								JavaScriptHandler( UserInterface* owner ) : owner( owner ) { }
+
+				void			OnMethodCall( WebView* caller, unsigned int remoteObjectID, const WebString& methodName, const JSArray& args );
+				JSValue			OnMethodCallWithReturnValue( WebView* caller, unsigned int remoteObjectID, const WebString& methodName, const JSArray& args );
+
+			private:
+				UserInterface*	owner;
+			};
 		};
 	}
 }

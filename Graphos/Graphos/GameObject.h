@@ -1,5 +1,5 @@
-#ifndef _GAMEOBJECT_H_
-#define _GAMEOBJECT_H_
+#ifndef __GAME_OBJECT
+#define __GAME_OBJECT
 
 // Includes
 #include <string>
@@ -105,4 +105,4 @@ namespace Graphos
 	};
 }
 
-#endif//_GAMEOBJECT_H_
+#endif//__GAME_OBJECT

@@ -1,5 +1,5 @@
-#ifndef _QUATERNION_H_
-#define _QUATERNION_H_
+#ifndef __QUATERNION
+#define __QUATERNION
 
 #include "Vector3.h"
 #include "Matrix.h"
@@ -63,4 +63,4 @@ namespace Graphos
 	}
 }
 
-#endif //_QUATERNION_H_
+#endif//__QUATERNION

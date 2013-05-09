@@ -16,7 +16,7 @@ namespace Graphos
 		void				Draw( void ) { }
 		void				Shutdown( void ) { }
 
-		Vector3				GetFurthestPointInDirection( Vector3& direction ) const;
+		const Vector3		GetFurthestPointInDirection( const Vector3& direction ) const;
 
 		float				radius;
 	};

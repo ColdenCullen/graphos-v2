@@ -1,6 +1,8 @@
 #ifndef _MATRIX4_H_
 #define _MATRIX4_H_
 
+#include "Vector3.h"
+
 #define WIDTH 4
 
 namespace Graphos
@@ -23,30 +25,7 @@ namespace Graphos
 				dataArray[ 12 ] = val30; dataArray[ 13 ] = val31; dataArray[ 14 ] = val32; dataArray[ 15 ] = val33;
 			}
 
-			inline Matrix		operator*( const Matrix& other ) const
-			{
-				return Matrix(
-					( dataArray[ 0 ] * other.dataArray[ 0 ] ) + ( dataArray[ 1 ] * other.dataArray[ 4 ] ) + ( dataArray[ 2 ] * other.dataArray[ 8 ] ) + ( dataArray[ 3 ] * other.dataArray[ 12 ] ),
-					( dataArray[ 0 ] * other.dataArray[ 1 ] ) + ( dataArray[ 1 ] * other.dataArray[ 5 ] ) + ( dataArray[ 2 ] * other.dataArray[ 9 ] ) + ( dataArray[ 3 ] * other.dataArray[ 13 ] ),
-					( dataArray[ 0 ] * other.dataArray[ 2 ] ) + ( dataArray[ 1 ] * other.dataArray[ 6 ] ) + ( dataArray[ 2 ] * other.dataArray[ 10 ] ) + ( dataArray[ 3 ] * other.dataArray[ 14 ] ),
-					( dataArray[ 0 ] * other.dataArray[ 3 ] ) + ( dataArray[ 1 ] * other.dataArray[ 7 ] ) + ( dataArray[ 2 ] * other.dataArray[ 11 ] ) + ( dataArray[ 3 ] * other.dataArray[ 15 ] ),
-
-					( dataArray[ 4 ] * other.dataArray[ 0 ] ) + ( dataArray[ 5 ] * other.dataArray[ 4 ] ) + ( dataArray[ 6 ] * other.dataArray[ 8 ] ) + ( dataArray[ 7 ] * other.dataArray[ 12 ] ),
-					( dataArray[ 4 ] * other.dataArray[ 1 ] ) + ( dataArray[ 5 ] * other.dataArray[ 5 ] ) + ( dataArray[ 6 ] * other.dataArray[ 9 ] ) + ( dataArray[ 7 ] * other.dataArray[ 13 ] ),
-					( dataArray[ 4 ] * other.dataArray[ 2 ] ) + ( dataArray[ 5 ] * other.dataArray[ 6 ] ) + ( dataArray[ 6 ] * other.dataArray[ 10 ] ) + ( dataArray[ 7 ] * other.dataArray[ 14 ] ),
-					( dataArray[ 4 ] * other.dataArray[ 3 ] ) + ( dataArray[ 5 ] * other.dataArray[ 7 ] ) + ( dataArray[ 6 ] * other.dataArray[ 11 ] ) + ( dataArray[ 7 ] * other.dataArray[ 15 ] ),
-
-					( dataArray[ 8 ] * other.dataArray[ 0 ] ) + ( dataArray[ 9 ] * other.dataArray[ 4 ] ) + ( dataArray[ 10 ] * other.dataArray[ 8 ] ) + ( dataArray[ 11 ] * other.dataArray[ 12 ] ),
-					( dataArray[ 8 ] * other.dataArray[ 1 ] ) + ( dataArray[ 9 ] * other.dataArray[ 5 ] ) + ( dataArray[ 10 ] * other.dataArray[ 9 ] ) + ( dataArray[ 11 ] * other.dataArray[ 13 ] ),
-					( dataArray[ 8 ] * other.dataArray[ 2 ] ) + ( dataArray[ 9 ] * other.dataArray[ 6 ] ) + ( dataArray[ 10 ] * other.dataArray[ 10 ] ) + ( dataArray[ 11 ] * other.dataArray[ 14 ] ),
-					( dataArray[ 8 ] * other.dataArray[ 3 ] ) + ( dataArray[ 9 ] * other.dataArray[ 7 ] ) + ( dataArray[ 10 ] * other.dataArray[ 11 ] ) + ( dataArray[ 11 ] * other.dataArray[ 15 ] ),
-
-					( dataArray[ 12 ] * other.dataArray[ 0 ] ) + ( dataArray[ 13 ] * other.dataArray[ 4 ] ) + ( dataArray[ 14 ] * other.dataArray[ 8 ] ) + ( dataArray[ 15 ] * other.dataArray[ 12 ] ),
-					( dataArray[ 12 ] * other.dataArray[ 1 ] ) + ( dataArray[ 13 ] * other.dataArray[ 5 ] ) + ( dataArray[ 14 ] * other.dataArray[ 9 ] ) + ( dataArray[ 15 ] * other.dataArray[ 13 ] ),
-					( dataArray[ 12 ] * other.dataArray[ 2 ] ) + ( dataArray[ 13 ] * other.dataArray[ 6 ] ) + ( dataArray[ 14 ] * other.dataArray[ 10 ] ) + ( dataArray[ 15 ] * other.dataArray[ 14 ] ),
-					( dataArray[ 12 ] * other.dataArray[ 3 ] ) + ( dataArray[ 13 ] * other.dataArray[ 7 ] ) + ( dataArray[ 14 ] * other.dataArray[ 11 ] ) + ( dataArray[ 15 ] * other.dataArray[ 15 ] )
-				);
-			}
+			Matrix				operator*( const Matrix& other ) const;
 
 			Matrix				operator+( const Matrix& other ) const;
 
@@ -55,6 +34,10 @@ namespace Graphos
 			void				operator+=( const Matrix& other );
 
 			bool				operator==( const Matrix& other ) const;
+
+			Matrix				Inverse( void ) const;
+
+			Vector3				operator*( const Vector3& vec ) const;
 
 			static Matrix		BuildPerspective( const float fov, const float screenAspect, const float near, const float depth );
 			static Matrix		BuildOrthogonal( const float width, const float height, const float near, const float far );

@@ -1,13 +1,13 @@
 //
-//  TestGAme.h
+//  TestGame.h
 //  Graphos
 //
 //  Created by Colden Cullen on 5/1/13.
 //  Copyright (c) 2013 Colden Cullen. All rights reserved.
 //
 
-#ifndef __TESTGAME
-#define __TESTGAME
+#ifndef __TEST_GAME
+#define __TEST_GAME
 
 #include "GraphosGame.h"
 #include "GameObject.h"
@@ -15,7 +15,7 @@
 #include "Camera.h"
 #include "Rigidbody.h"
 #include "Helpers.h"
-#include "UserInterface.h"
+#include "Config.h"
 
 namespace Graphos
 {
@@ -25,16 +25,16 @@ namespace Graphos
 		Camera* cam;
 		GameObject* cube;
 		GameObject* sphere;
-		UserInterface* ui;
-
+		
 		bool Initialize( void )
 		{
+			// Call parent's load objects
+			LoadObjects();
+
 			cam = nullptr;//new Camera();
 
 			cube = GameObject::GetGameObject( "LeftCube" );
 			sphere = GameObject::GetGameObject( "Sphere" );
-
-			ui = new UserInterface( "Resources/UIs/MainMenu.html" );
 
 			return true;
 		}
@@ -51,68 +51,58 @@ namespace Graphos
 			if( Input::Get().IsKeyDown( VK_F5, true ) )
 			{
 				Reset();
-
-				delete ui;
-				ui = new UserInterface( "Resources/UIs/MainMenu.html" );
 			}
 
-			Point cursor = Input::Get().GetMousePos();
-			ui->view->webView->InjectMouseMove( cursor.x, cursor.y );
-
-			if( Input::Get().IsKeyDown( VK_LBUTTON, false ) )
-				ui->view->webView->InjectMouseDown( kMouseButton_Left );
-			if( !Input::Get().IsKeyDown( VK_LBUTTON, false ) )
-				ui->view->webView->InjectMouseUp( kMouseButton_Left );
-
-			if( Input::Get().IsKeyDown( VK_SPACE, true ) )
-				sphere->GetIngredient<Rigidbody>()->AddForce( 1.0f, 0.0f, 0.0f );
-
-			// Move object
-			if( Input::Get().IsKeyDown( VK_LEFT, false ) )
+			if( currentState == Game )
 			{
-				cube->transform.Translate( -0.01f, 0.0f, 0.0f );
-				sphere->transform.Translate( -0.01f, 0.0f, 0.0f );
-			}
-			if( Input::Get().IsKeyDown( VK_RIGHT, false ) )
-			{
-				cube->transform.Translate( 0.01f, 0.0f, 0.0f );
-				sphere->transform.Translate( 0.01f, 0.0f, 0.0f );
-			}
-			if( Input::Get().IsKeyDown( VK_UP, false ) )
-			{
-				cube->transform.Translate( 0.0f, 0.01f, 0.0f );
-				sphere->transform.Translate( 0.0f, 0.01f, 0.0f );
-			}
-			if( Input::Get().IsKeyDown( VK_DOWN, false ) )
-			{
-				cube->transform.Translate( 0.0f, -0.01f, 0.0f );
-				sphere->transform.Translate( 0.0f, -0.01f, 0.0f );
-			}
-
-			// Rotate
-			if( Input::Get().IsKeyDown( VK_A, false ) )
-			{
-				cube->transform.Rotate( 0.0f, 15.0f, 0.0f, 0.0f );
-				sphere->transform.Rotate( 0.0f, 15.0f, 0.0f, 0.0f );
-			}
-			if( Input::Get().IsKeyDown( VK_D, false ) )
-			{
-				cube->transform.Rotate( 0.0f, -15.0f, .0f, 0.0f );
-				sphere->transform.Rotate( 0.0f, -15.0f, .0f, 0.0f );
-			}
-			if( Input::Get().IsKeyDown( VK_W, false ) )
-			{
-				cube->transform.Rotate( -15.0f, 0.0f, 0.0f, 0.0f );
-				sphere->transform.Rotate( -15.0f, 0.0f, 0.0f, 0.0f );
-			}
-			if( Input::Get().IsKeyDown( VK_S, false ) )
-			{
-				cube->transform.Rotate( 15.0f, 0.0f, 0.0f, 0.0f );
-				sphere->transform.Rotate( 15.0f, 0.0f, 0.0f, 0.0f );
+				if( Input::Get().IsKeyDown( VK_SPACE, true ) )
+					sphere->GetIngredient<Rigidbody>()->AddForce( 1.0f, 0.0f, 0.0f );
+	
+				// Move object
+				if( Input::Get().IsKeyDown( VK_LEFT, false ) )
+				{
+					cube->transform.Translate( -0.01f, 0.0f, 0.0f );
+					sphere->transform.Translate( -0.01f, 0.0f, 0.0f );
+				}
+				if( Input::Get().IsKeyDown( VK_RIGHT, false ) )
+				{
+					cube->transform.Translate( 0.01f, 0.0f, 0.0f );
+					sphere->transform.Translate( 0.01f, 0.0f, 0.0f );
+				}
+				if( Input::Get().IsKeyDown( VK_UP, false ) )
+				{
+					cube->transform.Translate( 0.0f, 0.01f, 0.0f );
+					sphere->transform.Translate( 0.0f, 0.01f, 0.0f );
+				}
+				if( Input::Get().IsKeyDown( VK_DOWN, false ) )
+				{
+					cube->transform.Translate( 0.0f, -0.01f, 0.0f );
+					sphere->transform.Translate( 0.0f, -0.01f, 0.0f );
+				}
+	
+				// Rotate
+				if( Input::Get().IsKeyDown( VK_A, false ) )
+				{
+					cube->transform.Rotate( 0.0f, 15.0f, 0.0f, 0.0f );
+					sphere->transform.Rotate( 0.0f, 15.0f, 0.0f, 0.0f );
+				}
+				if( Input::Get().IsKeyDown( VK_D, false ) )
+				{
+					cube->transform.Rotate( 0.0f, -15.0f, .0f, 0.0f );
+					sphere->transform.Rotate( 0.0f, -15.0f, .0f, 0.0f );
+				}
+				if( Input::Get().IsKeyDown( VK_W, false ) )
+				{
+					cube->transform.Rotate( -15.0f, 0.0f, 0.0f, 0.0f );
+					sphere->transform.Rotate( -15.0f, 0.0f, 0.0f, 0.0f );
+				}
+				if( Input::Get().IsKeyDown( VK_S, false ) )
+				{
+					cube->transform.Rotate( 15.0f, 0.0f, 0.0f, 0.0f );
+					sphere->transform.Rotate( 15.0f, 0.0f, 0.0f, 0.0f );
+				}
 			}
 #endif
-
-			ui->Update( deltaTime );
 
 			return true;
 		}
@@ -124,8 +114,6 @@ namespace Graphos
 
 			ShaderController::Get().GetShader( "texture" ).SetUniform( "cameraMatrix", /*cam->transform.WorldMatrix()*/Matrix::Identity );
 			ShaderController::Get().GetShader( "texture" ).SetUniform( "projectionMatrix", WindowController::Get().PerspectiveMatrix() );
-
-			ui->Draw();
 		}
 
 		void Shutdown( void )
@@ -135,4 +123,4 @@ namespace Graphos
 	};
 }
 
-#endif
+#endif//__TEST_GAME

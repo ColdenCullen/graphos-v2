@@ -2,6 +2,8 @@
 #define _CONFIGCONTROLLER_H_
 
 #include <string>
+#include <ostream>
+#include <fstream>
 #include <json/json.h>
 
 #include "Vector3.h"
@@ -41,6 +43,18 @@ namespace Graphos
 #endif
 			#pragma endregion
 
+			template<typename T>
+			void				SetData( string path, T newValue )
+			{
+				GetValueAtPath( path ) = newValue;
+
+				ofstream outfile( "Resources/Config/Config.json" );
+
+				outfile << config;
+
+				outfile.close();
+			}
+
 			static Config&		Get( void )
 			{
 				static Config instance;
@@ -52,13 +66,13 @@ namespace Graphos
 								Config( const Config& );
 			void				operator=( const Config& );
 
-			Json::Value			GetValueAtPath( string path );
+			Json::Value&		GetValueAtPath( string path );
 
 			// JSON values
 			Json::Value			config;
 		};
 
-#pragma region GetData
+		#pragma region GetData
 #if defined( _WIN32 )
 		template<>
 		int Config::GetData<int>( string path )
@@ -102,7 +116,7 @@ namespace Graphos
 			);
 		}
 #endif
-#pragma endregion
+		#pragma endregion
 	}
 }
 

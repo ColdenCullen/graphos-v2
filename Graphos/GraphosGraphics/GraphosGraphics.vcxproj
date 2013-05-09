@@ -81,7 +81,6 @@
     <ClInclude Include="ShaderController.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="stdafx.h" />
-    <ClInclude Include="targetver.h" />
     <ClInclude Include="WindowController.h" />
   </ItemGroup>
   <ItemGroup>

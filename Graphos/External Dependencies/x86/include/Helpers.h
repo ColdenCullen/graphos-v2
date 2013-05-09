@@ -36,7 +36,8 @@ struct Helpers
 
 		return shaderData.str();
 	}
-#endif
+#endif//_USE_READ_FILE
+
 #ifdef _USE_SCAN_DIR
 #undef _USE_SCAN_DIR
 	static unordered_map<string, string> ScanDir( string dirPath )
@@ -78,7 +79,7 @@ struct Helpers
 
 		return files;
 	}
-#endif
+#endif//_USE_SCAN_DIR
 };
 
 #endif//__HELPERS

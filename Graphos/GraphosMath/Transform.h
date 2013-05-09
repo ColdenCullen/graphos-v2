@@ -29,14 +29,15 @@ namespace Graphos
 			const Vector3&			Position( void )	const { return position; }
 			const Vector3&			Rotation( void )	const { return rotation; }
 			const Vector3&			Scale( void )		const { return scale; }
-			const Matrix			WorldMatrix()		const;
+			const Matrix			WorldMatrix( void )	const;
+			const Matrix			RotationMatrix( void ) const;
 
 			Transform*				parent;
 
 		private:
-			void					RotateX( const float angle );
-			void					RotateY( const float angle );
-			void					RotateZ( const float angle );
+			Matrix					RotateX( const float angle ) const;
+			Matrix					RotateY( const float angle ) const;
+			Matrix					RotateZ( const float angle ) const;
 
 			Matrix					matrix;
 

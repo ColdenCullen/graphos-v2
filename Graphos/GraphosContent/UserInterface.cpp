@@ -1,20 +1,22 @@
 #include "UserInterface.h"
+#include "GraphosGame.h"
 
+using namespace Graphos;
 using namespace Graphos::Content;
 using namespace Graphos::Graphics;
 
-UserInterface::UserInterface( string url )
+UserInterface::UserInterface( GraphosGame* owner ) : owner( owner )
 {
 	char abspath[ 256 ];
 #ifdef WIN32
-	_fullpath( abspath, url.c_str(), MAX_PATH );
+	_fullpath( abspath, Config::Get().GetData<string>( "ui.filePath" ).c_str(), MAX_PATH );
 #else
 	realpath( url.c_str(), abspath );
 #endif
 
 	// Get dimensions
-	width = Config::Get().GetData<unsigned int>( "display.width" );
-	height = Config::Get().GetData<unsigned int>( "display.height" );
+	width = Config::Get().GetData<unsigned int>( "display.width" ) * Config::Get().GetData<float>( "ui.scale.x" );
+	height = Config::Get().GetData<unsigned int>( "display.height" ) * Config::Get().GetData<float>( "ui.scale.y" );
 
 	// Generate mesh
 	numElements = 6;
@@ -55,13 +57,32 @@ UserInterface::UserInterface( string url )
 	glBufferData( GL_ELEMENT_ARRAY_BUFFER, numElements * sizeof( unsigned int ), indices, GL_STATIC_DRAW );
 
 	view = new AwesomiumView( abspath, width, height );
+	view->webView->set_js_method_handler( new JavaScriptHandler( this ) );
+
+	graphosGame = view->webView->CreateGlobalJavascriptObject( WSLit( "GraphosGame" ) ).ToObject();
+	graphosGame.SetCustomMethod( WSLit( "ChangeState" ), false );
+	graphosGame.SetCustomMethod( WSLit( "SetConfig" ), false );
 
 	// Scale to fix awesomium issue
 	transform.Scale( 1.0f, -1.0f, 1.0f );
 }
 
+UserInterface::~UserInterface()
+{
+	view->Shutdown();
+	delete view;
+}
+
 bool UserInterface::Update( float deltaTime )
 {
+	Point cursor = Input::Get().GetMousePos();
+	view->webView->InjectMouseMove( cursor.x, cursor.y );
+
+	if( Input::Get().IsKeyDown( VK_LBUTTON, false ) )
+		view->webView->InjectMouseDown( kMouseButton_Left );
+	if( !Input::Get().IsKeyDown( VK_LBUTTON, false ) )
+		view->webView->InjectMouseUp( kMouseButton_Left );
+
 	view->Update( deltaTime );
 
 	return true;
@@ -83,4 +104,28 @@ void UserInterface::Draw( void )
 	glDrawElements( GL_TRIANGLES, numElements, GL_UNSIGNED_INT, NULL );
 
 	ShaderController::Get().GetShader( "texture" ).SetUniform( "projectionMatrix", WindowController::Get().PerspectiveMatrix() );
+}
+
+void UserInterface::JavaScriptHandler::OnMethodCall( WebView* caller, unsigned int remoteObjectID, const WebString& methodName, const JSArray& args )
+{
+	// If called on GraphosGame
+	if( remoteObjectID == owner->graphosGame.remote_id() )
+	{
+		if( methodName == WSLit( "ChangeState" ) )
+		{
+			if( args[ 0 ].ToString() == WSLit( "Game" ) )
+				owner->owner->ChangeState( Game );
+			else if( args[ 0 ].ToString() == WSLit( "Menu" ) )
+				owner->owner->ChangeState( Menu );
+		}
+		else if( methodName == WSLit( "SetConfig" ) )
+		{
+			Config::Get().SetData( "graphics.backfaceculling", true );
+		}
+	}
+}
+
+JSValue UserInterface::JavaScriptHandler::OnMethodCallWithReturnValue( WebView* caller, unsigned int remoteObjectID, const WebString& methodName, const JSArray& args )
+{
+	return JSValue::Undefined();
 }

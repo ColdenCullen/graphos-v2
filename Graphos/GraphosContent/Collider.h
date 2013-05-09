@@ -3,6 +3,7 @@
 
 #include "Ingredient.h"
 #include "Vector3.h"
+#include "GameObject.h"
 
 using namespace Graphos::Math;
 using namespace Graphos::Content;
@@ -21,9 +22,12 @@ namespace Graphos
 
 		GameObject*			Owner( void ) const	{ return owner; }
 		const ColliderType	Type( void ) const	{ return type; }
-		virtual Vector3		GetFurthestPointInDirection( Vector3& direction ) const = 0;
+		const Vector3		Position( void ) const { return owner->transform.Position() + centerOffset; }
+		virtual const Vector3
+							GetFurthestPointInDirection( const Vector3& direction ) const = 0;
 
 		Vector3				centerOffset;
+		float				bounce;
 
 		//friend class		Physics;
 
