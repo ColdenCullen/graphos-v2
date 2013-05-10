@@ -101,9 +101,6 @@ void Physics::Update( void )
 						
 						Vector3& moveVel = movableObj->GetIngredient<Rigidbody>()->linearVelocity;
 
-						float velDot = moveVel.Dot( normal );
-						Vector3 diff = normal * ( moveVel.Dot( normal ) * -2 );
-
 						if( moveVel.Dot( normal ) < 0.0f )
 						{
 							// Reflect velocity
@@ -112,8 +109,6 @@ void Physics::Update( void )
 							// Multiply by bounce values
 							moveVel *= ( *insideCollider )->bounce * ( *outsideCollider )->bounce;
 						}
-
-						velDot = moveVel.Dot( normal );
 					}
 				}
 				// if both are movable

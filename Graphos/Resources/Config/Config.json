@@ -2,13 +2,13 @@
 {
 	"display" : 
 	{
-		"fullscreen" : false,
-		"height" : 720,
-		"width" : 1280
+		"fullscreen" : true,
+		"height" : 1080,
+		"width" : 1920
 	},
 	"graphics" : 
 	{
-		"backfaceculling" : "true",
+		"backfaceculling" : true,
 		"vsync" : false
 	},
 	"physics" : 
