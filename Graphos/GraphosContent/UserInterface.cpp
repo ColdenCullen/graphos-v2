@@ -62,6 +62,7 @@ UserInterface::UserInterface( GraphosGame* owner ) : owner( owner )
 	graphosGame = view->webView->CreateGlobalJavascriptObject( WSLit( "GraphosGame" ) ).ToObject();
 	graphosGame.SetCustomMethod( WSLit( "ChangeState" ), false );
 	graphosGame.SetCustomMethod( WSLit( "SetConfig" ), false );
+	graphosGame.SetCustomMethod( WSLit( "Reset" ), false );
 
 	// Scale to fix awesomium issue
 	transform.Scale( 1.0f, -1.0f, 1.0f );
@@ -129,7 +130,7 @@ void UserInterface::JavaScriptHandler::OnMethodCall( WebView* caller, unsigned i
 			else if( args[ 0 ].IsString() )
 				Config::Get().SetData( ToString( args[ 0 ].ToString() ), ToString( args[ 1 ].ToString() ) );
 		}
-		else if( methodName == WSLit( "ApplyChanges" ) && args.size() == 0 )
+		else if( methodName == WSLit( "Reset" ) && args.size() == 0 )
 		{
 			owner->owner->Reset();
 		}

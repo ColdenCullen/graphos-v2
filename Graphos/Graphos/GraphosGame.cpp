@@ -5,6 +5,20 @@
 #include "Helpers.h"
 
 #include <iostream>
+#include <ctime>
+#include <vector>
+#include <string>
+#include <json/json.h>
+
+#include "ScriptController.h"
+#include "RigidBody.h"
+#include "SphereCollider.h"
+#include "BoxCollider.h"
+#include "Physics.h"
+#include "GraphicsController.h"
+#include "AssetController.h"
+#include "ShaderController.h"
+#include "AwesomiumView.h"
 
 #define OBJECTS_PATH "Resources/Assets/Objects/"
 
@@ -70,6 +84,9 @@ void GraphosGame::Run( void )
 			if( !objectsLoaded )
 				LoadObjects();
 
+			// Update camera
+			camera->Update( deltaTime );
+
 			for( auto iterator = objects->begin(); iterator != objects->end(); ++iterator )
 				iterator->second.Update( deltaTime );	
 		}
@@ -77,7 +94,7 @@ void GraphosGame::Run( void )
 		//////////////////////////////////////////////////////////////////////////
 		// Draw
 		//////////////////////////////////////////////////////////////////////////
-		
+
 		// Begin drawing
 		GraphicsController::Get().CallGLFunction( GraphicsController::BEGIN );
 
@@ -86,12 +103,20 @@ void GraphosGame::Run( void )
 
 		// Draw objects in list
 		if( currentState == Game )
-			for( auto iterator = objects->begin(); iterator != objects->end(); ++iterator )
-				iterator->second.Draw();
+		{
+			// Update camera position
+			camera->Draw();
 
+			for( auto iterator = objects->begin(); iterator != objects->end(); ++iterator )
+			{
+				iterator->second.Draw();
+			}
+		}
 		// Draw the UI last
-		if( currentState == Menu )
+		else if( currentState == Menu )
+		{
 			ui->Draw();
+		}
 
 		// End drawing
 		GraphicsController::Get().CallGLFunction( GraphicsController::END );
@@ -212,13 +237,23 @@ void GraphosGame::LoadObjects( void )
 
 				// Get parent
 				if( ( current = root.get( "Parent", root ) ) != root )
+				{
 					parentMap[ id ] = current.asString();
+				}
 
 				// Set texture
 				if( ( current = root.get( "Texture", root ) ) != root )
+				{
 					newObj->AddIngredient(
 						AssetController::Get().GetContent<Texture>( current[ "Name" ].asString() )
 					);
+				}
+
+				if( ( current = root.get( "Camera", root ) ) != root )
+				{
+					camera = new Camera( newObj );
+					//newObj->AddIngredient( camera );
+				}
 
 				// Set physics Rigid Body object
 				if( ( current = root.get( "Rigidbody", root ) ) != root )

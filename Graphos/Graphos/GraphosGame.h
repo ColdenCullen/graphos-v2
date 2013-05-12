@@ -1,22 +1,10 @@
 #ifndef __GRAPHOS_GAME
 #define __GRAPHOS_GAME
 
-#include <ctime>
-#include <vector>
-#include <algorithm>
-#include <string>
-#include <json/json.h>
+#include <unordered_map>
 
-#include "GraphicsController.h"
-#include "AssetController.h"
-#include "ShaderController.h"
-#include "AwesomiumView.h"
+#include "Camera.h"
 #include "GameObject.h"
-#include "ScriptController.h"
-#include "RigidBody.h"
-#include "SphereCollider.h"
-#include "BoxCollider.h"
-#include "Physics.h"
 #include "UserInterface.h"
 
 using namespace std;
@@ -45,6 +33,7 @@ namespace Graphos
 		GameState			currentState;
 		float				deltaTime;
 		UserInterface*		ui;
+		Camera*				camera;
 
 		void				LoadObjects( void );
 		void				DeleteObjects( void );

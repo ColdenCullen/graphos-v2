@@ -22,17 +22,10 @@ namespace Graphos
 	class TestGame : public GraphosGame
 	{
 	private:
-		Camera* cam;
-		GameObject* cube;
 		GameObject* sphere;
 		
 		bool Initialize( void )
 		{
-			// Call parent's load objects
-			//LoadObjects();
-
-			cam = nullptr;//new Camera();
-			cube = nullptr;
 			sphere = nullptr;
 
 			return true;
@@ -57,57 +50,50 @@ namespace Graphos
 
 			if( currentState == Game )
 			{
-				if( sphere == nullptr || cube == nullptr )
+				if( sphere == nullptr )
 				{
-					cube = GameObject::GetGameObject( "LeftCube" );
 					sphere = GameObject::GetGameObject( "Sphere" );
 				}
 
 				if( Input::Get().IsKeyDown( VK_SPACE, true ) )
+				{
 					sphere->GetIngredient<Rigidbody>()->AddForce( 1.0f, 0.0f, 0.0f );
+				}
 	
 				// Move object
 				if( Input::Get().IsKeyDown( VK_LEFT, false ) )
 				{
-					cube->transform.Translate( -0.01f, 0.0f, 0.0f );
-					//sphere->transform.Translate( -0.01f, 0.0f, 0.0f );
+					camera->Owner()->transform.Rotate( 0.0f, 30.0f * deltaTime, 0.0f );
 				}
 				if( Input::Get().IsKeyDown( VK_RIGHT, false ) )
 				{
-					cube->transform.Translate( 0.01f, 0.0f, 0.0f );
-					//sphere->transform.Translate( 0.01f, 0.0f, 0.0f );
+					camera->Owner()->transform.Rotate( 0.0f, -30.0f * deltaTime, 0.0f );
 				}
 				if( Input::Get().IsKeyDown( VK_UP, false ) )
 				{
-					cube->transform.Translate( 0.0f, 0.01f, 0.0f );
-					//sphere->transform.Translate( 0.0f, 0.01f, 0.0f );
+					camera->Owner()->transform.Rotate( 30.0f * deltaTime, 0.0f, 0.0f );
 				}
 				if( Input::Get().IsKeyDown( VK_DOWN, false ) )
 				{
-					cube->transform.Translate( 0.0f, -0.01f, 0.0f );
-					//sphere->transform.Translate( 0.0f, -0.01f, 0.0f );
+					camera->Owner()->transform.Rotate( -30.0f * deltaTime, 0.0f, 0.0f );
 				}
 	
 				// Rotate
 				if( Input::Get().IsKeyDown( VK_A, false ) )
 				{
-					cube->transform.Rotate( 0.0f, 15.0f, 0.0f );
-					//sphere->transform.Rotate( 0.0f, 15.0f, 0.0f );
+					camera->Owner()->transform.Translate( -1.0f * deltaTime, 0.0f, 0.0f );
 				}
 				if( Input::Get().IsKeyDown( VK_D, false ) )
 				{
-					cube->transform.Rotate( 0.0f, -15.0f, .0f );
-					//sphere->transform.Rotate( 0.0f, -15.0f, .0f );
+					camera->Owner()->transform.Translate( 1.0f * deltaTime, 0.0f, .0f );
 				}
 				if( Input::Get().IsKeyDown( VK_W, false ) )
 				{
-					cube->transform.Rotate( -15.0f, 0.0f, 0.0f );
-					//sphere->transform.Rotate( -15.0f, 0.0f, 0.0f );
+					camera->Owner()->transform.Translate( 0.0f, 0.0f, 1.0f * deltaTime );
 				}
 				if( Input::Get().IsKeyDown( VK_S, false ) )
 				{
-					cube->transform.Rotate( 15.0f, 0.0f, 0.0f );
-					//sphere->transform.Rotate( 15.0f, 0.0f, 0.0f );
+					camera->Owner()->transform.Translate( 0.0f, 0.0f, -1.0f * deltaTime );
 				}
 			}
 #endif
@@ -126,7 +112,7 @@ namespace Graphos
 
 		void Shutdown( void )
 		{
-			delete_s( cam );
+			delete_s( camera );
 		}
 	};
 }

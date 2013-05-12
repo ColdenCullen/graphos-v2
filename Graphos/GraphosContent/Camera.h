@@ -5,8 +5,10 @@
 #include "GameObject.h"
 #include "Ingredient.h"
 #include "Matrix.h"
+#include "Vector3.h"
 
 using namespace Graphos;
+using namespace Graphos::Math;
 
 namespace Graphos
 {
@@ -17,12 +19,15 @@ namespace Graphos
 		public:
 								Camera( GameObject* owner );
 			
-			bool				Update( void );
+			bool				Update( float deltaTime );
 			void				Draw( void );
 			void				Shutdown( void );
+			GameObject*			Owner( void ) { return owner; }
 
 		private:
 			Matrix				viewMatrix;
+
+			void				UpdateViewMatrix( Vector3& lookAt, Vector3& up );
 		};
 	}
 }
