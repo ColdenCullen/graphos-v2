@@ -54,6 +54,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Textures", "Textures", "{38
 	ProjectSection(SolutionItems) = preProject
 		Resources\Assets\Textures\CubeMaterial.jpg = Resources\Assets\Textures\CubeMaterial.jpg
 		Resources\Assets\Textures\Poop.png = Resources\Assets\Textures\Poop.png
+		Resources\Assets\Textures\TableTexture.png = Resources\Assets\Textures\TableTexture.png
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameScripts", "GameScripts\GameScripts.csproj", "{E207B80E-7051-40C2-BCE1-43891B38058C}"

@@ -63,19 +63,19 @@ namespace Graphos
 				// Move object
 				if( Input::Get().IsKeyDown( VK_LEFT, false ) )
 				{
-					camera->Owner()->transform.Rotate( 0.0f, 30.0f * deltaTime, 0.0f );
+					camera->Owner()->transform.Rotate( 0.0f, 3.0f * deltaTime, 0.0f );
 				}
 				if( Input::Get().IsKeyDown( VK_RIGHT, false ) )
 				{
-					camera->Owner()->transform.Rotate( 0.0f, -30.0f * deltaTime, 0.0f );
+					camera->Owner()->transform.Rotate( 0.0f, -3.0f * deltaTime, 0.0f );
 				}
 				if( Input::Get().IsKeyDown( VK_UP, false ) )
 				{
-					camera->Owner()->transform.Rotate( 30.0f * deltaTime, 0.0f, 0.0f );
+					camera->Owner()->transform.Rotate( 3.0f * deltaTime, 0.0f, 0.0f );
 				}
 				if( Input::Get().IsKeyDown( VK_DOWN, false ) )
 				{
-					camera->Owner()->transform.Rotate( -30.0f * deltaTime, 0.0f, 0.0f );
+					camera->Owner()->transform.Rotate( -3.0f * deltaTime, 0.0f, 0.0f );
 				}
 	
 				// Rotate

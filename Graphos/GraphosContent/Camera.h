@@ -22,12 +22,10 @@ namespace Graphos
 			bool				Update( float deltaTime );
 			void				Draw( void );
 			void				Shutdown( void );
-			GameObject*			Owner( void ) { return owner; }
+			GameObject*			Owner( void ) const { return owner; }
 
 		private:
 			Matrix				viewMatrix;
-
-			void				UpdateViewMatrix( Vector3& lookAt, Vector3& up );
 		};
 	}
 }

@@ -105,7 +105,7 @@ namespace Graphos
 			// Cross product
 			inline Vector3 Cross( const Vector3& other ) const
 			{
-				return Vector3( ( y * other.z ) - ( z * other.y ), ( x * other.z ) - ( z * other.x ), ( x * other.y ) - ( y * other.x ) );
+				return Vector3( ( y * other.z ) - ( z * other.y ), ( z * other.x ) - ( x * other.z ), ( x * other.y ) - ( y * other.x ) );
 			}
 			// Cross product
 			inline Vector3 operator%( const Vector3& other ) const
@@ -124,6 +124,20 @@ namespace Graphos
 				x *= other;
 				y *= other;
 				z *= other;
+
+				return *this;
+			}
+
+			// Divide by scalar
+			inline Vector3 operator/( const float other ) const
+			{
+				return Vector3( x / other, y / other, z / other );
+			}
+			Vector3& operator/=( const float other )
+			{
+				x /= other;
+				y /= other;
+				z /= other;
 
 				return *this;
 			}

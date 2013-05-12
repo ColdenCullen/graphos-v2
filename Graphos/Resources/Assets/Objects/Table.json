@@ -4,7 +4,7 @@
 	"Shader": "texture",
 
 	"Texture": {
-		"Name": "Poop"
+		"Name": "TableTexture"
 	},
 	
 	"Mesh": {
