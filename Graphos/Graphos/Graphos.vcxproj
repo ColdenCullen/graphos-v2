@@ -105,7 +105,7 @@
     </Link>
     <ClCompile>
       <BrowseInformation>true</BrowseInformation>
-      <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions);DEBUG;_CRT_SECURE_NO_WARNINGS;</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions);_DEBUG;_CRT_SECURE_NO_WARNINGS;</PreprocessorDefinitions>
     </ClCompile>
     <Bscmake>
       <PreserveSbr>true</PreserveSbr>

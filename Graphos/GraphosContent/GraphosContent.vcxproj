@@ -108,7 +108,7 @@
     <ClCompile>
       <BrowseInformation>true</BrowseInformation>
       <AdditionalIncludeDirectories>$(SolutionDir)GraphosMath;$(SolutionDir)GraphosGraphics;$(SolutionDir)Graphos</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS;</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_MBCS;_DEBUG;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
     </ClCompile>
     <Bscmake>
       <PreserveSbr>true</PreserveSbr>

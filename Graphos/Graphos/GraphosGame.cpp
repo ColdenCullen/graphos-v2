@@ -61,7 +61,7 @@ void GraphosGame::Run( void )
 
 		if( totalTime >= 1.0f )
 		{
-#ifdef DEBUG
+#ifdef _DEBUG
 			std::cout << frameCount << std::endl;
 #endif
 			totalTime = 0.0f;
