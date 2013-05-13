@@ -19,6 +19,7 @@
 #include "AssetController.h"
 #include "ShaderController.h"
 #include "AwesomiumView.h"
+#include "Input.h"
 
 #define OBJECTS_PATH "Resources/Assets/Objects/"
 
@@ -68,6 +69,9 @@ void GraphosGame::Run( void )
 		// Update
 		//////////////////////////////////////////////////////////////////////////
 		
+		// Update input
+		Input::Get().Update();
+
 		// Do the updating of the child class.
 		isDone = !Update( deltaTime );
 
@@ -76,7 +80,9 @@ void GraphosGame::Run( void )
 
 		// Update the UI
 		if( currentState == Menu )
+		{
 			ui->Update( deltaTime );
+		}
 
 		// Update objects in list
 		if( currentState == Game )
@@ -172,6 +178,7 @@ bool GraphosGame::Start( void )
 	objectsLoaded = false;
 	currentState = Menu;
 	objects = nullptr;
+	camera = nullptr;
 
 	bool isDone = false;
 
@@ -187,7 +194,10 @@ bool GraphosGame::Start( void )
 	if( !isDone && !Physics::Get().Initialize() )
 		isDone = true;
 
-	ui = new UserInterface( this );
+	if( !isDone );
+		ui = new UserInterface( this );
+
+	Input::Get().ui = ui;
 
 	if( !isDone && !Initialize() )
 		isDone = true;

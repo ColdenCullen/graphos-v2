@@ -27,12 +27,35 @@ window._skel_config = {
     }
 };
 
-function updateConfig()
+function getConfig()
 {
     jQuery.getJSON( '../Config/Config.json', function( json, textStatus )
     {
         configOptions = json;
+        $("#screenWidth").val(configOptions.display.width);
+        $("#screenHeight").val(configOptions.display.height);
+        $("#fullscreen").prop('checked', configOptions.display.fullscreen);
+        fullscreenChecked();
+        $("#vsync").prop('checked', configOptions.graphics.vsync);
+        $("#uiScaleValue").val(configOptions.ui.scale.x);
+        $("#uiScaleSlider").val(configOptions.ui.scale.x);
     } );
+}
+
+function updateConfig()
+{
+    setConfig();
+}
+
+function setConfig()
+{
+    GraphosGame.SetConfig( 'display.width', parseInt( $("#screenWidth").val() ) );
+    GraphosGame.SetConfig( 'display.height', parseInt( $("#screenHeight").val() ) );
+    GraphosGame.SetConfig( 'display.fullscreen', $('#fullscreen').is(':checked') == "true" );
+    GraphosGame.SetConfig( 'graphics.vsync', $('#vsync').is(':checked') == "true" );
+    GraphosGame.SetConfig( 'ui.scale.x', parseFloat( $("#uiScaleValue").val() ) );
+    GraphosGame.SetConfig( 'ui.scale.y', parseFloat( $("#uiScaleValue").val() ) );
+    GraphosGame.Reset();
 }
 
 jQuery(window).load(function() {
@@ -44,7 +67,7 @@ jQuery(window).load(function() {
     /*********************************************************************************/
 
         var settings = {
-            resizeSpeed:    600,        // Speed to resize panel
+            resizeSpeed:    150,        // Speed to resize panel
             fadeSpeed:      300,        // Speed to fade in/out
             sizeFactor:     11.5,       // Size factor
             sizeLimit:      15          // Minimum point size
@@ -80,8 +103,7 @@ jQuery(window).load(function() {
     /*********************************************************************************/
     /* Load JSON Settings                                                            */
     /*********************************************************************************/
-
-        updateConfig();
+        getConfig();
 
         //GraphosGame.SetConfig( 'graphics.backfaceculling', true );
 

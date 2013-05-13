@@ -3,9 +3,9 @@
 
 #include <GL/glincludes.h>
 
-#include <Awesomium/WebCore.h>
+#include <Awesomium/WebView.h>
 #include <Awesomium/BitmapSurface.h>
-#include <Awesomium/STLHelpers.h>
+
 #include <string>
 
 #include "Ingredient.h"

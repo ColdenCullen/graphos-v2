@@ -41,6 +41,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Meshes", "Meshes", "{0700A2
 	ProjectSection(SolutionItems) = preProject
 		Resources\Assets\Meshes\Cube.obj = Resources\Assets\Meshes\Cube.obj
 		Resources\Assets\Meshes\Sphere.obj = Resources\Assets\Meshes\Sphere.obj
+		Resources\Assets\Meshes\Table.obj = Resources\Assets\Meshes\Table.obj
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Objects", "Objects", "{8DF553C6-1D43-46F9-83B1-E27CB6C6EB40}"

@@ -1,25 +1,15 @@
 #ifndef __USERINTERFACE
 #define __USERINTERFACE
 
-#include <GL/GLIncludes.h>
-#include <string>
-#include <Awesomium/WebCore.h>
-#include <Awesomium/STLHelpers.h>
-//#include <Awesomium/BitmapSurface.h>
-
-#include "Input.h"
 #include "Transform.h"
 #include "AwesomiumView.h"
-#include "WindowController.h"
-#include "ShaderController.h"
+#include "Vector2.h"
 
 #define DEPTH 1.0f
 
-using namespace std;
-using namespace Awesomium;
-
 namespace Graphos
 {
+	// Forward declarations
 	class GraphosGame;
 
 	namespace Content
@@ -32,6 +22,7 @@ namespace Graphos
 
 			bool				Update( float deltaTime );
 			void				Draw( void );
+			void				KeyPress( unsigned int key );
 
 		private:
 			// GL Texture ID

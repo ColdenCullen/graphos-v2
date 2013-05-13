@@ -77,22 +77,62 @@ namespace Graphos
 		template<>
 		int Config::GetData<int>( string path )
 		{
-			return GetValueAtPath( path ).asInt();
+			const Json::Value& val = GetValueAtPath( path );
+
+			if( val.isInt() )
+			{
+				return val.asInt();
+			}
+			else
+			{
+				return atoi( val.asCString() );
+			}
 		}
 		template<>
 		unsigned int Config::GetData<unsigned int>( string path )
 		{
-			return GetValueAtPath( path ).asUInt();
+			const Json::Value& val = GetValueAtPath( path );
+
+			if( val.isInt() )
+			{
+				return val.asUInt();
+			}
+			else
+			{
+				return static_cast<unsigned int>( atoi( val.asCString() ) );
+			}
 		}
 		template<>
 		float Config::GetData<float>( string path )
 		{
-			return static_cast<float>( GetValueAtPath( path ).asDouble() );
+			const Json::Value& val = GetValueAtPath( path );
+
+			if( val.isInt() )
+			{
+				return static_cast<float>( val.asInt() );
+			}
+			else if( val.isDouble() )
+			{
+				return static_cast<float>( val.asDouble() );
+			}
+			else
+			{
+				return atof( val.asCString() );
+			}
 		}
 		template<>
 		bool Config::GetData<bool>( string path )
 		{
-			return GetValueAtPath( path ).asBool();
+			const Json::Value& val = GetValueAtPath( path );
+
+			if( val.isUInt() )
+			{
+				return val.asBool();
+			}
+			else
+			{
+				return val.asString() == "true";
+			}
 		}
 		template<>
 		string Config::GetData<string>( string path )

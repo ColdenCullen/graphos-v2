@@ -1,3 +1,6 @@
+#include <Awesomium/WebCore.h>
+#include <Awesomium/STLHelpers.h>
+
 #include "AwesomiumView.h"
 
 using namespace std;
@@ -18,7 +21,10 @@ bool AwesomiumView::Initialize( string url, unsigned int width, unsigned int hei
 		WebCore::Initialize( config );
 	}
 
-	webView = WebCore::instance()->CreateWebView( width, height );
+	WebPreferences prefs;
+	prefs.allow_file_access_from_file_url = true;
+
+	webView = WebCore::instance()->CreateWebView( width, height, WebCore::instance()->CreateWebSession( WSLit( "" ), prefs ) );
 	webView->LoadURL( WebURL( WSLit( url.c_str() ) ) );
 	webView->SetTransparent( true );
 

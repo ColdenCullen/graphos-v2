@@ -1,8 +1,7 @@
-#ifndef _INPUT_H_
-#define _INPUT_H_
+#ifndef __INPUT
+#define __INPUT
 
 #ifdef _WIN32
-#include <Windows.h>
 #include "stdafx.h"
 
 #pragma region Keys
@@ -46,50 +45,72 @@
 #pragma endregion
 #endif
 
-//#include "Transform.h"
-#include "WindowController.h"
-#include "Config.h"
-#include "../GraphosMath/Transform.h"
+#include <stdint.h>
+#include "Transform.h"
+
+#define TOTAL_SIZE 256
+#define SPLIT 4
+#define SIZE (TOTAL_SIZE / SPLIT)
+
+using namespace Graphos::Math;
 
 namespace Graphos
 {
-	using namespace Math;
+	// Forward declarations
+	namespace Content
+	{
+		class UserInterface;
+	}
 
 	namespace Graphics
 	{
-		struct Point
+		// Struct to store key-states
+		struct InputState
 		{
-			float x, y;
+		public:
+			InputState&			operator=( const InputState& other );
+			bool				operator[]( const unsigned char index );
 
-			Point( float x, float y ) : x( x ), y( y ) { }
+			bool				CheckState( const unsigned char keyCode ) const;
+			void				SetState( const unsigned char keyCode, const bool newValue );
+			void				Reset( void );
+		private:
+			uint64_t			bits[ SPLIT ];
 		};
 
 		class Input
 		{
 		public:
+			Graphos::Content::UserInterface*
+								ui;
+
 			static Input& Get( void )
 			{
 				static Input instance;
 				return instance;
 			}
 
+			void				Update( void );
+
 			void				KeyDown( unsigned int input );
 			void				KeyUp( unsigned int input );
 
 			bool				IsKeyDown( unsigned int input, const bool checkPrevious = false );
+			bool				IsKeyUp( unsigned int input, const bool checkPrevious = false );
 
-			Point				GetMousePos( /*Transform& camera, float zPlane*/ ) const;
+			Vector2				GetMousePos( /*Transform& camera, float zPlane*/ ) const;
 
 		private:
-			Input( void );
-			Input( Input& other );
+								Input( void ) { }
+								Input( Input& other );
 			void				operator=( Input& other );
 
-			bool				keys[ 256 ];
-			bool				prevState[ 256 ];
+			InputState			keyState;
+			InputState			prevKeyState;
+			InputState			stage;
 			bool				lmbDown, rmbDown;
 		};
 	}
 }
 
-#endif
+#endif//__INPUT

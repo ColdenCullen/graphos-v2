@@ -48,22 +48,58 @@ Json::Value& Config::GetValueAtPath( string path )
 template<>
 int Config::GetData<int>( string path )
 {
-	return GetValueAtPath( path ).asInt();
+	const Json::Value& val = GetValueAtPath( path );
+
+	if( val.isInt() )
+	{
+		return val.asInt();
+	}
+	else
+	{
+		return atoi( val.asCString() );
+	}
 }
 template<>
 unsigned int Config::GetData<unsigned int>( string path )
 {
-	return GetValueAtPath( path ).asUInt();
+	const Json::Value& val = GetValueAtPath( path );
+
+	if( val.isUInt() )
+	{
+		return val.asUInt();
+	}
+	else
+	{
+		return static_cast<unsigned int>( atoi( val.asCString() ) );
+	}
 }
 template<>
 float Config::GetData<float>( string path )
 {
-	return static_cast<float>( GetValueAtPath( path ).asDouble() );
+	const Json::Value& val = GetValueAtPath( path );
+
+	if( val.isUInt() )
+	{
+		return static_cast<float>( val.asDouble() );
+	}
+	else
+	{
+		return atof( val.asCString() );
+	}
 }
 template<>
 bool Config::GetData<bool>( string path )
 {
-	return GetValueAtPath( path ).asBool();
+	const Json::Value& val = GetValueAtPath( path );
+
+	if( val.isUInt() )
+	{
+		return val.asBool();
+	}
+	else
+	{
+		return val.asString() == "true";
+	}
 }
 template<>
 string Config::GetData<string>( string path )
@@ -75,5 +111,16 @@ const char* Config::GetData<const char*>( string path )
 {
 	return GetValueAtPath( path ).asCString();
 }
-#endif//__APPLE__
+template<>
+Vector3	Config::GetData<Vector3>( string path )
+{
+	Json::Value root = GetValueAtPath( path );
+
+	return Vector3(
+		static_cast<float>( root.get( "x", root ).asDouble() ),
+		static_cast<float>( root.get( "y", root ).asDouble() ),
+		static_cast<float>( root.get( "z", root ).asDouble() )
+		);
+}
+#endif
 #pragma endregion

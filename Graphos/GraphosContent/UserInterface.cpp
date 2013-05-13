@@ -1,5 +1,15 @@
+#include <string>
+#include <GL/GLIncludes.h>
+#include <Awesomium/WebCore.h>
+#include <Awesomium/STLHelpers.h>
+
 #include "UserInterface.h"
 #include "GraphosGame.h"
+#include "WindowController.h"
+#include "ShaderController.h"
+#include "Input.h"
+
+using namespace Awesomium;
 
 using namespace Graphos;
 using namespace Graphos::Content;
@@ -9,14 +19,14 @@ UserInterface::UserInterface( GraphosGame* owner ) : owner( owner )
 {
 	char abspath[ 256 ];
 #ifdef WIN32
-	_fullpath( abspath, Config::Get().GetData<string>( "ui.filePath" ).c_str(), MAX_PATH );
+	_fullpath( abspath, Config::Get().GetData<std::string>( "ui.filePath" ).c_str(), MAX_PATH );
 #else
 	realpath( url.c_str(), abspath );
 #endif
 
 	// Get dimensions
-	width = Config::Get().GetData<unsigned int>( "display.width" ) * Config::Get().GetData<float>( "ui.scale.x" );
-	height = Config::Get().GetData<unsigned int>( "display.height" ) * Config::Get().GetData<float>( "ui.scale.y" );
+	width = Config::Get().GetData<unsigned int>( "display.width" );
+	height = Config::Get().GetData<unsigned int>( "display.height" );
 
 	// Generate mesh
 	numElements = 6;
@@ -64,25 +74,44 @@ UserInterface::UserInterface( GraphosGame* owner ) : owner( owner )
 	graphosGame.SetCustomMethod( WSLit( "SetConfig" ), false );
 	graphosGame.SetCustomMethod( WSLit( "Reset" ), false );
 
+	width	*= Config::Get().GetData<float>( "ui.scale.x" );
+	height	*= Config::Get().GetData<float>( "ui.scale.y" );
+
 	// Scale to fix awesomium issue
-	transform.Scale( 1.0f, -1.0f, 1.0f );
+	transform.Scale(
+		Config::Get().GetData<float>( "ui.scale.x" ),
+		-Config::Get().GetData<float>( "ui.scale.y" ),
+		1.0f
+	);
 }
 
 UserInterface::~UserInterface()
 {
-	view->Shutdown();
-	delete view;
+	if( view )
+	{
+		view->Shutdown();
+		delete view;
+	}
 }
 
 bool UserInterface::Update( float deltaTime )
 {
-	Point cursor = Input::Get().GetMousePos();
-	view->webView->InjectMouseMove( cursor.x, cursor.y );
+	Vector2 cursor = Input::Get().GetMousePos();
 
-	if( Input::Get().IsKeyDown( VK_LBUTTON, false ) )
+	// Transform for scale
+	view->webView->InjectMouseMove(
+		( width / 2 ) + ( ( ( width / 2 ) - cursor.x ) * -transform.Scale().x ),
+		( height / 2 ) + ( ( ( height / 2 ) - cursor.y ) * transform.Scale().y )
+	);
+
+	if( Input::Get().IsKeyDown( VK_LBUTTON/*, true*/ ) )
+	{
 		view->webView->InjectMouseDown( kMouseButton_Left );
-	else
+	}
+	else// if( Input::Get().IsKeyUp( VK_LBUTTON, true ) )
+	{
 		view->webView->InjectMouseUp( kMouseButton_Left );
+	}
 
 	view->Update( deltaTime );
 
@@ -107,6 +136,13 @@ void UserInterface::Draw( void )
 	ShaderController::Get().GetShader( "texture" ).SetUniform( "projectionMatrix", WindowController::Get().PerspectiveMatrix() );
 }
 
+void UserInterface::KeyPress( unsigned int key )
+{
+	WebKeyboardEvent keyEvent;
+	keyEvent.virtual_key_code = key;
+	view->webView->InjectKeyboardEvent( keyEvent );
+}
+
 void UserInterface::JavaScriptHandler::OnMethodCall( WebView* caller, unsigned int remoteObjectID, const WebString& methodName, const JSArray& args )
 {
 	// If called on GraphosGame
@@ -121,13 +157,13 @@ void UserInterface::JavaScriptHandler::OnMethodCall( WebView* caller, unsigned i
 		}
 		else if( methodName == WSLit( "SetConfig" ) && args.size() == 2 )
 		{
-			if( args[ 0 ].IsBoolean() )
+			if( args[ 1 ].IsBoolean() )
 				Config::Get().SetData( ToString( args[ 0 ].ToString() ), args[ 1 ].ToBoolean() );
-			else if( args[ 0 ].IsInteger() )
+			else if( args[ 1 ].IsInteger() )
 				Config::Get().SetData( ToString( args[ 0 ].ToString() ), args[ 1 ].ToInteger() );
-			else if( args[ 0 ].IsDouble() )
+			else if( args[ 1 ].IsDouble() )
 				Config::Get().SetData( ToString( args[ 0 ].ToString() ), static_cast<float>( args[ 1 ].ToDouble() ) );
-			else if( args[ 0 ].IsString() )
+			else if( args[ 1 ].IsString() )
 				Config::Get().SetData( ToString( args[ 0 ].ToString() ), ToString( args[ 1 ].ToString() ) );
 		}
 		else if( methodName == WSLit( "Reset" ) && args.size() == 0 )

@@ -3,10 +3,9 @@
 // are changed infrequently
 //
 
-#ifdef _WIN31
-#pragma once
-
-#include "targetver.h"
+#ifdef _WIN32
+#ifndef __STDAFX
+#define __STDAFX
 
 #define WIN32_LEAN_AND_MEAN             // Exclude rarely-used stuff from Windows headers
 // Windows Header Files:
@@ -18,6 +17,6 @@
 #include <memory.h>
 #include <tchar.h>
 
-
+#endif//__STDAFX
 // TODO: reference additional headers your program requires here
 #endif//_WIN32
