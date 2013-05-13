@@ -45,6 +45,9 @@ void GraphosGame::Run( void )
 	// Loop until there is a quit message from the window or the user.
 	while( !isDone )
 	{
+		if( currentState == Reseting )
+			Reset();
+
 		// Platform specific program stuff
 		GraphicsController::Get().MessageLoop();
 
@@ -80,9 +83,7 @@ void GraphosGame::Run( void )
 
 		// Update the UI
 		if( currentState == Menu )
-		{
 			ui->Update( deltaTime );
-		}
 
 		// Update objects in list
 		if( currentState == Game )
@@ -104,9 +105,6 @@ void GraphosGame::Run( void )
 		// Begin drawing
 		GraphicsController::Get().CallGLFunction( GraphicsController::BEGIN );
 
-		// Draw in child class
-		Draw();
-
 		// Draw objects in list
 		if( currentState == Game )
 		{
@@ -118,11 +116,13 @@ void GraphosGame::Run( void )
 				iterator->second.Draw();
 			}
 		}
+
+		// Draw in child class
+		Draw();
+
 		// Draw the UI last
-		else if( currentState == Menu )
-		{
+		if( currentState == Menu )
 			ui->Draw();
-		}
 
 		// End drawing
 		GraphicsController::Get().CallGLFunction( GraphicsController::END );
@@ -167,6 +167,7 @@ void GraphosGame::Reset( void )
 	AssetController::Get().Initialize();
 	Physics::Get().Initialize();
 	ui = new UserInterface( this );
+	Input::Get().ui = ui;
 
 	currentState = Menu;
 

@@ -33,7 +33,7 @@ UserInterface::UserInterface( GraphosGame* owner ) : owner( owner )
 	unsigned int indices[] = { 0, 1, 2, 0, 2, 3 };
 
 	GLfloat floatWidth = static_cast<GLfloat>( width );
-	GLfloat floatHeight = static_cast<GLfloat>( height );;
+	GLfloat floatHeight = static_cast<GLfloat>( height );
 
 	GLfloat vertices[] = {
 		-floatWidth / 2.0f,	floatHeight / 2.0f,	DEPTH, 0.0f, 1.0f,
@@ -83,6 +83,9 @@ UserInterface::UserInterface( GraphosGame* owner ) : owner( owner )
 		-Config::Get().GetData<float>( "ui.scale.y" ),
 		1.0f
 	);
+
+	// Focus for input
+	view->webView->Focus();
 }
 
 UserInterface::~UserInterface()
@@ -104,11 +107,11 @@ bool UserInterface::Update( float deltaTime )
 		( height / 2 ) + ( ( ( height / 2 ) - cursor.y ) * transform.Scale().y )
 	);
 
-	if( Input::Get().IsKeyDown( VK_LBUTTON/*, true*/ ) )
+	if( Input::Get().IsKeyDown( VK_LBUTTON, true ) )
 	{
 		view->webView->InjectMouseDown( kMouseButton_Left );
 	}
-	else// if( Input::Get().IsKeyUp( VK_LBUTTON, true ) )
+	else if( Input::Get().IsKeyUp( VK_LBUTTON, true ) )
 	{
 		view->webView->InjectMouseUp( kMouseButton_Left );
 	}
@@ -138,9 +141,32 @@ void UserInterface::Draw( void )
 
 void UserInterface::KeyPress( unsigned int key )
 {
-	WebKeyboardEvent keyEvent;
-	keyEvent.virtual_key_code = key;
-	view->webView->InjectKeyboardEvent( keyEvent );
+	// For the key down event
+	// 0x0100 = WM_KEYDOWN
+	WebKeyboardEvent keyDownEvent( 0x0100, key, NULL );
+
+	// For the char entry
+	WebKeyboardEvent keyCharEvent;
+	keyCharEvent.type = WebKeyboardEvent::kTypeChar;
+	// Get char
+	char text[ 1 ] = { '1' };
+
+#if defined( _WIN32 )
+	text[ 0 ] = MapVirtualKey( key, MAPVK_VK_TO_CHAR );
+#endif
+
+	keyCharEvent.text[ 0 ] = text[ 0 ];
+
+	// For the key up
+	// 0x0101 = WM_KEYUP
+	//WebKeyboardEvent keyUpEvent( 0x0101, key, NULL );
+
+	if( view->webView )
+	{
+		view->webView->InjectKeyboardEvent( keyDownEvent );
+		view->webView->InjectKeyboardEvent( keyCharEvent );
+		//view->webView->InjectKeyboardEvent( keyUpEvent );
+	}
 }
 
 void UserInterface::JavaScriptHandler::OnMethodCall( WebView* caller, unsigned int remoteObjectID, const WebString& methodName, const JSArray& args )
@@ -168,7 +194,7 @@ void UserInterface::JavaScriptHandler::OnMethodCall( WebView* caller, unsigned i
 		}
 		else if( methodName == WSLit( "Reset" ) && args.size() == 0 )
 		{
-			owner->owner->Reset();
+			owner->owner->currentState = Reseting;
 		}
 	}
 }

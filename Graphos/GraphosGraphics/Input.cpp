@@ -50,7 +50,7 @@ void Input::Update( void )
 {
 	prevKeyState = keyState;
 	keyState = stage;
-	stage.Reset();
+	//stage.Reset();
 }
 
 // Called when keys are down
@@ -58,8 +58,8 @@ void Input::KeyDown( unsigned int input )
 {
 	stage.SetState( input, true );
 
-	if( ui /*&& input >= 0x41 && input <= 0x60*/ )
-		//if( IsKeyDown( input/*, true*/ ) )
+	if( ui && input != VK_LBUTTON && input != VK_RBUTTON )
+		//if( IsKeyDown( input, true ) )
 			ui->KeyPress( input );
 }
 
@@ -72,16 +72,12 @@ void Input::KeyUp( unsigned int input )
 // Is key down?
 bool Input::IsKeyDown( unsigned int input, const bool checkPrevious )
 {
-	if( keyState[ input ] != prevKeyState[ input ] )
-
 	return keyState[ input ] && ( !checkPrevious || !prevKeyState[ input ] );
 }
 
 // Is key up?
 bool Input::IsKeyUp( unsigned int input, const bool checkPrevious )
 {
-	bool key = keyState[ input ];
-
 	return !keyState[ input ] && ( !checkPrevious || prevKeyState[ input ] );
 }
 

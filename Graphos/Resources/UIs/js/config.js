@@ -51,8 +51,8 @@ function setConfig()
 {
     GraphosGame.SetConfig( 'display.width', parseInt( $("#screenWidth").val() ) );
     GraphosGame.SetConfig( 'display.height', parseInt( $("#screenHeight").val() ) );
-    GraphosGame.SetConfig( 'display.fullscreen', $('#fullscreen').is(':checked') == "true" );
-    GraphosGame.SetConfig( 'graphics.vsync', $('#vsync').is(':checked') == "true" );
+    GraphosGame.SetConfig( 'display.fullscreen', $('#fullscreen').is(':checked') );
+    GraphosGame.SetConfig( 'graphics.vsync', $('#vsync').is(':checked') );
     GraphosGame.SetConfig( 'ui.scale.x', parseFloat( $("#uiScaleValue").val() ) );
     GraphosGame.SetConfig( 'ui.scale.y', parseFloat( $("#uiScaleValue").val() ) );
     GraphosGame.Reset();

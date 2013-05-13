@@ -11,11 +11,13 @@ using namespace std;
 
 namespace Graphos
 {
-	enum GameState { Menu, Game };
+	enum GameState { Menu, Game, Reseting };
 
 	class GraphosGame
 	{
 	public:
+		GameState			currentState;
+
 		void				Run( void );
 		void				ChangeState( GameState newState ) { currentState = newState; }
 		void				Reset( void );
@@ -30,7 +32,6 @@ namespace Graphos
 							objects;
 
 		bool				objectsLoaded;
-		GameState			currentState;
 		float				deltaTime;
 		UserInterface*		ui;
 		Camera*				camera;

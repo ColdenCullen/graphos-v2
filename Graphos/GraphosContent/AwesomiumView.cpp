@@ -17,6 +17,7 @@ bool AwesomiumView::Initialize( string url, unsigned int width, unsigned int hei
 
 		config.additional_options = WebStringArray( 1 );
 		config.additional_options[ 0 ] = WSLit( "--allow-file-access-from-files" );
+		config.remote_debugging_port = 1337;
 
 		WebCore::Initialize( config );
 	}

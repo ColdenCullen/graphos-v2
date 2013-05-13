@@ -7,3 +7,4 @@ J:\Documents\RIT\20123\DSA1\Project\Graphos\GameScripts\bin\GameScripts.pdb
 J:\Documents\RIT\20123\DSA1\Project\Graphos\GameScripts\obj\Debug\ResolveAssemblyReference.cache
 J:\Documents\RIT\20123\DSA1\Project\Graphos\GameScripts\obj\Debug\GameScripts.dll
 J:\Documents\RIT\20123\DSA1\Project\Graphos\GameScripts\obj\Debug\GameScripts.pdb
+F:\Documents\RIT\20123\DSA1\Project\Graphos\GameScripts\obj\Debug\GameScripts.csprojResolveAssemblyReference.cache
