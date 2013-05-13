@@ -217,7 +217,7 @@
 
 	.panel
 	{
-		padding: 3.5em 2.5em 3.5em 2.5em;
+		padding: 2.5em 2.5em 2.5em 2.5em;
 		position: absolute;
 		top: 0;
 		left: 0;
@@ -233,8 +233,7 @@
 			height: 20em;
 		}
 		
-			#me .pic,
-			#paused .pic
+			#me .pic
 			{
 				display: block;
 				position: absolute;
@@ -244,28 +243,26 @@
 				text-decoration: none;
 			}
 			
-				#me .pic img,
-				#paused .pic img
+				.pic img
 				{
 					position: relative;
 					display: block;
 				}
 			
-				#me .pic .arrow,
-				#paused .pic .arrow
+				.pic .arrow
 				{
 					display: block;
 					position: absolute;
 					right: 0;
 					top: 50%;
 					margin-top: -1.375em;
-					width: 8.75em;
+					width: 10em;
 					height: 2.75em;
 					background: #000;
 					border-radius: 10px 0 0 10px;
 					background: rgba(0,0,0,0.75);
 					color: #fff;
-					text-align: center;
+					padding-left: 15px;
 					line-height: 2.75em;
 					font-size: 1.5em;
 					z-index: 1;
@@ -278,24 +275,29 @@
 
 				#paused .pic .arrow
 				{
-					width: 9.75em;
-					top: 85%;
+					width: 11em;
+					margin-top: 9.5em;
 				}
 
-					#me .pic .arrow:before,
-					#paused .pic .arrow:before
+				#settings .pic .arrow
+				{
+					top: 25%;
+					height: 1.5em;
+					line-height: 1.5em;
+				}
+
+					.pic .arrow:before
 					{
 						padding-right: 10px;
 					}
 			
-					#me .pic .arrow span,
-					#paused .pic .arrow span
+					.pic .arrow span
 					{
 						display: block;
 						text-indent: -9999em;
 					}
 				
-					#me .pic:hover .arrow
+					.pic:hover .arrow
 					{
 						width: 11em;
 						padding-right: 0.25em;
@@ -338,12 +340,12 @@
 				left: 0;
 				bottom: 50%;
 				margin: 0;
-				font-size: 13em;
+				font-size: 11em;
 				text-align: center;
 				width: 100%;
 			}
 			
-			#me .byline
+			.byline
 			{
 				position: absolute;
 				left: 2em;
