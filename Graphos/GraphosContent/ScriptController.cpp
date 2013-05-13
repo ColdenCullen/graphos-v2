@@ -1,6 +1,8 @@
 #include <iostream>
 
 #include "ScriptController.h"
+#include "Input.h"
+#include "Config.h"
 
 #define _USE_READ_FILE
 #include "Helpers.h"

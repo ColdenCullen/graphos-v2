@@ -15,7 +15,9 @@ namespace Graphos
 		struct Transform
 		{
 		public:
-			Transform( void );
+			Transform*				parent;
+
+									Transform( void );
 
 			void					Rotate( Quaternion rotation );
 			void					Rotate( const float x, const float y, const float z, const float angle );
@@ -32,18 +34,16 @@ namespace Graphos
 			const Matrix			WorldMatrix( void )	const;
 			const Matrix			RotationMatrix( void ) const;
 
-			Transform*				parent;
-
 		private:
-			Matrix					RotateX( const float angle ) const;
-			Matrix					RotateY( const float angle ) const;
-			Matrix					RotateZ( const float angle ) const;
-
 			Matrix					matrix;
 
 			Vector3					position;
 			Vector3					rotation;
 			Vector3					scale;
+
+			Matrix					RotateX( const float angle ) const;
+			Matrix					RotateY( const float angle ) const;
+			Matrix					RotateZ( const float angle ) const;
 		};
 	}
 }

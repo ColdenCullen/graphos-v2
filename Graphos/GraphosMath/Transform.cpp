@@ -15,7 +15,7 @@ void Transform::Rotate( const float x, const float y, const float z, const float
 {
 	Vector3 oldCoord = position;
 
-	Translate( -oldCoord.x, -oldCoord.y, -oldCoord.z );
+	Translate( -oldCoord );
 
 	//TODO: Make better
 	if( z != 0.0f ) matrix *= RotateZ( z * M_PI / 180 );
@@ -26,14 +26,14 @@ void Transform::Rotate( const float x, const float y, const float z, const float
 	rotation.y += y;
 	rotation.z += z;
 
-	Translate( oldCoord.x, oldCoord.y, oldCoord.z );
+	Translate( oldCoord );
 }
 
 void Transform::Rotate( const float x, const float y, const float z )
 {
 	Vector3 oldCoord = position;
 
-	Translate( -oldCoord.x, -oldCoord.y, -oldCoord.z );
+	Translate( -oldCoord );
 
 	if( z != 0.0f ) matrix *= RotateZ( z * M_PI / 180 );
 	if( x != 0.0f ) matrix *= RotateX( x * M_PI / 180 );
@@ -43,7 +43,7 @@ void Transform::Rotate( const float x, const float y, const float z )
 	rotation.y += y;
 	rotation.z += z;
 
-	Translate( oldCoord.x, oldCoord.y, oldCoord.z );
+	Translate( oldCoord );
 }
 
 void Transform::Rotate( const Vector3& eulerAngles )
@@ -53,17 +53,13 @@ void Transform::Rotate( const Vector3& eulerAngles )
 
 void Transform::Translate( const float x, const float y, const float z )
 {
-	Matrix translateMatrix = Matrix::Identity;
-
-	translateMatrix.matrix[ 3 ][ 0 ] = x;
-	translateMatrix.matrix[ 3 ][ 1 ] = y;
-	translateMatrix.matrix[ 3 ][ 2 ] = z;
+	matrix.matrix[ 3 ][ 0 ] += x;
+	matrix.matrix[ 3 ][ 1 ] += y;
+	matrix.matrix[ 3 ][ 2 ] += z;
 
 	position.x += x;
 	position.y += y;
 	position.z += z;
-
-	matrix *= translateMatrix;
 }
 
 void Transform::Translate( const Vector3& displacement )

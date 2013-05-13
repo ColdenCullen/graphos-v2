@@ -6,12 +6,10 @@
 #include <unordered_map>
 #include <type_traits>
 
-#include "ShaderController.h"
 #include "Ingredient.h"
 #include "Transform.h"
+#include "ShaderController.h"
 #include "Shader.h"
-#include "Script.h"
-#include "AwesomiumView.h"
 
 using namespace std;
 using namespace Graphos::Content;
@@ -19,9 +17,9 @@ using namespace Graphos::Graphics;
 
 namespace Graphos
 {
-	const class GameObject
+	class GameObject
 	{
-#pragma region Static Stuff
+		#pragma region Static Stuff
 	public:
 		// Access objects
 		static
@@ -54,10 +52,12 @@ namespace Graphos
 							nameMap;
 
 		static unsigned int	currentId;
-#pragma endregion
+		#pragma endregion
 
-#pragma region Not Static Stuff
+		#pragma region Not Static Stuff
 	public:
+		Transform			transform;
+
 		// Constructors
 		GameObject( void ) : shader( nullptr ) { }
 		GameObject( Shader* shader ) : shader( shader ) { }
@@ -68,6 +68,7 @@ namespace Graphos
 		// Game logic
 		bool				Update( float deltaTime );
 		void				Draw( void );
+		virtual void		OnCollision( GameObject* other ) { }
 
 		// Add ingredient of type T
 		template<class T>
@@ -94,14 +95,12 @@ namespace Graphos
 		Shader&				GetShader( void ) const { return *shader; }
 		void				SetShader( string newName ) { shader = &( ShaderController::Get().GetShader( newName ) ); }
 
-		Transform			transform;
-
 	private:
 		unordered_map<size_t, Ingredient*>
 							recipe;
 
 		Shader*				shader;
-#pragma endregion
+		#pragma endregion
 	};
 }
 

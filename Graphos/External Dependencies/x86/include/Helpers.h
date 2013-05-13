@@ -10,6 +10,7 @@
 #include <sstream>
 #include <unordered_map>
 #include <stack>
+#include <exception>
 
 #if defined( _WIN32 )
  #include <windirent.h>
@@ -28,7 +29,10 @@ struct Helpers
 	{
 		ifstream fileStream( fileName.c_str() );
 		if( !fileStream )
-			return NULL;
+		{
+			throw new exception( "Error reading file" );
+			return "";
+		}
 
 		stringstream shaderData;
 		shaderData << fileStream.rdbuf();
@@ -74,6 +78,10 @@ struct Helpers
 
 				// Close dir
 				closedir( dir );
+			}
+			else
+			{
+				throw new exception( "Error opening directory" );
 			}
 		}
 

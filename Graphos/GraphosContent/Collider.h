@@ -20,7 +20,6 @@ namespace Graphos
 		virtual void		Draw( void ) { }
 		virtual void		Shutdown( void ) { }
 
-		GameObject*			Owner( void ) const	{ return owner; }
 		const ColliderType	Type( void ) const	{ return type; }
 		const Vector3		Position( void ) const { return owner->transform.Position() + centerOffset; }
 		virtual const Vector3

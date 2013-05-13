@@ -22,11 +22,11 @@ namespace Graphos
 	class TestGame : public GraphosGame
 	{
 	private:
-		GameObject* sphere;
 		
+
 		bool Initialize( void )
 		{
-			sphere = nullptr;
+			
 
 			return true;
 		}
@@ -35,7 +35,7 @@ namespace Graphos
 		{
 #ifdef _WIN32
 			// Quit condition
-			if( Input::Get().IsKeyDown( VK_ESCAPE, false ) )
+			if( Input::Get().IsKeyDown( VK_ESCAPE, true ) )
 			{
 				if( currentState == Game )
 					currentState = Menu;
@@ -43,31 +43,23 @@ namespace Graphos
 					return false;
 			}
 
+			// 
 			if( Input::Get().IsKeyDown( VK_F5, true ) )
-			{
 				Reset();
-			}
 
 			if( currentState == Game )
 			{
-				if( sphere == nullptr )
-				{
-					sphere = GameObject::GetGameObject( "Sphere" );
-				}
-
-				if( Input::Get().IsKeyDown( VK_SPACE, true ) )
-				{
-					sphere->GetIngredient<Rigidbody>()->AddForce( 1.0f, 0.0f, 0.0f );
-				}
+				
 	
-				// Move object
+				#pragma region Camera
+				// Move camera
 				if( Input::Get().IsKeyDown( VK_LEFT, false ) )
 				{
-					camera->Owner()->transform.Rotate( 0.0f, 3.0f * deltaTime, 0.0f );
+					camera->Owner()->transform.Rotate( 0.0f, -3.0f * deltaTime, 0.0f );
 				}
 				if( Input::Get().IsKeyDown( VK_RIGHT, false ) )
 				{
-					camera->Owner()->transform.Rotate( 0.0f, -3.0f * deltaTime, 0.0f );
+					camera->Owner()->transform.Rotate( 0.0f, 3.0f * deltaTime, 0.0f );
 				}
 				if( Input::Get().IsKeyDown( VK_UP, false ) )
 				{
@@ -78,7 +70,7 @@ namespace Graphos
 					camera->Owner()->transform.Rotate( -3.0f * deltaTime, 0.0f, 0.0f );
 				}
 	
-				// Rotate
+				// Rotate camera
 				if( Input::Get().IsKeyDown( VK_A, false ) )
 				{
 					camera->Owner()->transform.Translate( -1.0f * deltaTime, 0.0f, 0.0f );
@@ -95,6 +87,7 @@ namespace Graphos
 				{
 					camera->Owner()->transform.Translate( 0.0f, 0.0f, -1.0f * deltaTime );
 				}
+				#pragma endregion
 			}
 #endif
 

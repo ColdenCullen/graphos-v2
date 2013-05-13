@@ -5,8 +5,6 @@
 #include <string>
 
 #include "Ingredient.h"
-#include "Mesh.h"
-#include "Texture.h"
 
 using namespace std;
 
