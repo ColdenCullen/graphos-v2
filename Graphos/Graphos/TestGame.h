@@ -27,11 +27,13 @@ namespace Graphos
 		float rotationValue;
 		Flipper* leftFlipper;
 		Flipper* rightFlipper;
+		GameObject* plunger;
 
 		bool Initialize( void )
 		{
 			leftFlipper = nullptr;
 			rightFlipper = nullptr;
+			plunger = nullptr;
 
 			flipperRotation = 45.0f;
 			rotationValue = 360.0f;
@@ -64,6 +66,8 @@ namespace Graphos
 
 					rightFlipper = static_cast<Flipper*>( GameObject::GetGameObject( "RightFlipper" ) );
 					rightFlipper->transform.Rotate( 0.0f, 0.0f, -flipperRotation );
+
+					plunger = GameObject::GetGameObject( "Plunger" );
 				}
 	
 				#pragma region Camera
@@ -132,6 +136,9 @@ namespace Graphos
 					if( rightFlipper->transform.Rotation().z > -flipperRotation )
 						rightFlipper->transform.Rotate( 0.0f, 0.0f, -rotationValue * deltaTime );
 				}
+
+				//if( Input::Get().IsKeyDown( VK_LBUTTON ) )
+				Input::Get().GetMousePos();
 				#pragma endregion
 			}
 #endif
