@@ -5,12 +5,12 @@
 #if defined( _WIN32 )
 
  // Turn off console
- #ifndef DEBUG
+ #ifndef _DEBUG
   #pragma comment( linker, "/subsystem:\"windows\" /entry:\"mainCRTStartup\"" )
- #endif//DEBUG
+ #endif//_DEBUG
 
  // Display memory leaks
- #if defined( DEBUG ) && defined( _CHECK_LEAKS )
+ #if defined( _DEBUG ) && defined( _CHECK_LEAKS )
   #include <vld.h>
  #endif//_DEBUG && _CHECK_LEAKS
 

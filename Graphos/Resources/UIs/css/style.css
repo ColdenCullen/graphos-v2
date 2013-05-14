@@ -686,6 +686,7 @@ input[type='range'] {
 			{
 				position: relative;
 				display: block;
+				text-decoration: none;
 			}
 
 /*********************************************************************************/

@@ -1,44 +1,87 @@
 #include "stdafx.h"
 #include "Input.h"
+#include "UserInterface.h"
+#include "WindowController.h"
+#include "Config.h"
 
-#include <stdio.h>
+#define BIT_AT_KEY_STATE( pos ) ( 1 << ( pos % SIZE ) )
 
 using namespace Graphos::Math;
 using namespace Graphos::Graphics;
 
-Input::Input( void )
+InputState& InputState::operator=( const InputState& other )
 {
-	// Initialize array
-	for( int ii = 0; ii < 256; ii++ )
+	for( int ii = 0; ii < SPLIT; ++ii )
+		if( bits[ ii ] != other.bits[ ii ] )
+			bits[ ii ] = other.bits[ ii ];
+
+	return *this;
+}
+
+bool InputState::operator[]( const unsigned char index )
+{
+	return CheckState( index );
+}
+
+bool InputState::CheckState( const unsigned char keyCode ) const
+{
+	return bits[ keyCode / SIZE ] & BIT_AT_KEY_STATE( keyCode );
+}
+
+void InputState::SetState( const unsigned char keyCode, const bool newValue )
+{
+	if( newValue )
 	{
-		keys[ ii ] = false;
-		prevState[ ii ] = false;
+		bits[ keyCode / SIZE ] |=  BIT_AT_KEY_STATE( keyCode );
 	}
+	else
+	{
+		bits[ keyCode / SIZE ] &= ~BIT_AT_KEY_STATE( keyCode );
+	}
+}
+
+void InputState::Reset( void )
+{
+	for( int ii = 0; ii < SPLIT; ++ii )
+		bits[ ii ] = 0;
+}
+
+void Input::Update( void )
+{
+	prevKeyState = keyState;
+	keyState = stage;
+	//stage.Reset();
 }
 
 // Called when keys are down
 void Input::KeyDown( unsigned int input )
 {
-	keys[ input ] = true;
+	stage.SetState( input, true );
+
+	if( ui && input != VK_LBUTTON && input != VK_RBUTTON )
+		//if( IsKeyDown( input, true ) )
+			ui->KeyPress( input );
 }
 
 // Called when keys are up
 void Input::KeyUp( unsigned int input )
 {
-	keys[ input ] = false;
+	stage.SetState( input, false );
 }
 
 // Is key down?
 bool Input::IsKeyDown( unsigned int input, const bool checkPrevious )
 {
-	bool result = keys[ input ] && ( !checkPrevious || !prevState[ input ] );
-
-	prevState[ input ] = keys[ input ];
-
-	return result;
+	return keyState[ input ] && ( !checkPrevious || !prevKeyState[ input ] );
 }
 
-Point Input::GetMousePos( /*Transform& camera, float zPlane*/ ) const
+// Is key up?
+bool Input::IsKeyUp( unsigned int input, const bool checkPrevious )
+{
+	return !keyState[ input ] && ( !checkPrevious || prevKeyState[ input ] );
+}
+
+Vector2 Input::GetMousePos( /*Transform& camera, float zPlane*/ ) const
 {
 #if defined( _WIN32 )
 	/*
@@ -73,7 +116,7 @@ Point Input::GetMousePos( /*Transform& camera, float zPlane*/ ) const
 		i.x -= GetSystemMetrics( SM_CYBORDER );
 
 	//i.y -= GetSystemMetrics( /*SM_CYCAPTION*/SM_CYBORDER );
-	return Point( i.x, i.y );
+	return Vector2( i.x, i.y );
 	
 #elif defined( __APPLE__ )
 	

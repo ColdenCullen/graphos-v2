@@ -49,12 +49,12 @@ function updateConfig()
 
 function setConfig()
 {
-    GraphosGame.SetConfig( 'display.width', Number( $("#screenWidth").val() ) );
-    GraphosGame.SetConfig( 'display.height', Number( $("#screenHeight").val() ) );
-    GraphosGame.SetConfig( 'display.fullscreen', Boolean( $('#fullscreen').is(':checked') ) );
+    GraphosGame.SetConfig( 'display.width', parseInt( $("#screenWidth").val() ) );
+    GraphosGame.SetConfig( 'display.height', parseInt( $("#screenHeight").val() ) );
+    GraphosGame.SetConfig( 'display.fullscreen', $('#fullscreen').is(':checked') );
     GraphosGame.SetConfig( 'graphics.vsync', $('#vsync').is(':checked') );
-    GraphosGame.SetConfig( 'ui.scale.x', $("#uiScaleValue").val() );
-    GraphosGame.SetConfig( 'ui.scale.y', $("#uiScaleValue").val() );
+    GraphosGame.SetConfig( 'ui.scale.x', parseFloat( $("#uiScaleValue").val() ) );
+    GraphosGame.SetConfig( 'ui.scale.y', parseFloat( $("#uiScaleValue").val() ) );
     GraphosGame.Reset();
 }
 

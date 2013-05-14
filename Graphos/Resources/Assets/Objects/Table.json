@@ -4,11 +4,11 @@
 	"Shader": "texture",
 
 	"Texture": {
-		"Name": "TableTexture"
+		"Name": "Poop"
 	},
 	
 	"Mesh": {
-		"Name": "Table"
+		"Name": "Cube"
 	},
 
 	"Transform": {

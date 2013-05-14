@@ -19,6 +19,7 @@
 #include "AssetController.h"
 #include "ShaderController.h"
 #include "AwesomiumView.h"
+#include "Input.h"
 
 #define OBJECTS_PATH "Resources/Assets/Objects/"
 
@@ -44,6 +45,9 @@ void GraphosGame::Run( void )
 	// Loop until there is a quit message from the window or the user.
 	while( !isDone )
 	{
+		if( currentState == Reseting )
+			Reset();
+
 		// Platform specific program stuff
 		GraphicsController::Get().MessageLoop();
 
@@ -57,7 +61,7 @@ void GraphosGame::Run( void )
 
 		if( totalTime >= 1.0f )
 		{
-#ifdef DEBUG
+#ifdef _DEBUG
 			std::cout << frameCount << std::endl;
 #endif
 			totalTime = 0.0f;
@@ -68,6 +72,9 @@ void GraphosGame::Run( void )
 		// Update
 		//////////////////////////////////////////////////////////////////////////
 		
+		// Update input
+		Input::Get().Update();
+
 		// Do the updating of the child class.
 		isDone = !Update( deltaTime );
 
@@ -98,9 +105,6 @@ void GraphosGame::Run( void )
 		// Begin drawing
 		GraphicsController::Get().CallGLFunction( GraphicsController::BEGIN );
 
-		// Draw in child class
-		Draw();
-
 		// Draw objects in list
 		if( currentState == Game )
 		{
@@ -112,11 +116,13 @@ void GraphosGame::Run( void )
 				iterator->second.Draw();
 			}
 		}
+
+		// Draw in child class
+		Draw();
+
 		// Draw the UI last
-		else if( currentState == Menu )
-		{
+		if( currentState == Menu )
 			ui->Draw();
-		}
 
 		// End drawing
 		GraphicsController::Get().CallGLFunction( GraphicsController::END );
@@ -161,6 +167,7 @@ void GraphosGame::Reset( void )
 	AssetController::Get().Initialize();
 	Physics::Get().Initialize();
 	ui = new UserInterface( this );
+	Input::Get().ui = ui;
 
 	currentState = Menu;
 
@@ -172,6 +179,7 @@ bool GraphosGame::Start( void )
 	objectsLoaded = false;
 	currentState = Menu;
 	objects = nullptr;
+	camera = nullptr;
 
 	bool isDone = false;
 
@@ -187,7 +195,10 @@ bool GraphosGame::Start( void )
 	if( !isDone && !Physics::Get().Initialize() )
 		isDone = true;
 
-	ui = new UserInterface( this );
+	if( !isDone );
+		ui = new UserInterface( this );
+
+	Input::Get().ui = ui;
 
 	if( !isDone && !Initialize() )
 		isDone = true;

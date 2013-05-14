@@ -35,7 +35,7 @@ namespace Graphos
 		{
 #ifdef _WIN32
 			// Quit condition
-			if( Input::Get().IsKeyDown( VK_ESCAPE, true ) )
+			if( Input::Get().IsKeyDown( VK_ESCAPE, false ) )
 			{
 				if( currentState == Game )
 					currentState = Menu;

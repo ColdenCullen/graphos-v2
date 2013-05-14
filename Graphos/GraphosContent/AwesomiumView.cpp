@@ -1,3 +1,6 @@
+#include <Awesomium/WebCore.h>
+#include <Awesomium/STLHelpers.h>
+
 #include "AwesomiumView.h"
 
 using namespace std;
@@ -15,10 +18,18 @@ bool AwesomiumView::Initialize( string url, unsigned int width, unsigned int hei
 		config.additional_options = WebStringArray( 1 );
 		config.additional_options[ 0 ] = WSLit( "--allow-file-access-from-files" );
 
+		// If debugging, allow remote debugging
+#ifdef _DEBUG
+		config.remote_debugging_port = 1337;
+#endif
+
 		WebCore::Initialize( config );
 	}
 
-	webView = WebCore::instance()->CreateWebView( width, height );
+	WebPreferences prefs;
+	prefs.allow_file_access_from_file_url = true;
+
+	webView = WebCore::instance()->CreateWebView( width, height, WebCore::instance()->CreateWebSession( WSLit( "" ), prefs ) );
 	webView->LoadURL( WebURL( WSLit( url.c_str() ) ) );
 	webView->SetTransparent( true );
 

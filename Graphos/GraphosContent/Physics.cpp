@@ -1,6 +1,5 @@
 #include "Physics.h"
 
-#include <algorithm>
 #include "Rigidbody.h"
 
 using namespace Graphos;
@@ -180,7 +179,7 @@ void Physics::Simplex::Remove( const Vector3& target )
 {
 	bool moveBack = false;
 
-	for( byte ii = 0; ii < 4; ++ii )
+	for( unsigned int ii = 0; ii < 4; ++ii )
 	{
 		if( points[ ii ] == target )
 			moveBack = true;
