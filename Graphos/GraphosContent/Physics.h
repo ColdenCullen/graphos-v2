@@ -2,16 +2,10 @@
 #define _PHYSICS_H_
 
 #include <vector>
-#include <math.h>
 
-#include "Config.h"
 #include "Vector3.h"
 #include "Collider.h"
-#include "SphereCollider.h"
-#include "BoxCollider.h"
-#include "GameObject.h"
 
-using namespace std;
 using namespace Graphos::Math;
 
 namespace Graphos

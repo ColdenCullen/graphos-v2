@@ -22,7 +22,6 @@ namespace Graphos
 			bool				Update( float deltaTime );
 			void				Draw( void );
 			void				Shutdown( void );
-			GameObject*			Owner( void ) const { return owner; }
 
 		private:
 			Matrix				viewMatrix;

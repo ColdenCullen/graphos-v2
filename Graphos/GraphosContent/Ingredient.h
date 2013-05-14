@@ -17,6 +17,8 @@ namespace Graphos
 			virtual void		Draw( void ) = 0;
 			virtual void		Shutdown( void ) = 0;
 
+			GameObject*	const	Owner( void ) const { return owner; }
+
 		protected:
 			GameObject* owner;
 		};

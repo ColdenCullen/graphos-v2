@@ -32,7 +32,6 @@ namespace Graphos
 							objects;
 
 		bool				objectsLoaded;
-		float				deltaTime;
 		UserInterface*		ui;
 		Camera*				camera;
 

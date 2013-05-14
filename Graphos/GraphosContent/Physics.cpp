@@ -1,6 +1,11 @@
-#include "Physics.h"
+#include <math.h>
 
+#include "Config.h"
+#include "Physics.h"
 #include "Rigidbody.h"
+#include "SphereCollider.h"
+#include "BoxCollider.h"
+#include "GameObject.h"
 
 using namespace Graphos;
 using namespace Graphos::Content;
@@ -44,6 +49,9 @@ void Physics::Update( void )
 			// Act on collisions;
 			if( isColliding )
 			{
+				( *insideCollider )->Owner()->OnCollision( ( *outsideCollider )->Owner() );
+				( *outsideCollider )->Owner()->OnCollision( ( *insideCollider )->Owner() );
+
 				// Get rigid bodies involved in the collision
 				Rigidbody* outsideRB = ( *outsideCollider )->Owner()->GetIngredient<Rigidbody>();
 				Rigidbody* insideRB = ( *insideCollider )->Owner()->GetIngredient<Rigidbody>();

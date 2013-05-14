@@ -117,7 +117,7 @@ namespace Graphos
 			}
 			else
 			{
-				return atof( val.asCString() );
+				return static_cast<float>( atof( val.asCString() ) );
 			}
 		}
 		template<>

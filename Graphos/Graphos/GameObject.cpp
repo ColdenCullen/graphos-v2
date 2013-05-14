@@ -59,12 +59,10 @@ void GameObject::Draw( void )
 void GameObject::Shutdown( void )
 {
 	for( auto ingredient = begin( recipe ); ingredient != end( recipe ); ++ingredient )
-		if( dynamic_cast<AwesomiumView*>( ingredient->second ) || dynamic_cast<Content::Script*>( ingredient->second ) )
-		{
-			ingredient->second->Shutdown();
-			delete ingredient->second;
-			ingredient->second = nullptr;
-		}
+	{
+		ingredient->second->Shutdown();
+		delete ingredient->second;
+	}
 
 	recipe.clear();
 }

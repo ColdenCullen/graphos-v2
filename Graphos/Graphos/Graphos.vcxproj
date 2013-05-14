@@ -64,11 +64,13 @@
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GraphosGame.h" />
     <ClInclude Include="TestGame.h" />
+    <ClInclude Include="Time.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GraphosGame.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Time.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GraphosContent\GraphosContent.vcxproj">
@@ -111,12 +113,16 @@
       <PreserveSbr>true</PreserveSbr>
     </Bscmake>
     <PreBuildEvent>
-      <Command>xcopy "$(SolutionDir)Resources" "$(SolutionDir)$(Configuration)\Resources" /e /y /i /r</Command>
+      <Command>
+      </Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <PostBuildEvent>
       <Command>xcopy "$(SolutionDir)GL\x86\bin" "$(SolutionDir)$(Configuration)" /y</Command>
     </PostBuildEvent>
+    <PreBuildEvent>
+      <Command>xcopy "$(SolutionDir)Resources" "$(SolutionDir)$(Configuration)\Resources" /e /y /i /r</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
 </Project>

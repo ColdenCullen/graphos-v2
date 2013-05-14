@@ -5,8 +5,6 @@
 #include <v8.h>
 
 #include "Script.h"
-#include "Input.h"
-#include "Config.h"
 #include "GameObject.h"
 
 using namespace v8;

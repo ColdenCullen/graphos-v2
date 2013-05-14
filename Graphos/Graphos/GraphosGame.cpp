@@ -4,8 +4,6 @@
 #define _USE_SCAN_DIR
 #include "Helpers.h"
 
-#include <iostream>
-#include <ctime>
 #include <vector>
 #include <string>
 #include <json/json.h>
@@ -20,6 +18,9 @@
 #include "ShaderController.h"
 #include "AwesomiumView.h"
 #include "Input.h"
+#include "Texture.h"
+#include "Mesh.h"
+#include "Time.h"
 
 #define OBJECTS_PATH "Resources/Assets/Objects/"
 
@@ -35,12 +36,8 @@ void GraphosGame::Run( void )
 	// Initialize values and controllers
 	bool isDone = Start();
 
-	// Initialize time
-	clock_t cur = clock();
-	clock_t prev = clock();
-
-	unsigned int frameCount = 0;
-	float totalTime = 0;
+	// Init time
+	Time::Get().Update();
 
 	// Loop until there is a quit message from the window or the user.
 	while( !isDone )
@@ -51,39 +48,25 @@ void GraphosGame::Run( void )
 		// Platform specific program stuff
 		GraphicsController::Get().MessageLoop();
 
-		// Update time
-		prev = cur;
-		cur = clock();
-
-		deltaTime = static_cast<float>( cur - prev ) / CLOCKS_PER_SEC;
-		totalTime += deltaTime;
-		frameCount++;
-
-		if( totalTime >= 1.0f )
-		{
-#ifdef _DEBUG
-			std::cout << frameCount << std::endl;
-#endif
-			totalTime = 0.0f;
-			frameCount = 0;
-		}
-
 		//////////////////////////////////////////////////////////////////////////
 		// Update
 		//////////////////////////////////////////////////////////////////////////
 		
+		// Update time
+		Time::Get().Update();
+
 		// Update input
 		Input::Get().Update();
 
 		// Do the updating of the child class.
-		isDone = !Update( deltaTime );
+		isDone = !Update( Time::Get().DeltaTime() );
 
 		// Update physics
 		Physics::Get().Update();
 
 		// Update the UI
 		if( currentState == Menu )
-			ui->Update( deltaTime );
+			ui->Update( Time::Get().DeltaTime() );
 
 		// Update objects in list
 		if( currentState == Game )
@@ -92,10 +75,11 @@ void GraphosGame::Run( void )
 				LoadObjects();
 
 			// Update camera
-			camera->Update( deltaTime );
+			if( camera )
+				camera->Update( Time::Get().DeltaTime() );
 
 			for( auto iterator = objects->begin(); iterator != objects->end(); ++iterator )
-				iterator->second.Update( deltaTime );	
+				iterator->second.Update( Time::Get().DeltaTime() );	
 		}
 
 		//////////////////////////////////////////////////////////////////////////
@@ -109,12 +93,11 @@ void GraphosGame::Run( void )
 		if( currentState == Game )
 		{
 			// Update camera position
-			camera->Draw();
+			if( camera )
+				camera->Draw();
 
 			for( auto iterator = objects->begin(); iterator != objects->end(); ++iterator )
-			{
 				iterator->second.Draw();
-			}
 		}
 
 		// Draw in child class
