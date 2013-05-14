@@ -32,7 +32,7 @@ void Physics::Update( void )
 
 		// Iterate through each collider after it
 		//for( auto inside = outside + 1; inside != end( colliders ); ++inside )
-		if( outsideCollider != find( begin( colliders ), end( colliders ), *insideCollider ) )
+		if( *outsideCollider != *insideCollider )
 		{
 			// Check for collisions
 			if( ( *insideCollider )->Type() == Sphere && ( *outsideCollider )->Type() == Sphere )
@@ -97,6 +97,8 @@ void Physics::Update( void )
 								//normal.x = abs( testNormal.x );
 								//normal.y = abs( testNormal.y );
 								normal.z = 0.0f;
+
+								normal = nonMovable->transform.RotationMatrix() * normal;
 
 								break;
 							}

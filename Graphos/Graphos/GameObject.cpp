@@ -32,7 +32,24 @@ unsigned int GameObject::CreateObject( string name, Shader* shader )
 		return currentId++;
 	}
 	else
+	{
 		return -1;
+	}
+}
+
+unsigned int GameObject::CreateObject( string name, GameObject newObj )
+{
+	if( nameMap.find( name ) == end( nameMap ) )
+	{
+		objectList[ currentId ] = newObj;
+		nameMap[ name ] = currentId;
+
+		return currentId++;
+	}
+	else
+	{
+		return -1;
+	}
 }
 
 bool GameObject::Update( float deltaTime )

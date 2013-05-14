@@ -35,6 +35,7 @@ namespace Graphos
 
 		// Add object
 		static unsigned int	CreateObject( string name, Shader* shader );
+		static unsigned int CreateObject( string name, GameObject newObj );
 
 		// Remove objects
 		static void			ClearObjects( void )

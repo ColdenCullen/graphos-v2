@@ -131,5 +131,6 @@ const Matrix Transform::WorldMatrix() const
 
 const Matrix Transform::RotationMatrix( void ) const
 {
+	Matrix x = RotateZ( rotation.z ) * RotateX( rotation.x ) * RotateY( rotation.y );
 	return RotateZ( rotation.z ) * RotateX( rotation.x ) * RotateY( rotation.y );
 }

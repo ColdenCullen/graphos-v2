@@ -69,6 +69,9 @@ UserInterface::UserInterface( GraphosGame* owner ) : owner( owner )
 	view = new AwesomiumView( abspath, width, height );
 	view->webView->set_js_method_handler( new JavaScriptHandler( this ) );
 
+	while( view->webView->IsLoading() )
+		WebCore::instance()->Update();
+
 	graphosGame = view->webView->CreateGlobalJavascriptObject( WSLit( "GraphosGame" ) ).ToObject();
 	graphosGame.SetCustomMethod( WSLit( "ChangeState" ), false );
 	graphosGame.SetCustomMethod( WSLit( "SetConfig" ), false );

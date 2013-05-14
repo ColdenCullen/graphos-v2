@@ -52,7 +52,8 @@ namespace Graphos
 			{
 				if( leftFlipper == nullptr )
 				{
-					leftFlipper = new Flipper( &ShaderController::Get().GetShader( "texture" ) );
+					leftFlipper = static_cast<Flipper*>( GameObject::GetGameObject( "LeftFlipper" ) );
+					leftFlipper->transform.Rotate( 0.0f, 0.0f, 45.0f );
 				}
 	
 				#pragma region Camera

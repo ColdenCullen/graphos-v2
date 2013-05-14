@@ -372,10 +372,10 @@ void GraphosGame::LoadObjects( void )
 					if( ( currentCol = current.get( "Offset", root ) ) != root )
 					{
 						col->centerOffset = Vector3(
-								currentCol[ "x" ].asDouble(),
-								currentCol[ "y" ].asDouble(),
-								currentCol[ "z" ].asDouble()
-							);
+							currentCol[ "x" ].asDouble(),
+							currentCol[ "y" ].asDouble(),
+							currentCol[ "z" ].asDouble()
+						);
 					}
 
 					if( ( currentCol = current.get( "Bounce", root ) ) != root )
