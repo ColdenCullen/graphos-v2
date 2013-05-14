@@ -59,61 +59,27 @@ void Physics::Update( void )
 				// If one object is movable
 				if( outsideRB == nullptr || insideRB == nullptr )
 				{
+					// Get pointers to the game objects
 					GameObject* movableObj = outsideRB != nullptr ? ( *outsideCollider )->Owner() : ( *insideCollider )->Owner();
 					GameObject* nonMovable = outsideRB == nullptr ? ( *outsideCollider )->Owner() : ( *insideCollider )->Owner();
 
+					// Get the moveable collider as a sphere
 					SphereCollider* movableCol = static_cast<SphereCollider*>( movableObj->GetIngredient<Collider>() );
 
+					// If the movable collider is a sphere
 					if( movableObj->GetIngredient<Collider>()->Type() == Sphere )
 					{
-						switch( nonMovable->GetIngredient<Collider>()->Type() )
-						{
-						case Sphere:
-							{
-								normal = ( movableCol->Position() - nonMovable->GetIngredient<Collider>()->Position() ).Normalize();
-								break;
-							}
-
-						case Box:
-							{
-								BoxCollider* nonMovableCol = static_cast<BoxCollider*>( nonMovable->GetIngredient<Collider>() );
-
-								if( nonMovableCol->Position().x - movableCol->Position().x > nonMovableCol->size.x / 2 )
-									normal.x = -1.0f;
-								else if( movableCol->Position().x - nonMovableCol->Position().x > nonMovableCol->size.x / 2 )
-									normal.x = 1.0f;
-								else
-									normal.x = 0.0f;
-
-								if( nonMovableCol->Position().y - movableCol->Position().y > nonMovableCol->size.y / 2 )
-									normal.y = -1.0f;
-								else if( movableCol->Position().y - nonMovableCol->Position().y > nonMovableCol->size.y / 2 )
-									normal.y = 1.0f;
-								else
-									normal.y = 0.0f;
-
-								normal = normal.Normalize();
-
-								//normal.x = abs( testNormal.x );
-								//normal.y = abs( testNormal.y );
-								normal.z = 0.0f;
-
-								normal = nonMovable->transform.RotationMatrix() * normal;
-
-								break;
-							}
-						default:
-							{
-								break;
-							}
-						}
+						// Get bounce normal
+						normal = nonMovable->GetIngredient<Collider>()->GetNormalOfCollision( movableCol->Position() );
 						
+						// Get moveable velocity
 						Vector3& moveVel = movableObj->GetIngredient<Rigidbody>()->linearVelocity;
 
+						// If velocity and normal are in opposite directions
 						if( moveVel.Dot( normal ) < 0.0f )
 						{
 							// Reflect velocity
-							moveVel = ( normal * ( moveVel.Dot( normal ) * -2 ) ) + moveVel;
+							moveVel += ( normal * ( moveVel.Dot( normal ) * -2 ) );
 
 							// Multiply by bounce values
 							moveVel *= ( *insideCollider )->bounce * ( *outsideCollider )->bounce;

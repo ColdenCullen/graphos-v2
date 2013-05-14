@@ -24,6 +24,8 @@ namespace Graphos
 		const Vector3		Position( void ) const { return owner->transform.Position() + centerOffset; }
 		virtual const Vector3
 							GetFurthestPointInDirection( const Vector3& direction ) const = 0;
+		virtual const Vector3
+							GetNormalOfCollision( const Vector3& otherPosition ) const = 0;
 
 		Vector3				centerOffset;
 		float				bounce;

@@ -18,3 +18,35 @@ const Vector3 BoxCollider::GetFurthestPointInDirection( const Vector3& direction
 
 	return owner->transform.Position() + ( /*rotationMarix **/ ( centerOffset + point ) );
 }
+
+const Vector3 BoxCollider::GetNormalOfCollision( const Vector3& otherPosition ) const
+{
+	Vector3 diff = otherPosition - Position();
+
+	Vector3 normal;
+
+	if( abs( diff.y ) < size.y / 2.0f )
+	{
+		if( diff.x > 0.0f )
+			normal.x = 1.0f;
+		else if( -diff.x > 0.0f )
+			normal.x = -1.0f;
+	}
+
+	if( abs( diff.x ) < size.x / 2.0f )
+	{
+		if( diff.y > 0.0f )
+			normal.y = 1.0f;
+		else if( -diff.y > 0.0f )
+			normal.y = -1.0f;
+	}
+
+	/*
+	if( diff.z > size.z / 2.0f )
+		normal.z = 1.0f;
+	else if( -diff.z < size.z / 2.0f )
+		normal.z = -1.0f;
+	*/
+
+	return normal.Normalize().Rotate( 0.0f, 0.0f, fmodf( owner->transform.Rotation().z, 90.0f ) );
+}

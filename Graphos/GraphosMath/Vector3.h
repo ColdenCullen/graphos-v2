@@ -91,6 +91,12 @@ namespace Graphos
 				return Vector3( -x, -y, -z );
 			}
 
+			// Rotate
+			inline Vector3 Rotate( const float xDeg, const float yDeg, const float zDeg )
+			{
+				return Vector3( x * cos( zDeg ) - y * sin( zDeg ), x * sin( zDeg ) - y * cos( zDeg ), z );
+			}
+
 			// Dot product
 			inline float Dot( const Vector3& other ) const
 			{

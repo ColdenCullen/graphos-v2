@@ -23,11 +23,18 @@ namespace Graphos
 	class TestGame : public GraphosGame
 	{
 	private:
+		float flipperRotation;
+		float rotationValue;
 		Flipper* leftFlipper;
+		Flipper* rightFlipper;
 
 		bool Initialize( void )
 		{
 			leftFlipper = nullptr;
+			rightFlipper = nullptr;
+
+			flipperRotation = 45.0f;
+			rotationValue = 360.0f;
 
 			return true;
 		}
@@ -53,10 +60,14 @@ namespace Graphos
 				if( leftFlipper == nullptr )
 				{
 					leftFlipper = static_cast<Flipper*>( GameObject::GetGameObject( "LeftFlipper" ) );
-					leftFlipper->transform.Rotate( 0.0f, 0.0f, 45.0f );
+					leftFlipper->transform.Rotate( 0.0f, 0.0f, flipperRotation );
+
+					rightFlipper = static_cast<Flipper*>( GameObject::GetGameObject( "RightFlipper" ) );
+					rightFlipper->transform.Rotate( 0.0f, 0.0f, -flipperRotation );
 				}
 	
 				#pragma region Camera
+				/*
 				// Move camera
 				if( Input::Get().IsKeyDown( VK_LEFT, false ) )
 				{
@@ -91,6 +102,35 @@ namespace Graphos
 				if( Input::Get().IsKeyDown( VK_S, false ) )
 				{
 					camera->Owner()->transform.Translate( 0.0f, 0.0f, -1.0f * deltaTime );
+				}
+				*/
+				#pragma endregion
+
+				#pragma region Flipper Control
+				// Flip left flip
+				if( Input::Get().IsKeyDown( VK_LEFT, false ) )
+				{
+					if( leftFlipper->transform.Rotation().z > -flipperRotation )
+						leftFlipper->transform.Rotate( 0.0f, 0.0f, -rotationValue * deltaTime );
+				}
+				// Rotate back
+				else
+				{
+					if( leftFlipper->transform.Rotation().z < flipperRotation )
+						leftFlipper->transform.Rotate( 0.0f, 0.0f, rotationValue * deltaTime );
+				}
+
+				// Right flipper
+				if( Input::Get().IsKeyDown( VK_RIGHT, false ) )
+				{
+					if( rightFlipper->transform.Rotation().z < flipperRotation )
+						rightFlipper->transform.Rotate( 0.0f, 0.0f, rotationValue * deltaTime );
+				}
+				// Rotate back
+				else
+				{
+					if( rightFlipper->transform.Rotation().z > -flipperRotation )
+						rightFlipper->transform.Rotate( 0.0f, 0.0f, -rotationValue * deltaTime );
 				}
 				#pragma endregion
 			}

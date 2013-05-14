@@ -15,6 +15,7 @@ namespace Graphos
 		void				Shutdown( void ) { }
 
 		const Vector3		GetFurthestPointInDirection( const Vector3& direction ) const;
+		const Vector3		GetNormalOfCollision( const Vector3& otherPosition ) const;
 
 		Vector3				size;
 	};
