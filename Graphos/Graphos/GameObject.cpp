@@ -1,4 +1,6 @@
 #include "GameObject.h"
+#include "AwesomiumView.h"
+#include "Script.h"
 
 using namespace Graphos;
 
@@ -77,8 +79,11 @@ void GameObject::Shutdown( void )
 {
 	for( auto ingredient = begin( recipe ); ingredient != end( recipe ); ++ingredient )
 	{
-		ingredient->second->Shutdown();
-		delete ingredient->second;
+		if( dynamic_cast<AwesomiumView*>( *ingredient ) || dynamic_cast<Script*>( *ingredient ) )
+		{
+			ingredient->second->Shutdown();
+			delete ingredient->second;
+		}
 	}
 
 	recipe.clear();

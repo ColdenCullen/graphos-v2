@@ -115,26 +115,36 @@ namespace Graphos
 				if( Input::Get().IsKeyDown( VK_LEFT, false ) )
 				{
 					if( leftFlipper->transform.Rotation().z > -flipperRotation )
+					{
 						leftFlipper->transform.Rotate( 0.0f, 0.0f, -rotationValue * deltaTime );
+						leftFlipper->GetIngredient<Collider>()->bounce = 1.2f;
+					}
 				}
 				// Rotate back
 				else
 				{
 					if( leftFlipper->transform.Rotation().z < flipperRotation )
+					{
 						leftFlipper->transform.Rotate( 0.0f, 0.0f, rotationValue * deltaTime );
+					}
 				}
 
 				// Right flipper
 				if( Input::Get().IsKeyDown( VK_RIGHT, false ) )
 				{
 					if( rightFlipper->transform.Rotation().z < flipperRotation )
+					{
 						rightFlipper->transform.Rotate( 0.0f, 0.0f, rotationValue * deltaTime );
+						rightFlipper->GetIngredient<Collider>()->bounce = 1.2f;
+					}
 				}
 				// Rotate back
 				else
 				{
 					if( rightFlipper->transform.Rotation().z > -flipperRotation )
+					{
 						rightFlipper->transform.Rotate( 0.0f, 0.0f, -rotationValue * deltaTime );
+					}
 				}
 
 				//if( Input::Get().IsKeyDown( VK_LBUTTON ) )
