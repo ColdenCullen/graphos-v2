@@ -1,12 +1,10 @@
 {
-	"Name": "Sphere",
+	"Name": "Ball",
 	
 	"Shader": "texture",
 	
-	"AwesomiumView": {
-		"width": 800,
-		"height": 600,
-		"url": "http://Google.com/"
+	"Texture": {
+		"Name": "Poop"
 	},
 	
 	"Mesh": {
@@ -63,6 +61,4 @@
 		"Radius": 0.25,
 		"Bounce": 1.0
 	}
-
-	//DERP DERP
 }

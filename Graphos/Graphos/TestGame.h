@@ -16,17 +16,18 @@
 #include "Rigidbody.h"
 #include "Helpers.h"
 #include "Config.h"
+#include "Flipper.h"
 
 namespace Graphos
 {
 	class TestGame : public GraphosGame
 	{
 	private:
-		
+		Flipper* leftFlipper;
 
 		bool Initialize( void )
 		{
-			
+			leftFlipper = nullptr;
 
 			return true;
 		}
@@ -43,13 +44,16 @@ namespace Graphos
 					return false;
 			}
 
-			// 
+			// Reset
 			if( Input::Get().IsKeyDown( VK_F5, true ) )
 				Reset();
 
 			if( currentState == Game )
 			{
-				
+				if( leftFlipper == nullptr )
+				{
+					leftFlipper = new Flipper( &ShaderController::Get().GetShader( "texture" ) );
+				}
 	
 				#pragma region Camera
 				// Move camera

@@ -26,7 +26,7 @@ void Physics::Update( void )
 	for( auto outsideCollider = begin( colliders ); outsideCollider != end( colliders ); ++outsideCollider )
 	{
 		//*
-		Collider* insideTemp = GameObject::GetGameObject( "Sphere" )->GetIngredient<Collider>();
+		Collider* insideTemp = GameObject::GetGameObject( "Ball" )->GetIngredient<Collider>();
 		Collider** insideCollider = &insideTemp;
 		//*/
 
