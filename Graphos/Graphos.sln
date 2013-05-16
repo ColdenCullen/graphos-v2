@@ -39,27 +39,45 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Global Headers", "Global He
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Meshes", "Meshes", "{0700A2AC-A74A-4F8F-B84F-7937B0BC7811}"
 	ProjectSection(SolutionItems) = preProject
+		Resources\Assets\Meshes\BlueWall.obj = Resources\Assets\Meshes\BlueWall.obj
+		Resources\Assets\Meshes\Bumper.obj = Resources\Assets\Meshes\Bumper.obj
 		Resources\Assets\Meshes\Cube.obj = Resources\Assets\Meshes\Cube.obj
 		Resources\Assets\Meshes\Flipper.obj = Resources\Assets\Meshes\Flipper.obj
+		Resources\Assets\Meshes\Plunger.obj = Resources\Assets\Meshes\Plunger.obj
 		Resources\Assets\Meshes\Sphere.obj = Resources\Assets\Meshes\Sphere.obj
 		Resources\Assets\Meshes\Table.obj = Resources\Assets\Meshes\Table.obj
+		Resources\Assets\Meshes\WhiteWall.obj = Resources\Assets\Meshes\WhiteWall.obj
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Objects", "Objects", "{8DF553C6-1D43-46F9-83B1-E27CB6C6EB40}"
 	ProjectSection(SolutionItems) = preProject
 		Resources\Assets\Objects\Ball.json = Resources\Assets\Objects\Ball.json
 		Resources\Assets\Objects\Camera.json = Resources\Assets\Objects\Camera.json
+		Resources\Assets\Objects\FlipperWallLeft1.json = Resources\Assets\Objects\FlipperWallLeft1.json
+		Resources\Assets\Objects\FlipperWallRight1.json = Resources\Assets\Objects\FlipperWallRight1.json
+		Resources\Assets\Objects\FlipperWallRight2.json = Resources\Assets\Objects\FlipperWallRight2.json
+		Resources\Assets\Objects\LaunchWall.json = Resources\Assets\Objects\LaunchWall.json
 		Resources\Assets\Objects\LeftFlipper.json = Resources\Assets\Objects\LeftFlipper.json
+		Resources\Assets\Objects\MidWallLeft.json = Resources\Assets\Objects\MidWallLeft.json
+		Resources\Assets\Objects\MidWallMiddle.json = Resources\Assets\Objects\MidWallMiddle.json
+		Resources\Assets\Objects\MidWallRight.json = Resources\Assets\Objects\MidWallRight.json
+		Resources\Assets\Objects\OuterWallBottom.json = Resources\Assets\Objects\OuterWallBottom.json
+		Resources\Assets\Objects\OuterWallLeft.json = Resources\Assets\Objects\OuterWallLeft.json
+		Resources\Assets\Objects\OuterWallRight.json = Resources\Assets\Objects\OuterWallRight.json
+		Resources\Assets\Objects\OuterWallTop.json = Resources\Assets\Objects\OuterWallTop.json
+		Resources\Assets\Objects\Plunger.json = Resources\Assets\Objects\Plunger.json
 		Resources\Assets\Objects\RightFlipper.json = Resources\Assets\Objects\RightFlipper.json
 		Resources\Assets\Objects\Table.json = Resources\Assets\Objects\Table.json
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Textures", "Textures", "{384A3782-A735-4BD5-B272-62E82F285E7B}"
 	ProjectSection(SolutionItems) = preProject
+		Resources\Assets\Textures\Blue.png = Resources\Assets\Textures\Blue.png
 		Resources\Assets\Textures\CubeMaterial.jpg = Resources\Assets\Textures\CubeMaterial.jpg
 		Resources\Assets\Textures\FlipperTexture.png = Resources\Assets\Textures\FlipperTexture.png
 		Resources\Assets\Textures\Poop.png = Resources\Assets\Textures\Poop.png
-		Resources\Assets\Textures\TableTexture.png = Resources\Assets\Textures\TableTexture.png
+		Resources\Assets\Textures\Red.png = Resources\Assets\Textures\Red.png
+		Resources\Assets\Textures\White.png = Resources\Assets\Textures\White.png
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameScripts", "GameScripts\GameScripts.csproj", "{E207B80E-7051-40C2-BCE1-43891B38058C}"

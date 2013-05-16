@@ -79,7 +79,7 @@ void GameObject::Shutdown( void )
 {
 	for( auto ingredient = begin( recipe ); ingredient != end( recipe ); ++ingredient )
 	{
-		if( dynamic_cast<AwesomiumView*>( *ingredient ) || dynamic_cast<Script*>( *ingredient ) )
+		if( ingredient->second->Owner() != NULL )
 		{
 			ingredient->second->Shutdown();
 			delete ingredient->second;
