@@ -1,29 +1,29 @@
 {
-	"Name": "Plunger",
+	"Name": "OuterWallBottom",
 	
 	"Shader": "texture",
 	
 	"Texture": {
-		"Name": "PlungerTexture"
+		"Name": "Red"
 	},
 	
 	"Mesh": {
-		"Name": "Plunger"
+		"Name": "WhiteWall"
 	},
 	
 	"Transform": {
 		"Position": {
-			"x": 0.8,
-			"y": -2.3,
+			"x": 0.0,
+			"y": -1.98,
 			"z": 0.0
 		},
 		"Rotation": {
-			"x": 270.0,
+			"x": 0.0,
 			"y": 0.0,
 			"z": 0.0
 		},
 		"Scale": {
-			"x": 1.0,
+			"x": 30.0,
 			"y": 1.0,
 			"z": 1.0
 		}
@@ -32,10 +32,10 @@
 	"Collider": {
 		"Type": "Box",
 		"Size": {
-			"x": 0.2,
-			"y": 0.2,
-			"z": 1.4
+			"x": 1.63,
+			"y": 0.05,
+			"z": 0.05
 		},
-		"Bounce": 1.0
+		"Bounce": 0.3
 	}
 }

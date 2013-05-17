@@ -23,8 +23,10 @@ namespace Graphos
 	class TestGame : public GraphosGame
 	{
 	private:
+		float maxPlungerHeight;
 		float flipperRotation;
 		float rotationValue;
+		float initialPlungerHeight;
 		Flipper* leftFlipper;
 		Flipper* rightFlipper;
 		GameObject* plunger;
@@ -37,6 +39,7 @@ namespace Graphos
 
 			flipperRotation = 45.0f;
 			rotationValue = 360.0f;
+			maxPlungerHeight = -2.5f;
 
 			return true;
 		}
@@ -68,6 +71,7 @@ namespace Graphos
 					rightFlipper->transform.Rotate( 0.0f, 0.0f, -flipperRotation );
 
 					plunger = GameObject::GetGameObject( "Plunger" );
+					initialPlungerHeight = plunger->transform.Position().y;
 				}
 	
 				#pragma region Camera
@@ -117,7 +121,7 @@ namespace Graphos
 					if( leftFlipper->transform.Rotation().z > -flipperRotation )
 					{
 						leftFlipper->transform.Rotate( 0.0f, 0.0f, -rotationValue * deltaTime );
-						leftFlipper->GetIngredient<Collider>()->bounce = 1.2f;
+						//leftFlipper->GetIngredient<Collider>()->bounce = 1.2f;
 					}
 				}
 				// Rotate back
@@ -135,7 +139,7 @@ namespace Graphos
 					if( rightFlipper->transform.Rotation().z < flipperRotation )
 					{
 						rightFlipper->transform.Rotate( 0.0f, 0.0f, rotationValue * deltaTime );
-						rightFlipper->GetIngredient<Collider>()->bounce = 1.2f;
+						//rightFlipper->GetIngredient<Collider>()->bounce = 1.2f;
 					}
 				}
 				// Rotate back
@@ -146,9 +150,13 @@ namespace Graphos
 						rightFlipper->transform.Rotate( 0.0f, 0.0f, -rotationValue * deltaTime );
 					}
 				}
+				#pragma endregion
 
-				//if( Input::Get().IsKeyDown( VK_LBUTTON ) )
-				Input::Get().GetMousePos();
+				#pragma region Plunger Control
+				if( Input::Get().IsKeyDown( VK_LBUTTON ) && plunger->transform.Position().y > maxPlungerHeight )
+					plunger->transform.Translate( 0.0f, -0.3f * deltaTime, 0.0f );
+				else if ( plunger->transform.Position().y < initialPlungerHeight )
+					plunger->transform.Translate( 0.0f, 3.0f * deltaTime, 0.0f );
 				#pragma endregion
 			}
 #endif

@@ -1,10 +1,10 @@
 {
-	"Name": "MiddleWallRight",
+	"Name": "TopWallLeft2",
 	
 	"Shader": "texture",
 	
 	"Texture": {
-		"Name": "Blue"
+		"Name": "White"
 	},
 	
 	"Mesh": {
@@ -13,18 +13,18 @@
 	
 	"Transform": {
 		"Position": {
-			"x": 0.265,
-			"y": 1.0,
-			"z": 0.0
+			"x": -0.8,
+			"y": 1.1,
+			"z": -0.1
 		},
 		"Rotation": {
 			"x": 0.0,
 			"y": 0.0,
-			"z": 0.0
+			"z": -15.0
 		},
 		"Scale": {
-			"x": 1.0,
-			"y": 3.0,
+			"x": 5.0,
+			"y": 5.0,
 			"z": 1.0
 		}
 	},
@@ -32,10 +32,10 @@
 	"Collider": {
 		"Type": "Box",
 		"Size": {
-			"x": 0.2,
-			"y": 0.1,
-			"z": 0.1
+			"x": 0.38,
+			"y": 0.38,
+			"z": 0.4
 		},
-		"Bounce": 0.0
+		"Bounce": 0.9
 	}
 }
