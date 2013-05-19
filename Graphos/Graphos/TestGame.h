@@ -167,7 +167,7 @@ namespace Graphos
 				else if ( plunger->transform.Position().y < initialPlungerHeight )
 				{
 					plunger->transform.Translate( 0.0f, 3.0f * deltaTime, 0.0f );
-					if( isReset ) ball->GetIngredient<Rigidbody>()->AddForce( 0.0f, -plunger->transform.Position().y, 0.0f );
+					if( isReset ) ball->GetIngredient<Rigidbody>()->AddForce( -0.1f, -plunger->transform.Position().y, 0.0f );
 					isReset = false;
 				}
 				#pragma endregion
