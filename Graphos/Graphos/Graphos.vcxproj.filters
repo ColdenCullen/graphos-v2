@@ -26,6 +26,9 @@
     <ClInclude Include="Flipper.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -43,5 +46,11 @@
     <ClCompile Include="Flipper.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Graphos.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="pinball.ico" />
   </ItemGroup>
 </Project>

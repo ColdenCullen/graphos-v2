@@ -8,3 +8,13 @@ J:\Documents\RIT\20123\DSA1\Project\Graphos\GameScripts\obj\Debug\ResolveAssembl
 J:\Documents\RIT\20123\DSA1\Project\Graphos\GameScripts\obj\Debug\GameScripts.dll
 J:\Documents\RIT\20123\DSA1\Project\Graphos\GameScripts\obj\Debug\GameScripts.pdb
 F:\Documents\RIT\20123\DSA1\Project\Graphos\GameScripts\obj\Debug\GameScripts.csprojResolveAssemblyReference.cache
+Z:\IGMProfile\Documents\2012-Q3\dsa-pinball\Graphos\GameScripts\bin\GameScripts.dll
+Z:\IGMProfile\Documents\2012-Q3\dsa-pinball\Graphos\GameScripts\bin\GameScripts.pdb
+Z:\IGMProfile\Documents\2012-Q3\dsa-pinball\Graphos\GameScripts\obj\Debug\GameScripts.dll
+Z:\IGMProfile\Documents\2012-Q3\dsa-pinball\Graphos\GameScripts\obj\Debug\GameScripts.pdb
+Z:\IGMProfile\Documents\2012-Q3\dsa-pinball\Graphos\GameScripts\obj\Debug\GameScripts.csprojResolveAssemblyReference.cache
+R:\IGMProfile\Documents\2012-Q3\dsa-pinball\Graphos\GameScripts\bin\GameScripts.dll
+R:\IGMProfile\Documents\2012-Q3\dsa-pinball\Graphos\GameScripts\bin\GameScripts.pdb
+R:\IGMProfile\Documents\2012-Q3\dsa-pinball\Graphos\GameScripts\obj\Debug\GameScripts.dll
+R:\IGMProfile\Documents\2012-Q3\dsa-pinball\Graphos\GameScripts\obj\Debug\GameScripts.pdb
+R:\IGMProfile\Documents\2012-Q3\dsa-pinball\Graphos\GameScripts\obj\Debug\GameScripts.csprojResolveAssemblyReference.cache

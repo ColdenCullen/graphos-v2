@@ -27,9 +27,12 @@ namespace Graphos
 		float flipperRotation;
 		float rotationValue;
 		float initialPlungerHeight;
+		bool isReset;
+		Vector3 ballSpawn;
 		Flipper* leftFlipper;
 		Flipper* rightFlipper;
 		GameObject* plunger;
+		GameObject* ball;
 
 		bool Initialize( void )
 		{
@@ -40,6 +43,7 @@ namespace Graphos
 			flipperRotation = 45.0f;
 			rotationValue = 360.0f;
 			maxPlungerHeight = -2.5f;
+			isReset = true;
 
 			return true;
 		}
@@ -72,6 +76,9 @@ namespace Graphos
 
 					plunger = GameObject::GetGameObject( "Plunger" );
 					initialPlungerHeight = plunger->transform.Position().y;
+
+					ball = GameObject::GetGameObject( "Ball" );
+					ballSpawn = ball->transform.Position();
 				}
 	
 				#pragma region Camera
@@ -153,10 +160,32 @@ namespace Graphos
 				#pragma endregion
 
 				#pragma region Plunger Control
-				if( Input::Get().IsKeyDown( VK_LBUTTON ) && plunger->transform.Position().y > maxPlungerHeight )
+				if( isReset && Input::Get().IsKeyDown( VK_LBUTTON ) && plunger->transform.Position().y > maxPlungerHeight )
+				{
 					plunger->transform.Translate( 0.0f, -0.3f * deltaTime, 0.0f );
+				}
 				else if ( plunger->transform.Position().y < initialPlungerHeight )
+				{
 					plunger->transform.Translate( 0.0f, 3.0f * deltaTime, 0.0f );
+					if( isReset ) ball->GetIngredient<Rigidbody>()->AddForce( 0.0f, -plunger->transform.Position().y, 0.0f );
+					isReset = false;
+				}
+				#pragma endregion
+
+				#pragma region Ball Reset
+				if( ball->transform.Position().y < -1.9f )
+				{
+					isReset = true;
+				}
+
+				if (isReset)
+				{
+					ball->transform.Translate(	ballSpawn.x - ball->transform.Position().x, 
+												ballSpawn.y - ball->transform.Position().y, 
+												ballSpawn.z - ball->transform.Position().z );
+					ball->GetIngredient<Rigidbody>()->angularVelocity = Vector3( 0.0f, 0.0f, 0.0f );
+					ball->GetIngredient<Rigidbody>()->linearVelocity = Vector3( 0.0f, 0.0f, 0.0f );
+				}
 				#pragma endregion
 			}
 #endif

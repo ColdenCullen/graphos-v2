@@ -58,12 +58,6 @@
 			height: 100%;
 			z-index: -1;
 
-			/*
-				Default background is a weird gradient so I've set it to stretch to
-				100% in both directions. If you replace it with a photo or something,
-				set background-size to "cover".
-			*/
-
 			background: url('images/bg.jpg');
 			background-size: 100% 100%;
 		}
@@ -510,6 +504,7 @@
 	.icon-home:before			{ content: '\E106'; }
 	.icon-pause:before			{ content: '\E09d'; }
 	.icon-settings:before		{ content: '\E055'; }
+	.icon-quote:before			{ content: '\E10b'; }
 
 	.icon-dribbble:before		{ content: '\E03f'; }
 	.icon-facebook:before		{ content: '\E047'; }

@@ -6,9 +6,9 @@ BoxCollider::BoxCollider( GameObject* owner ) : Collider( Box, owner ) { }
 
 const Vector3 BoxCollider::GetFurthestPointInDirection( const Vector3& direction ) const
 {
-	const Matrix& rotationMarix = owner->transform.RotationMatrix();
+	const Matrix& rotationMatrix = owner->transform.RotationMatrix();
 
-	Vector3 newDir = rotationMarix.Inverse() * direction;
+	Vector3 newDir = rotationMatrix.Inverse() * direction;
 
 	Vector3 point(
 		( newDir.x > 0 ? 0.5f : -0.5f ) * size.x,
@@ -16,7 +16,7 @@ const Vector3 BoxCollider::GetFurthestPointInDirection( const Vector3& direction
 		( newDir.z > 0 ? 0.5f : -0.5f ) * size.z
 	);
 
-	return owner->transform.Position() + ( /*rotationMarix **/ ( centerOffset + point ) );
+	return owner->transform.Position() + ( /*rotationMatrix **/ ( centerOffset + point ) );
 }
 
 const Vector3 BoxCollider::GetNormalOfCollision( const Vector3& otherPosition ) const

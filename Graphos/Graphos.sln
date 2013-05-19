@@ -46,7 +46,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Meshes", "Meshes", "{0700A2
 		Resources\Assets\Meshes\Plunger.obj = Resources\Assets\Meshes\Plunger.obj
 		Resources\Assets\Meshes\Sphere.obj = Resources\Assets\Meshes\Sphere.obj
 		Resources\Assets\Meshes\Table.obj = Resources\Assets\Meshes\Table.obj
-		Resources\Assets\Meshes\WhiteWall.obj = Resources\Assets\Meshes\WhiteWall.obj
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Objects", "Objects", "{8DF553C6-1D43-46F9-83B1-E27CB6C6EB40}"
@@ -54,6 +53,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Objects", "Objects", "{8DF5
 		Resources\Assets\Objects\Ball.json = Resources\Assets\Objects\Ball.json
 		Resources\Assets\Objects\Walls\BottomWallLeft.json = Resources\Assets\Objects\Walls\BottomWallLeft.json
 		Resources\Assets\Objects\Walls\BottomWallRight.json = Resources\Assets\Objects\Walls\BottomWallRight.json
+		Resources\Assets\Objects\BumperLeft.json = Resources\Assets\Objects\BumperLeft.json
+		Resources\Assets\Objects\BumperMid.json = Resources\Assets\Objects\BumperMid.json
+		Resources\Assets\Objects\BumperRight.json = Resources\Assets\Objects\BumperRight.json
 		Resources\Assets\Objects\Camera.json = Resources\Assets\Objects\Camera.json
 		Resources\Assets\Objects\Walls\FlipperWallLeft1.json = Resources\Assets\Objects\Walls\FlipperWallLeft1.json
 		Resources\Assets\Objects\Walls\FlipperWallLeft2.json = Resources\Assets\Objects\Walls\FlipperWallLeft2.json
@@ -76,7 +78,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Objects", "Objects", "{8DF5
 		Resources\Assets\Objects\Table.json = Resources\Assets\Objects\Table.json
 		Resources\Assets\Objects\Walls\TopWallLeft.json = Resources\Assets\Objects\Walls\TopWallLeft.json
 		Resources\Assets\Objects\Walls\TopWallLeft2.json = Resources\Assets\Objects\Walls\TopWallLeft2.json
-		Resources\Assets\Objects\TopWallLeft3.json = Resources\Assets\Objects\TopWallLeft3.json
+		Resources\Assets\Objects\Walls\TopWallLeft3.json = Resources\Assets\Objects\Walls\TopWallLeft3.json
 		Resources\Assets\Objects\Walls\TopWallRight.json = Resources\Assets\Objects\Walls\TopWallRight.json
 	EndProjectSection
 EndProject
@@ -84,6 +86,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Textures", "Textures", "{38
 	ProjectSection(SolutionItems) = preProject
 		Resources\Assets\Textures\Blue.png = Resources\Assets\Textures\Blue.png
 		Resources\Assets\Textures\FlipperTexture.png = Resources\Assets\Textures\FlipperTexture.png
+		Resources\Assets\Textures\PlungerTexture.png = Resources\Assets\Textures\PlungerTexture.png
 		Resources\Assets\Textures\Poop.png = Resources\Assets\Textures\Poop.png
 		Resources\Assets\Textures\Red.png = Resources\Assets\Textures\Red.png
 		Resources\Assets\Textures\White.png = Resources\Assets\Textures\White.png
@@ -97,10 +100,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UIs", "UIs", "{287054AC-BB7
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Objects.old", "Objects.old", "{20A57187-3B47-4BD5-9FC0-05B33BC82572}"
-	ProjectSection(SolutionItems) = preProject
-		Resources\Assets\Objects.old\LeftCube.json = Resources\Assets\Objects.old\LeftCube.json
-		Resources\Assets\Objects.old\RightCube.json = Resources\Assets\Objects.old\RightCube.json
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

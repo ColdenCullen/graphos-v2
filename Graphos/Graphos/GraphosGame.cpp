@@ -164,6 +164,9 @@ bool GraphosGame::Start( void )
 	objects = nullptr;
 	camera = nullptr;
 
+	//hide console window
+	FreeConsole();
+
 	bool isDone = false;
 
 	if( !isDone && !Config::Get().LoadSettings() )
