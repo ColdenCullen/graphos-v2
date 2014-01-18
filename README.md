@@ -1,6 +1,6 @@
 ## Pinball Americana
 
-![Powered by Graphos](https://github.com/ColdenCullen/dsa-pinball/blob/master/Graphos/Logo/Logo.png)
+![Powered by Graphos](https://github.com/ColdenCullen/dsa-pinball/raw/master/Graphos/Logo/Logo.png)
 
 A basic (I mean seriously basic, like it doesn't work) pinball game built by [Colden Cullen](https://github.com/ColdenCullen) and [Daniel Jost](https://github.com/PxlBuzzard). The engine and game were created for Data Structures and Algorithms 1 during our second year at Rochester Institute of Technology.
 
